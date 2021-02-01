@@ -1,2 +1,2 @@
 # myFlix80s-client
-Displays movies from the 1980s
+This repo is for the client-side of the myFlix80s app.
