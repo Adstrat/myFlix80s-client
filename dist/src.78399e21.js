@@ -31686,6 +31686,11 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
   }
 
   _createClass(MovieView, [{
+    key: "refreshPage",
+    value: function refreshPage() {
+      window.location.reload(false);
+    }
+  }, {
     key: "render",
     value: function render() {
       var movie = this.props.movie;
@@ -31732,8 +31737,7 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
       }, "Released: "), _react.default.createElement("span", {
         className: "valus"
       }, movie.Released)), _react.default.createElement("button", {
-        type: "button",
-        onClick: this.props.onClickBack
+        onClick: this.refreshPage
       }, "Back to Main Page"));
     }
   }]);
@@ -32012,7 +32016,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50686" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52547" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

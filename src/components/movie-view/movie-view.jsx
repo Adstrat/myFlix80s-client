@@ -5,6 +5,9 @@ export class MovieView extends React.Component {
     super();
     this.state = {};
   }
+  refreshPage() {
+    window.location.reload(false);
+  }
   render() {
     const { movie } = this.props;
     if (!movie) return null;
@@ -36,7 +39,7 @@ export class MovieView extends React.Component {
           <span className="label">Released: </span>
           <span className="valus">{movie.Released}</span>
         </div>
-        < button type="button" onClick={this.props.onClickBack}>
+        < button onClick={this.refreshPage}>
           Back to Main Page
         </button>
       </div >
