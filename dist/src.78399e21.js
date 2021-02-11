@@ -34260,6 +34260,7 @@ function LoginView(props) {
     props.onLoggedIn(username);
   };
 
+  var registerButton = {};
   return _react.default.createElement(_Form.default, null, _react.default.createElement(_Form.default.Group, {
     controlId: "formUsername"
   }, _react.default.createElement(_Form.default.Label, null, "Username:"), _react.default.createElement(_Form.default.Control, {
@@ -34277,10 +34278,14 @@ function LoginView(props) {
       return setPassword(e.target.value);
     }
   })), _react.default.createElement(_Button.default, {
-    variant: "primary",
+    variant: "info",
     type: "submit",
     onClick: handleSubmit
-  }, "Submit"));
+  }, "Submit"), _react.default.createElement(_Button.default, {
+    className: "reg-button",
+    variant: "info",
+    onClick: registerButton
+  }, "Register"));
 }
 
 LoginView.propTypes = {
@@ -34532,7 +34537,7 @@ var MovieCard = /*#__PURE__*/function (_React$Component) {
         variant: "top",
         src: movie.ImagePath
       }), _react.default.createElement(_Card.default.Body, null, _react.default.createElement(_Card.default.Title, null, movie.Title), _react.default.createElement(_Card.default.Text, null, "Released: ", movie.Released), _react.default.createElement(_Button.default, {
-        variant: "success",
+        variant: "info",
         onClick: function onClick() {
           return _onClick(movie);
         }
@@ -48055,11 +48060,6 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
   }
 
   _createClass(MovieView, [{
-    key: "refreshPage",
-    value: function refreshPage() {
-      window.location.reload(false);
-    }
-  }, {
     key: "render",
     value: function render() {
       var _this$props = this.props,
@@ -48109,7 +48109,7 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
         className: "value"
       }, movie.Released)), _react.default.createElement(_reactBootstrap.Button, {
         className: "return-button",
-        variant: "success",
+        variant: "info",
         onClick: function onClick() {
           return _onClick(movie);
         }
@@ -48165,6 +48165,10 @@ var _movieView = require("../movie-view/movie-view");
 var _Row = _interopRequireDefault(require("react-bootstrap/Row"));
 
 var _Col = _interopRequireDefault(require("react-bootstrap/Col"));
+
+var _Navbar = _interopRequireDefault(require("react-bootstrap/Navbar"));
+
+var _Nav = _interopRequireDefault(require("react-bootstrap/Nav"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -48260,7 +48264,25 @@ var MainView = /*#__PURE__*/function (_React$Component) {
       if (!movies) return _react.default.createElement("div", {
         className: "main-view"
       });
-      return _react.default.createElement(_Row.default, {
+      return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(_Navbar.default, {
+        bg: "light",
+        variant: "light",
+        expand: "lg"
+      }, _react.default.createElement(_Navbar.default.Brand, {
+        href: "#home"
+      }, "MyFlix80s"), _react.default.createElement(_Navbar.default.Toggle, {
+        "aria-controls": "basic-navbar-nav"
+      }), _react.default.createElement(_Navbar.default.Collapse, {
+        id: "basic-navbar-nav"
+      }, _react.default.createElement(_Nav.default, {
+        className: "mr-auto"
+      }, _react.default.createElement(_Nav.default.Link, {
+        href: "#home"
+      }, "Home"), _react.default.createElement(_Nav.default.Link, {
+        href: "#link"
+      }, "Profile"), _react.default.createElement(_Nav.default.Link, {
+        href: "#link"
+      }, "LogOut")))), _react.default.createElement(_Row.default, {
         className: "main-view justify-content-md-center"
       }, selectedMovie ? _react.default.createElement(_Col.default, {
         md: 8
@@ -48279,7 +48301,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
             return _this3.onMovieClick(movie);
           }
         }));
-      }));
+      })));
     }
   }]);
 
@@ -48287,7 +48309,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
 }(_react.default.Component);
 
 exports.MainView = MainView;
-},{"react":"../node_modules/react/index.js","axios":"../node_modules/axios/index.js","../registration-view/registration-view":"components/registration-view/registration-view.jsx","../login-view/login-view":"components/login-view/login-view.jsx","../movie-card/movie-card":"components/movie-card/movie-card.jsx","../movie-view/movie-view":"components/movie-view/movie-view.jsx","react-bootstrap/Row":"../node_modules/react-bootstrap/esm/Row.js","react-bootstrap/Col":"../node_modules/react-bootstrap/esm/Col.js"}],"../../../.nvm/versions/node/v14.15.1/lib/node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","axios":"../node_modules/axios/index.js","../registration-view/registration-view":"components/registration-view/registration-view.jsx","../login-view/login-view":"components/login-view/login-view.jsx","../movie-card/movie-card":"components/movie-card/movie-card.jsx","../movie-view/movie-view":"components/movie-view/movie-view.jsx","react-bootstrap/Row":"../node_modules/react-bootstrap/esm/Row.js","react-bootstrap/Col":"../node_modules/react-bootstrap/esm/Col.js","react-bootstrap/Navbar":"../node_modules/react-bootstrap/esm/Navbar.js","react-bootstrap/Nav":"../node_modules/react-bootstrap/esm/Nav.js"}],"../../../.nvm/versions/node/v14.15.1/lib/node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
 var bundleURL = null;
 
 function getBundleURLCached() {
@@ -48450,7 +48472,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53195" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58417" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

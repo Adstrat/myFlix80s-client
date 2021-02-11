@@ -8,6 +8,8 @@ import { MovieView } from "../movie-view/movie-view";
 
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Navbar from 'react-bootstrap/Navbar'
+import Nav from 'react-bootstrap/Nav'
 
 export class MainView extends React.Component {
   constructor() {
@@ -52,22 +54,36 @@ export class MainView extends React.Component {
     if (!movies) return <div className="main-view" />;
     return (
 
-      <Row className="main-view justify-content-md-center">
-        {selectedMovie ? (
-          <Col md={8}>
-            <MovieView movie={selectedMovie}
-              onClick={() => this.onReturnClick()}
-            />
-          </Col>
-        )
-          : movies.map(movie => (
-            <Col md={3}>
-              <MovieCard key={movie._id} movie={movie} onClick={movie =>
-                this.onMovieClick(movie)} />
+      <React.Fragment>
+        <Navbar bg="light" variant="light" expand="lg">
+          <Navbar.Brand href="#home">MyFlix80s</Navbar.Brand>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="mr-auto">
+              <Nav.Link href="#home">Home</Nav.Link>
+              <Nav.Link href="#link">Profile</Nav.Link>
+              <Nav.Link href="#link">LogOut</Nav.Link>
+            </Nav>
+          </Navbar.Collapse>
+        </Navbar>
+
+        <Row className="main-view justify-content-md-center">
+          {selectedMovie ? (
+            <Col md={8}>
+              <MovieView movie={selectedMovie}
+                onClick={() => this.onReturnClick()}
+              />
             </Col>
-          ))
-        }
-      </Row>
+          )
+            : movies.map(movie => (
+              <Col md={3}>
+                <MovieCard key={movie._id} movie={movie} onClick={movie =>
+                  this.onMovieClick(movie)} />
+              </Col>
+            ))
+          }
+        </Row>
+      </React.Fragment>
     );
   }
 }

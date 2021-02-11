@@ -7,9 +7,7 @@ export class MovieView extends React.Component {
     super();
     this.state = {};
   }
-  refreshPage() {
-    window.location.reload(false);
-  }
+
   render() {
     const { movie, onClick } = this.props;
     if (!movie) return null;
@@ -41,7 +39,7 @@ export class MovieView extends React.Component {
           <span className="label">Released: </span>
           <span className="value">{movie.Released}</span>
         </div>
-        <Button className='return-button' variant='success' onClick={() => onClick(movie)}>Return to Movie List</Button>
+        <Button className='return-button' variant='info' onClick={() => onClick(movie)}>Return to Movie List</Button>
       </div >
     );
   }

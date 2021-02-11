@@ -13,22 +13,32 @@ export function LoginView(props) {
     props.onLoggedIn(username);
   };
 
-  return (
-    <Form>
-      <Form.Group controlId="formUsername">
-        <Form.Label>Username:</Form.Label>
-        <Form.Control type="text" placeholder="Enter username" onChange={e => setUsername(e.target.value)} />
-      </Form.Group>
+  const registerButton = {
+    movie =>
+  this.onMovieClick(movie)
+}
 
-      <Form.Group controlId="formPassword">
-        <Form.Label>Password:</Form.Label>
-        <Form.Control type="password" placeholder="Password" onChange={e => setPassword(e.target.value)} />
-      </Form.Group>
-      <Button variant="primary" type="submit" onClick={handleSubmit}>
-        Submit
+return (
+  <Form>
+
+    <Form.Group controlId="formUsername">
+      <Form.Label>Username:</Form.Label>
+      <Form.Control type="text" placeholder="Enter username" onChange={e => setUsername(e.target.value)} />
+    </Form.Group>
+
+    <Form.Group controlId="formPassword">
+      <Form.Label>Password:</Form.Label>
+      <Form.Control type="password" placeholder="Password" onChange={e => setPassword(e.target.value)} />
+    </Form.Group>
+
+    <Button variant="info" type="submit" onClick={handleSubmit}>
+      Submit
       </Button>
-    </Form>
-  );
+
+    <Button className='reg-button' variant='info' onClick={registerButton}>Register</Button>
+
+  </Form>
+);
 }
 
 LoginView.propTypes = {
