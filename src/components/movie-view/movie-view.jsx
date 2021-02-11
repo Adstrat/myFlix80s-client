@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 export class MovieView extends React.Component {
   constructor() {
@@ -33,16 +34,37 @@ export class MovieView extends React.Component {
         </div>
         <div className="movie-actors">
           <span className="label">Actors: </span>
-          <span className="valus">{movie.Actors}</span>
+          <span className="value">{movie.Actors}</span>
         </div>
         <div className="movie-released">
           <span className="label">Released: </span>
-          <span className="valus">{movie.Released}</span>
+          <span className="value">{movie.Released}</span>
         </div>
-        < button onClick={this.refreshPage}>
+        <button onClick={this.refreshPage}>
           Back to Main Page
         </button>
       </div >
     );
   }
+}
+
+MovieView.propTypes = {
+  movie: PropTypes.shape({
+    ImagePath: PropTypes.string.isRequired,
+    Title: PropTypes.string.isRequired,
+    Description: PropTypes.string.isRequired,
+    Genre: PropTypes.shape({
+      Name: PropTypes.string.isRequired,
+      Description: PropTypes.string.isRequired
+    }).isRequired,
+    Director: PropTypes.shape({
+      Name: PropTypes.string.isRequired,
+      Bio: PropTypes.string.isRequired,
+      Birth: PropTypes.string.isRequired,
+      Death: PropTypes.string
+    }).isRequired,
+    Actors: PropTypes.array.isRequired,
+    Released: PropTypes.string.isRequired
+  }).isRequired,
+  onClick: PropTypes.func.isRequired
 }
