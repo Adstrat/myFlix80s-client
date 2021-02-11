@@ -40,15 +40,24 @@ export class MainView extends React.Component {
     });
   }
 
+  onReturnClick() {
+    this.setState({
+      selectedMovie: null
+    });
+  }
+
   render() {
-    const { movies, selectedMovie } = this.state;
+    const { movies, selectedMovie, user } = this.state;
     if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
     if (!movies) return <div className="main-view" />;
     return (
+
       <Row className="main-view justify-content-md-center">
         {selectedMovie ? (
           <Col md={8}>
-            <MovieView movie={selectedMovie} />
+            <MovieView movie={selectedMovie}
+              onClick={() => this.onReturnClick()}
+            />
           </Col>
         )
           : movies.map(movie => (

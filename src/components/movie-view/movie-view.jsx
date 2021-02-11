@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Card, Button } from 'react-bootstrap';
 
 export class MovieView extends React.Component {
   constructor() {
@@ -10,7 +11,7 @@ export class MovieView extends React.Component {
     window.location.reload(false);
   }
   render() {
-    const { movie } = this.props;
+    const { movie, onClick } = this.props;
     if (!movie) return null;
     return (
       <div className="movie-view">
@@ -40,9 +41,7 @@ export class MovieView extends React.Component {
           <span className="label">Released: </span>
           <span className="value">{movie.Released}</span>
         </div>
-        <button onClick={this.refreshPage}>
-          Back to Main Page
-        </button>
+        <Button className='return-button' variant='success' onClick={() => onClick(movie)}>Return to Movie List</Button>
       </div >
     );
   }
@@ -64,7 +63,8 @@ MovieView.propTypes = {
       Death: PropTypes.string
     }).isRequired,
     Actors: PropTypes.array.isRequired,
-    Released: PropTypes.string.isRequired
+    Released: PropTypes.string.isRequired,
+    Featured: PropTypes.bool
   }).isRequired,
   onClick: PropTypes.func.isRequired
-}
+};
