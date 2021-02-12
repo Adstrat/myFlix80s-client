@@ -47917,7 +47917,20 @@ function LoginView(props) {
     onClick: handleSubmit
   }, "Submit"), _react.default.createElement(_reactBootstrap.Button, {
     className: "register-button",
-    variant: "info"
+    variant: "info",
+    onClick: function (_onClick) {
+      function onClick() {
+        return _onClick.apply(this, arguments);
+      }
+
+      onClick.toString = function () {
+        return _onClick.toString();
+      };
+
+      return onClick;
+    }(function () {
+      return onClick(movie);
+    })
   }, "New User Sign Up")));
 }
 
@@ -48068,48 +48081,27 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
           movie = _this$props.movie,
           _onClick = _this$props.onClick;
       if (!movie) return null;
-      return _react.default.createElement("div", {
+      return _react.default.createElement(_reactBootstrap.Card, {
         className: "movie-view"
-      }, _react.default.createElement("img", {
+      }, _react.default.createElement(_reactBootstrap.Card.Img, {
         className: "movie-poster",
+        variant: "top",
         src: movie.ImagePath
-      }), _react.default.createElement("div", {
+      }), _react.default.createElement(_reactBootstrap.Card.Body, null, _react.default.createElement(_reactBootstrap.Card.Title, {
         className: "movie-title"
-      }, _react.default.createElement("span", {
-        className: "label"
-      }, "Title: "), _react.default.createElement("span", {
-        className: "value"
-      }, movie.Title)), _react.default.createElement("div", {
+      }, movie.Title), _react.default.createElement(_reactBootstrap.Card.Text, {
         className: "movie-description"
-      }, _react.default.createElement("span", {
-        className: "label"
-      }, "Description: "), _react.default.createElement("span", {
-        className: "value"
-      }, movie.Description)), _react.default.createElement("div", {
+      }, movie.Description)), _react.default.createElement(_reactBootstrap.ListGroup, {
+        className: "list-group-flush"
+      }, _react.default.createElement(_reactBootstrap.ListGroupItem, {
         className: "movie-genre"
-      }, _react.default.createElement("span", {
-        className: "label"
-      }, "Genre: "), _react.default.createElement("span", {
-        className: "value"
-      }, movie.Genre.Name)), _react.default.createElement("div", {
+      }, "Genre: ", movie.Genre.Name), _react.default.createElement(_reactBootstrap.ListGroupItem, {
         className: "movie-director"
-      }, _react.default.createElement("span", {
-        className: "label"
-      }, "Director: "), _react.default.createElement("span", {
-        className: "value"
-      }, movie.Director.Name)), _react.default.createElement("div", {
+      }, "Director: ", movie.Director.Name), _react.default.createElement(_reactBootstrap.ListGroupItem, {
         className: "movie-actors"
-      }, _react.default.createElement("span", {
-        className: "label"
-      }, "Actors: "), _react.default.createElement("span", {
-        className: "value"
-      }, movie.Actors)), _react.default.createElement("div", {
+      }, "Actors: ", movie.Actors), _react.default.createElement(_reactBootstrap.ListGroupItem, {
         className: "movie-released"
-      }, _react.default.createElement("span", {
-        className: "label"
-      }, "Released: "), _react.default.createElement("span", {
-        className: "value"
-      }, movie.Released)), _react.default.createElement(_reactBootstrap.Button, {
+      }, "Released: ", movie.Released)), _react.default.createElement(_reactBootstrap.Button, {
         className: "return-button",
         variant: "info",
         onClick: function onClick() {
@@ -48284,7 +48276,8 @@ var MainView = /*#__PURE__*/function (_React$Component) {
     _this.state = {
       movies: null,
       selectedMovie: null,
-      user: null
+      user: null,
+      hasAccount: true
     };
     return _this;
   }
@@ -48301,21 +48294,40 @@ var MainView = /*#__PURE__*/function (_React$Component) {
       }).catch(function (error) {
         console.log(error);
       });
-    }
+    } // Handler to navigate to RegistrationView from LoginView *
+
   }, {
-    key: "onMovieClick",
-    value: function onMovieClick(movie) {
+    key: "onRegister",
+    value: function onRegister() {
       this.setState({
-        selectedMovie: movie
+        hasAccount: false
       });
-    }
+    } //Handler to return to LoginView from RegistrationView
+
+  }, {
+    key: "onReturnLogin",
+    value: function onReturnLogin() {
+      this.setState({
+        hasAccount: true
+      });
+    } // Updates user in state on successful login *
+
   }, {
     key: "onLoggedIn",
     value: function onLoggedIn(user) {
       this.setState({
         user: user
       });
-    }
+    } //Handler to navigate from MainView to MovieView
+
+  }, {
+    key: "onMovieClick",
+    value: function onMovieClick(movie) {
+      this.setState({
+        selectedMovie: movie
+      });
+    } // Handler to return from MovieView back to MainView
+
   }, {
     key: "onReturnClick",
     value: function onReturnClick() {
@@ -48335,7 +48347,8 @@ var MainView = /*#__PURE__*/function (_React$Component) {
       if (!user) return _react.default.createElement(_loginView.LoginView, {
         onLoggedIn: function onLoggedIn(user) {
           return _this3.onLoggedIn(user);
-        }
+        },
+        onRegister: this.onRegister
       });
       if (!movies) return _react.default.createElement("div", {
         className: "main-view"
@@ -48357,7 +48370,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
       }, "Home"), _react.default.createElement(_Nav.default.Link, {
         href: "#link"
       }, "Profile"), _react.default.createElement(_Nav.default.Link, {
-        href: "#link"
+        href: "http://localhost:1234"
       }, "LogOut")))), _react.default.createElement(_Row.default, {
         className: "main-view justify-content-md-center"
       }, selectedMovie ? _react.default.createElement(_Col.default, {
@@ -48481,7 +48494,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51334" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54205" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
