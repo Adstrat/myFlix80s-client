@@ -19,7 +19,8 @@ export class MainView extends React.Component {
     this.state = {
       movies: null,
       selectedMovie: null,
-      user: null
+      user: null,
+      hasAccount: true
     };
   }
   componentDidMount() {
@@ -33,17 +34,32 @@ export class MainView extends React.Component {
         console.log(error);
       });
   }
-  onMovieClick(movie) {
+  // Handler to navigate to RegistrationView from LoginView *
+  onRegister() {
     this.setState({
-      selectedMovie: movie
+      hasAccount: false
     });
   }
+  //Handler to return to LoginView from RegistrationView
+  onReturnLogin() {
+    this.setState({
+      hasAccount: true
+    })
+  }
+
+  // Updates user in state on successful login *
   onLoggedIn(user) {
     this.setState({
       user
     });
   }
-
+  //Handler to navigate from MainView to MovieView
+  onMovieClick(movie) {
+    this.setState({
+      selectedMovie: movie
+    });
+  }
+  // Handler to return from MovieView back to MainView
   onReturnClick() {
     this.setState({
       selectedMovie: null
@@ -52,7 +68,8 @@ export class MainView extends React.Component {
 
   render() {
     const { movies, selectedMovie, user } = this.state;
-    if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
+    if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)}
+      onRegister={this.onRegister} />;
     if (!movies) return <div className="main-view" />;
     return (
 
@@ -64,7 +81,7 @@ export class MainView extends React.Component {
             <Nav className="mr-auto">
               <Nav.Link href="#home">Home</Nav.Link>
               <Nav.Link href="#link">Profile</Nav.Link>
-              <Nav.Link href="#link">LogOut</Nav.Link>
+              <Nav.Link href="http://localhost:1234">LogOut</Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Navbar>
