@@ -16,31 +16,38 @@ export function RegistrationView(props) {
   };
 
   return (
-    <Form>
-      <Form.Group controlId="formUsername">
-        <Form.Label>Username:</Form.Label>
-        <Form.Control type="text" placeholder="Enter username"
-          onChange={e => setUsername(e.target.value)} />
-      </Form.Group>
+    <React.Fragment>
+      <Navbar className="navbar" variant="dark">
+        <Navbar.Brand>MyFlix80s - Log In</Navbar.Brand>
+      </Navbar>
 
-      <Form.Group controlID="formEmail">
-        <Form.Label>Email:</Form.Label>
-        <Form.Control type="email" placeholder="Enter email" />
-        <Form.Text className="text-muted">
-          We'll never share your email with anyone else.
+      <Form>
+        <Form.Group controlId="formUsername">
+          <Form.Label>Username:</Form.Label>
+          <Form.Control type="text" placeholder="Enter username"
+            onChange={e => setUsername(e.target.value)} />
+        </Form.Group>
+
+        <Form.Group controlID="formEmail">
+          <Form.Label>Email:</Form.Label>
+          <Form.Control type="email" placeholder="Enter email" />
+          <Form.Text className="text-muted">
+            We'll never share your email with anyone else.
       </Form.Text>
-      </Form.Group>
+        </Form.Group>
 
-      <Form.Group controlId="formPassword">
-        <Form.Label>Password:</Form.Label>
-        <Form.Control type="password" placeholder="Password"
-          onChange={e => setPassword(e.target.value)} />
-      </Form.Group>
+        <Form.Group controlId="formPassword">
+          <Form.Label>Password:</Form.Label>
+          <Form.Control type="password" placeholder="Password"
+            onChange={e => setPassword(e.target.value)} />
+        </Form.Group>
 
-      <Button variant="primary" type="submit" onClick={handleSubmit}>
-        Submit
+        <Button variant="primary" type="submit" onClick={handleSubmit}>
+          Submit
       </Button>
-    </Form>
+      </Form>
+
+    </React.Fragment>
   );
 }
 

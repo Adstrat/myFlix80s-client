@@ -11,6 +11,8 @@ import Col from 'react-bootstrap/Col';
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 
+import './main-view.scss'
+
 export class MainView extends React.Component {
   constructor() {
     super();
@@ -55,7 +57,7 @@ export class MainView extends React.Component {
     return (
 
       <React.Fragment>
-        <Navbar bg="light" variant="light" expand="lg">
+        <Navbar className="navbar" variant="dark" expand="md">
           <Navbar.Brand href="#home">MyFlix80s</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
