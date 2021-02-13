@@ -47876,22 +47876,30 @@ function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 function LoginView(props) {
-  var _useState = (0, _react.useState)(''),
-      _useState2 = _slicedToArray(_useState, 2),
-      username = _useState2[0],
-      setUsername = _useState2[1];
-
-  var _useState3 = (0, _react.useState)(''),
-      _useState4 = _slicedToArray(_useState3, 2),
-      password = _useState4[0],
-      setPassword = _useState4[1];
-
   var handleSubmit = function handleSubmit(e) {
     e.preventDefault();
     console.log(username, password);
     props.onLoggedIn(username);
   };
 
+  var LoginView = function LoginView(_ref) {
+    var onLoggedIn = _ref.onLoggedIn,
+        onRegister = _ref.onRegister;
+
+    // State for form input
+    var _useState = (0, _react.useState)({
+      username: '',
+      password: ''
+    }),
+        _useState2 = _slicedToArray(_useState, 2),
+        formData = _useState2[0],
+        setFormData = _useState2[1];
+
+    var username = formData.username,
+        password = formData.password;
+  };
+
+  var onRegister = userState('');
   return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(_reactBootstrap.Navbar, {
     className: "navbar",
     variant: "dark"
@@ -47918,25 +47926,13 @@ function LoginView(props) {
   }, "Submit"), _react.default.createElement(_reactBootstrap.Button, {
     className: "register-button",
     variant: "info",
-    onClick: function (_onClick) {
-      function onClick() {
-        return _onClick.apply(this, arguments);
-      }
-
-      onClick.toString = function () {
-        return _onClick.toString();
-      };
-
-      return onClick;
-    }(function () {
-      return onClick(movie);
-    })
+    onClick: onRegister
   }, "New User Sign Up")));
 }
 
 LoginView.propTypes = {
-  Username: _propTypes.default.string,
-  Password: _propTypes.default.string
+  onLoggedIn: _propTypes.default.func.isRequired,
+  onRegister: _propTypes.default.func.isRequired
 };
 },{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js"}],"components/movie-card/movie-card.jsx":[function(require,module,exports) {
 "use strict";
@@ -48343,13 +48339,15 @@ var MainView = /*#__PURE__*/function (_React$Component) {
       var _this$state = this.state,
           movies = _this$state.movies,
           selectedMovie = _this$state.selectedMovie,
-          user = _this$state.user;
+          user = _this$state.user,
+          hasAccount = _this$state.hasAccount;
       if (!user) return _react.default.createElement(_loginView.LoginView, {
         onLoggedIn: function onLoggedIn(user) {
           return _this3.onLoggedIn(user);
         },
         onRegister: this.onRegister
       });
+      if (!hasAccount) return _react.default.createElement(_registrationView.RegistrationView, null);
       if (!movies) return _react.default.createElement("div", {
         className: "main-view"
       });
@@ -48494,7 +48492,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54205" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63185" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
