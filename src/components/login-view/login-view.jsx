@@ -3,24 +3,16 @@ import PropTypes from 'prop-types';
 import { Navbar, Form, Button } from 'react-bootstrap';
 
 export function LoginView(props) {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
+  const { onRegister } = props;
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(username, password);
-    props.onLoggedIn(username);
+    props.handleLoggedIn(username);
   };
-
-  const LoginView = ({ onLoggedIn, onRegister }) => {
-    // State for form input
-    const [formData, setFormData] = useState({
-      username: '',
-      password: '',
-    });
-
-    const { username, password } = formData;
-  }
-
-  const onRegister = userState('');
 
   return (
     <React.Fragment>
@@ -43,7 +35,7 @@ export function LoginView(props) {
 
         <Button variant="info" type="submit" onClick={handleSubmit}>
           Submit
-      </Button>
+        </Button>
 
         <Button className='register-button' variant='info' onClick={onRegister}
         >New User Sign Up</Button>
@@ -54,7 +46,8 @@ export function LoginView(props) {
   );
 }
 
+
 LoginView.propTypes = {
-  onLoggedIn: PropTypes.func.isRequired,
-  onRegister: PropTypes.func.isRequired,
-};
+  Username: PropTypes.string,
+  Password: PropTypes.string
+}

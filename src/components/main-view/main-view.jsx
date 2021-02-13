@@ -34,21 +34,21 @@ export class MainView extends React.Component {
         console.log(error);
       });
   }
-  // Handler to navigate to RegistrationView from LoginView *
-  onRegister() {
+  // Handler to navigate to RegistrationView from LoginView 
+  handleRegister = () => {
     this.setState({
       hasAccount: false
     });
   }
   //Handler to return to LoginView from RegistrationView
-  onReturnLogin() {
+  handleReturnLogin = () => {
     this.setState({
       hasAccount: true
     })
   }
 
-  // Updates user in state on successful login *
-  onLoggedIn(user) {
+  // Updates user in state on successful login 
+  handleLoggedIn = (user) => {
     this.setState({
       user
     });
@@ -59,7 +59,7 @@ export class MainView extends React.Component {
       selectedMovie: movie
     });
   }
-  // Handler to return from MovieView back to MainView
+  // Handler to return from MovieView back to MainView 
   onReturnClick() {
     this.setState({
       selectedMovie: null
@@ -68,13 +68,23 @@ export class MainView extends React.Component {
 
   render() {
     const { movies, selectedMovie, user, hasAccount } = this.state;
-    if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)}
-      onRegister={this.onRegister}
-    />;
-    if (!hasAccount) return <RegistrationView />;
-    if (!movies) return <div className="main-view" />;
-    return (
 
+    // on LoginView, when 'New User Sign Up' is clicked, goes to ReistrationView
+    if (!hasAccount) return
+    < RegistrationView onReturnLogin={this.handleReturnLogin} />;
+
+
+    // Renders LoginView if no user
+    if (!user) return
+    < LoginView handleLoggedIn={user => this.handleLoggedIn(user)}
+      handleRegister={this.handleRegister}
+    />;
+
+
+    if (!movies) return <div className="main-view" />;
+
+    return (
+      // Navbar
       <React.Fragment>
         <Navbar className="navbar" variant="dark" expand="md">
           <Navbar.Brand href="#home">MyFlix80s</Navbar.Brand>
