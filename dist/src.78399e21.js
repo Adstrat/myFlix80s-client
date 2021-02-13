@@ -34160,12 +34160,8 @@ function RegistrationView(props) {
   var _useState5 = (0, _react.useState)(''),
       _useState6 = _slicedToArray(_useState5, 2),
       password = _useState6[0],
-      setPassword = _useState6[1];
+      setPassword = _useState6[1]; //const [birthday, setBirthday] = useState('');
 
-  var _useState7 = (0, _react.useState)(''),
-      _useState8 = _slicedToArray(_useState7, 2),
-      birthday = _useState8[0],
-      setBirthday = _useState8[1];
 
   var handleSubmit = function handleSubmit(e) {
     e.preventDefault();
@@ -34188,7 +34184,10 @@ function RegistrationView(props) {
     controlID: "formEmail"
   }, _react.default.createElement(_Form.default.Label, null, "Email:"), _react.default.createElement(_Form.default.Control, {
     type: "email",
-    placeholder: "Enter email"
+    placeholder: "Enter email",
+    onChange: function onChange(e) {
+      return setEmail(e.target.value);
+    }
   }), _react.default.createElement(_Form.default.Text, {
     className: "text-muted"
   }, "We'll never share your email with anyone else.")), _react.default.createElement(_Form.default.Group, {
@@ -34206,11 +34205,11 @@ function RegistrationView(props) {
   }, "Submit")));
 }
 
-RegistrationView.PropTypes = {
-  Username: _propTypes.default.string.isRequired,
-  Email: _propTypes.default.string.isRequired,
-  Password: _propTypes.default.string.isRequired,
-  Birthday: _propTypes.default.date
+RegistrationView.propTypes = {
+  Username: _propTypes.default.string,
+  Email: _propTypes.default.string,
+  Password: _propTypes.default.string //Birthday: PropTypes.date
+
 };
 },{"react":"../node_modules/react/index.js","react-bootstrap/Form":"../node_modules/react-bootstrap/esm/Form.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js","prop-types":"../node_modules/prop-types/index.js"}],"../node_modules/invariant/browser.js":[function(require,module,exports) {
 /**
@@ -47876,30 +47875,24 @@ function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 function LoginView(props) {
+  var _useState = (0, _react.useState)(''),
+      _useState2 = _slicedToArray(_useState, 2),
+      username = _useState2[0],
+      setUsername = _useState2[1];
+
+  var _useState3 = (0, _react.useState)(''),
+      _useState4 = _slicedToArray(_useState3, 2),
+      password = _useState4[0],
+      setPassword = _useState4[1];
+
+  var onRegister = props.onRegister;
+
   var handleSubmit = function handleSubmit(e) {
     e.preventDefault();
     console.log(username, password);
-    props.onLoggedIn(username);
+    props.handleLoggedIn(username);
   };
 
-  var LoginView = function LoginView(_ref) {
-    var onLoggedIn = _ref.onLoggedIn,
-        onRegister = _ref.onRegister;
-
-    // State for form input
-    var _useState = (0, _react.useState)({
-      username: '',
-      password: ''
-    }),
-        _useState2 = _slicedToArray(_useState, 2),
-        formData = _useState2[0],
-        setFormData = _useState2[1];
-
-    var username = formData.username,
-        password = formData.password;
-  };
-
-  var onRegister = userState('');
   return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(_reactBootstrap.Navbar, {
     className: "navbar",
     variant: "dark"
@@ -47931,8 +47924,8 @@ function LoginView(props) {
 }
 
 LoginView.propTypes = {
-  onLoggedIn: _propTypes.default.func.isRequired,
-  onRegister: _propTypes.default.func.isRequired
+  Username: _propTypes.default.string,
+  Password: _propTypes.default.string
 };
 },{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js"}],"components/movie-card/movie-card.jsx":[function(require,module,exports) {
 "use strict";
@@ -48269,6 +48262,25 @@ var MainView = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, MainView);
 
     _this = _super.call(this);
+
+    _this.handleRegister = function () {
+      _this.setState({
+        hasAccount: false
+      });
+    };
+
+    _this.handleReturnLogin = function () {
+      _this.setState({
+        hasAccount: true
+      });
+    };
+
+    _this.handleLoggedIn = function (user) {
+      _this.setState({
+        user: user
+      });
+    };
+
     _this.state = {
       movies: null,
       selectedMovie: null,
@@ -48290,39 +48302,18 @@ var MainView = /*#__PURE__*/function (_React$Component) {
       }).catch(function (error) {
         console.log(error);
       });
-    } // Handler to navigate to RegistrationView from LoginView *
-
-  }, {
-    key: "onRegister",
-    value: function onRegister() {
-      this.setState({
-        hasAccount: false
-      });
-    } //Handler to return to LoginView from RegistrationView
-
-  }, {
-    key: "onReturnLogin",
-    value: function onReturnLogin() {
-      this.setState({
-        hasAccount: true
-      });
-    } // Updates user in state on successful login *
-
-  }, {
-    key: "onLoggedIn",
-    value: function onLoggedIn(user) {
-      this.setState({
-        user: user
-      });
-    } //Handler to navigate from MainView to MovieView
+    } // Handler to navigate to RegistrationView from LoginView 
+    //Handler to return to LoginView from RegistrationView
+    // Updates user in state on successful login 
 
   }, {
     key: "onMovieClick",
+    //Handler to navigate from MainView to MovieView
     value: function onMovieClick(movie) {
       this.setState({
         selectedMovie: movie
       });
-    } // Handler to return from MovieView back to MainView
+    } // Handler to return from MovieView back to MainView 
 
   }, {
     key: "onReturnClick",
@@ -48340,55 +48331,67 @@ var MainView = /*#__PURE__*/function (_React$Component) {
           movies = _this$state.movies,
           selectedMovie = _this$state.selectedMovie,
           user = _this$state.user,
-          hasAccount = _this$state.hasAccount;
-      if (!user) return _react.default.createElement(_loginView.LoginView, {
-        onLoggedIn: function onLoggedIn(user) {
-          return _this3.onLoggedIn(user);
+          hasAccount = _this$state.hasAccount; // on LoginView, when 'New User Sign Up' is clicked, goes to ReistrationView
+
+      if (!hasAccount) return;
+
+      _react.default.createElement(_registrationView.RegistrationView, {
+        onReturnLogin: this.handleReturnLogin
+      }); // Renders LoginView if no user
+
+
+      if (!user) return;
+
+      _react.default.createElement(_loginView.LoginView, {
+        handleLoggedIn: function handleLoggedIn(user) {
+          return _this3.handleLoggedIn(user);
         },
-        onRegister: this.onRegister
+        onRegister: this.handleRegister
       });
-      if (!hasAccount) return _react.default.createElement(_registrationView.RegistrationView, null);
+
       if (!movies) return _react.default.createElement("div", {
         className: "main-view"
       });
-      return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(_Navbar.default, {
-        className: "navbar",
-        variant: "dark",
-        expand: "md"
-      }, _react.default.createElement(_Navbar.default.Brand, {
-        href: "#home"
-      }, "MyFlix80s"), _react.default.createElement(_Navbar.default.Toggle, {
-        "aria-controls": "basic-navbar-nav"
-      }), _react.default.createElement(_Navbar.default.Collapse, {
-        id: "basic-navbar-nav"
-      }, _react.default.createElement(_Nav.default, {
-        className: "mr-auto"
-      }, _react.default.createElement(_Nav.default.Link, {
-        href: "#home"
-      }, "Home"), _react.default.createElement(_Nav.default.Link, {
-        href: "#link"
-      }, "Profile"), _react.default.createElement(_Nav.default.Link, {
-        href: "http://localhost:1234"
-      }, "LogOut")))), _react.default.createElement(_Row.default, {
-        className: "main-view justify-content-md-center"
-      }, selectedMovie ? _react.default.createElement(_Col.default, {
-        md: 8
-      }, _react.default.createElement(_movieView.MovieView, {
-        movie: selectedMovie,
-        onClick: function onClick() {
-          return _this3.onReturnClick();
-        }
-      })) : movies.map(function (movie) {
-        return _react.default.createElement(_Col.default, {
-          md: 3
-        }, _react.default.createElement(_movieCard.MovieCard, {
-          key: movie._id,
-          movie: movie,
-          onClick: function onClick(movie) {
-            return _this3.onMovieClick(movie);
+      return (// Navbar -- 
+        _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(_Navbar.default, {
+          className: "navbar",
+          variant: "dark",
+          expand: "md"
+        }, _react.default.createElement(_Navbar.default.Brand, {
+          href: "#home"
+        }, "MyFlix80s"), _react.default.createElement(_Navbar.default.Toggle, {
+          "aria-controls": "basic-navbar-nav"
+        }), _react.default.createElement(_Navbar.default.Collapse, {
+          id: "basic-navbar-nav"
+        }, _react.default.createElement(_Nav.default, {
+          className: "mr-auto"
+        }, _react.default.createElement(_Nav.default.Link, {
+          href: "#home"
+        }, "Home"), _react.default.createElement(_Nav.default.Link, {
+          href: "#link"
+        }, "Profile"), _react.default.createElement(_Nav.default.Link, {
+          href: "http://localhost:1234"
+        }, "LogOut")))), _react.default.createElement(_Row.default, {
+          className: "main-view justify-content-md-center"
+        }, selectedMovie ? _react.default.createElement(_Col.default, {
+          md: 8
+        }, _react.default.createElement(_movieView.MovieView, {
+          movie: selectedMovie,
+          onClick: function onClick() {
+            return _this3.onReturnClick();
           }
-        }));
-      })));
+        })) : movies.map(function (movie) {
+          return _react.default.createElement(_Col.default, {
+            md: 3
+          }, _react.default.createElement(_movieCard.MovieCard, {
+            key: movie._id,
+            movie: movie,
+            onClick: function onClick(movie) {
+              return _this3.onMovieClick(movie);
+            }
+          }));
+        })))
+      );
     }
   }]);
 
@@ -48492,7 +48495,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63185" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54319" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

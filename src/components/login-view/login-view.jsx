@@ -37,8 +37,9 @@ export function LoginView(props) {
           Submit
         </Button>
 
-        <Button className='register-button' variant='info' onClick={onRegister}
-        >New User Sign Up</Button>
+        <Button className='register-button' variant='info' onClick={onRegister}>
+          New User Sign Up
+        </Button>
 
       </Form>
     </React.Fragment>
@@ -50,4 +51,4 @@ export function LoginView(props) {
 LoginView.propTypes = {
   Username: PropTypes.string,
   Password: PropTypes.string
-}
+};

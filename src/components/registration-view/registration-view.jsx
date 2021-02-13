@@ -7,7 +7,7 @@ export function RegistrationView(props) {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [birthday, setBirthday] = useState('');
+  //const [birthday, setBirthday] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -30,7 +30,8 @@ export function RegistrationView(props) {
 
         <Form.Group controlID="formEmail">
           <Form.Label>Email:</Form.Label>
-          <Form.Control type="email" placeholder="Enter email" />
+          <Form.Control type="email" placeholder="Enter email"
+            onChange={e => setEmail(e.target.value)} />
           <Form.Text className="text-muted">
             We'll never share your email with anyone else.
       </Form.Text>
@@ -51,9 +52,9 @@ export function RegistrationView(props) {
   );
 }
 
-RegistrationView.PropTypes = {
-  Username: PropTypes.string.isRequired,
-  Email: PropTypes.string.isRequired,
-  Password: PropTypes.string.isRequired,
-  Birthday: PropTypes.date
-}
+RegistrationView.propTypes = {
+  Username: PropTypes.string,
+  Email: PropTypes.string,
+  Password: PropTypes.string,
+  //Birthday: PropTypes.date
+};

@@ -44,7 +44,7 @@ export class MainView extends React.Component {
   handleReturnLogin = () => {
     this.setState({
       hasAccount: true
-    })
+    });
   }
 
   // Updates user in state on successful login 
@@ -77,14 +77,14 @@ export class MainView extends React.Component {
     // Renders LoginView if no user
     if (!user) return
     < LoginView handleLoggedIn={user => this.handleLoggedIn(user)}
-      handleRegister={this.handleRegister}
+      onRegister={this.handleRegister}
     />;
 
 
     if (!movies) return <div className="main-view" />;
 
     return (
-      // Navbar
+      // Navbar -- 
       <React.Fragment>
         <Navbar className="navbar" variant="dark" expand="md">
           <Navbar.Brand href="#home">MyFlix80s</Navbar.Brand>
