@@ -3,6 +3,11 @@
   color: #fff;
   padding: 3px 0;
 }
+.background-blue {
+  background-color: #5bc0de;
+  color: #fff;
+  padding: 3px 0;
+}
 .navbar {
   background-color: #d9534f;
 }
