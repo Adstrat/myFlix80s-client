@@ -20,7 +20,6 @@ export function LoginView(props) {
         <Navbar.Brand>MyFlix80s - Log In</Navbar.Brand>
       </Navbar>
       <Form>
-
         <Form.Group controlId="formUsername">
           <Form.Label>Username:</Form.Label>
           <Form.Control type="text" placeholder="Enter username" onChange={e =>
@@ -35,14 +34,12 @@ export function LoginView(props) {
 
         <Button variant="info" type="submit" onClick={handleSubmit}>
           Submit
-        </Button>
-
+        </Button>{' '}
         <Button className='register-button' variant='info' onClick={onRegister}>
           New User Sign Up
         </Button>
-
       </Form>
-    </React.Fragment>
+    </React.Fragment >
 
   );
 }

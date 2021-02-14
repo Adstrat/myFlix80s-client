@@ -47828,7 +47828,7 @@ function RegistrationView(props) {
       return setPassword(e.target.value);
     }
   })), _react.default.createElement(_reactBootstrap.Button, {
-    variant: "primary",
+    variant: "info",
     type: "submit",
     onClick: handleSubmit
   }, "Submit")));
@@ -47914,7 +47914,7 @@ function LoginView(props) {
     variant: "info",
     type: "submit",
     onClick: handleSubmit
-  }, "Submit"), _react.default.createElement(_reactBootstrap.Button, {
+  }, "Submit"), ' ', _react.default.createElement(_reactBootstrap.Button, {
     className: "register-button",
     variant: "info",
     onClick: onRegister
@@ -48366,7 +48366,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
         }, "LogOut")))), _react.default.createElement(_Row.default, {
           className: "main-view justify-content-md-center"
         }, selectedMovie ? _react.default.createElement(_Col.default, {
-          md: 8
+          md: 4
         }, _react.default.createElement(_movieView.MovieView, {
           movie: selectedMovie,
           onClick: function onClick() {
@@ -48487,7 +48487,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49579" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49767" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

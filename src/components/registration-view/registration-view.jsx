@@ -42,7 +42,7 @@ export function RegistrationView(props) {
             onChange={e => setPassword(e.target.value)} />
         </Form.Group>
 
-        <Button variant="primary" type="submit" onClick={handleSubmit}>
+        <Button variant="info" type="submit" onClick={handleSubmit}>
           Submit
       </Button>
       </Form>

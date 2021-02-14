@@ -98,7 +98,7 @@ export class MainView extends React.Component {
 
         <Row className="main-view justify-content-md-center">
           {selectedMovie ? (
-            <Col md={8}>
+            <Col md={4}>
               <MovieView movie={selectedMovie}
                 onClick={() => this.onReturnClick()}
               />
