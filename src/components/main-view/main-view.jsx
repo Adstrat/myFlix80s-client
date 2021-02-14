@@ -70,13 +70,11 @@ export class MainView extends React.Component {
     const { movies, selectedMovie, user, hasAccount } = this.state;
 
     // on LoginView, when 'New User Sign Up' is clicked, goes to ReistrationView
-    if (!hasAccount) return
-    < RegistrationView onReturnLogin={this.handleReturnLogin} />;
+    if (!hasAccount) return < RegistrationView onReturnLogin={this.handleReturnLogin} />;
 
 
     // Renders LoginView if no user
-    if (!user) return
-    < LoginView handleLoggedIn={user => this.handleLoggedIn(user)}
+    if (!user) return < LoginView handleLoggedIn={user => this.handleLoggedIn(user)}
       onRegister={this.handleRegister}
     />;
 
