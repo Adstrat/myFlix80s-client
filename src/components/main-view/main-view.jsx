@@ -6,10 +6,7 @@ import { LoginView } from "../login-view/login-view";
 import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
 
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Navbar from 'react-bootstrap/Navbar'
-import Nav from 'react-bootstrap/Nav'
+import { Container, Row, Col, Navbar, Nav } from 'react-bootstrap';
 
 import './main-view.scss'
 
@@ -85,7 +82,7 @@ export class MainView extends React.Component {
       // Navbar -- 
       <React.Fragment>
         <Navbar className="navbar" variant="dark" expand="md">
-          <Navbar.Brand href="#home">MyFlix80s</Navbar.Brand>
+          <Navbar.Brand href="#home">myFlix80s</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">
@@ -95,23 +92,24 @@ export class MainView extends React.Component {
             </Nav>
           </Navbar.Collapse>
         </Navbar>
-
-        <Row className="main-view justify-content-md-center">
-          {selectedMovie ? (
-            <Col md={4}>
-              <MovieView movie={selectedMovie}
-                onClick={() => this.onReturnClick()}
-              />
-            </Col>
-          )
-            : movies.map(movie => (
-              <Col md={3}>
-                <MovieCard key={movie._id} movie={movie} onClick={movie =>
-                  this.onMovieClick(movie)} />
+        <Container className='my-3'>
+          <Row className="main-view justify-content-md-center">
+            {selectedMovie ? (
+              <Col md={4}>
+                <MovieView movie={selectedMovie}
+                  onClick={() => this.onReturnClick()}
+                />
               </Col>
-            ))
-          }
-        </Row>
+            )
+              : movies.map(movie => (
+                <Col md={3}>
+                  <MovieCard key={movie._id} movie={movie} onClick={movie =>
+                    this.onMovieClick(movie)} />
+                </Col>
+              ))
+            }
+          </Row>
+        </Container>
       </React.Fragment>
     );
   }

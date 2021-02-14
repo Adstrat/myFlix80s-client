@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Navbar, Form, Button } from 'react-bootstrap';
+import { Container, Navbar, Form, Button } from 'react-bootstrap';
 
 export function RegistrationView(props) {
   const [username, setUsername] = useState('');
@@ -17,35 +17,35 @@ export function RegistrationView(props) {
   return (
     <React.Fragment>
       <Navbar className="navbar" variant="dark">
-        <Navbar.Brand>MyFlix80s - Log In</Navbar.Brand>
+        <Navbar.Brand>myFlix80s</Navbar.Brand>
       </Navbar>
+      <Container>
+        <Form>
+          <Form.Group controlId="formUsername">
+            <Form.Label>Registration</Form.Label>
+            <Form.Control type="text" placeholder="Username"
+              onChange={e => setUsername(e.target.value)} />
+          </Form.Group>
 
-      <Form>
-        <Form.Group controlId="formUsername">
-          <Form.Label>Username:</Form.Label>
-          <Form.Control type="text" placeholder="Enter username"
-            onChange={e => setUsername(e.target.value)} />
-        </Form.Group>
-
-        <Form.Group controlID="formEmail">
-          <Form.Label>Email:</Form.Label>
-          <Form.Control type="email" placeholder="Enter email"
-            onChange={e => setEmail(e.target.value)} />
-          <Form.Text className="text-muted">
-            We'll never share your email with anyone else.
+          <Form.Group controlID="formEmail">
+            <Form.Control type="email" placeholder="Email"
+              onChange={e => setEmail(e.target.value)} />
+            <Form.Text className="text-muted">
+              We'll never share your email with anyone else.
       </Form.Text>
-        </Form.Group>
+          </Form.Group>
 
-        <Form.Group controlId="formPassword">
-          <Form.Label>Password:</Form.Label>
-          <Form.Control type="password" placeholder="Password"
-            onChange={e => setPassword(e.target.value)} />
-        </Form.Group>
+          <Form.Group controlId="formPassword">
+            <Form.Control type="password" placeholder="Password"
+              onChange={e => setPassword(e.target.value)} />
+          </Form.Group>
 
-        <Button variant="info" type="submit" onClick={handleSubmit}>
-          Submit
-      </Button>
-      </Form>
+          <Button variant="info" type="submit" onClick={handleSubmit}>
+            Sign Up
+          </Button>
+        </Form>
+      </Container>
+
 
     </React.Fragment>
   );

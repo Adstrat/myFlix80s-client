@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Navbar, Form, Button } from 'react-bootstrap';
+import { Container, Navbar, Form, Button, Col } from 'react-bootstrap';
+
+import './login-view.scss'
 
 export function LoginView(props) {
   const [username, setUsername] = useState('');
@@ -16,29 +18,39 @@ export function LoginView(props) {
 
   return (
     <React.Fragment>
+
       <Navbar className="navbar" variant="dark">
-        <Navbar.Brand>MyFlix80s - Log In</Navbar.Brand>
+        <Navbar.Brand>myFlix80s</Navbar.Brand>
       </Navbar>
-      <Form>
-        <Form.Group controlId="formUsername">
-          <Form.Label>Username:</Form.Label>
-          <Form.Control type="text" placeholder="Enter username" onChange={e =>
-            setUsername(e.target.value)} />
-        </Form.Group>
+      <Container className='my-5'>
+        <h1 className='text-center h3 mb-4 background-blue'>
+          The Ultimate 1980s Movie App
+        </h1>
+        <Form>
+          <Form.Group controlId="formUsername">
+            <Form.Label>Login</Form.Label>
+            <Form.Control type="text" placeholder="Username" onChange={e =>
+              setUsername(e.target.value)} />
+          </Form.Group>
 
-        <Form.Group controlId="formPassword">
-          <Form.Label>Password:</Form.Label>
-          <Form.Control type="password" placeholder="Password" onChange={e =>
-            setPassword(e.target.value)} />
-        </Form.Group>
+          <Form.Group controlId="formPassword">
+            <Form.Control type="password" placeholder="Password" onChange={e =>
+              setPassword(e.target.value)} />
+          </Form.Group>
 
-        <Button variant="info" type="submit" onClick={handleSubmit}>
-          Submit
+          <Button variant="info" type="submit" onClick={handleSubmit}>
+            Login
         </Button>{' '}
-        <Button className='register-button' variant='info' onClick={onRegister}>
-          New User Sign Up
-        </Button>
-      </Form>
+
+        </Form>
+        <small className='text-muted text-center d-block'>
+          Not a member yet?
+      <span onClick={onRegister} className='register text-danger ml-2'>
+            Sign up for free
+      </span>
+        </small>
+      </Container>
+
     </React.Fragment >
 
   );
