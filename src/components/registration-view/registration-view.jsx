@@ -9,6 +9,7 @@ export function RegistrationView(props) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [birthday, setBirthday] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -29,12 +30,18 @@ export function RegistrationView(props) {
         <Form>
           <Form.Group controlId="formUsername">
             <Form.Label>Registration</Form.Label>
-            <Form.Control type="text" placeholder="Username"
+            <Form.Control
+              type="text"
+              value={username}
+              placeholder="Username"
               onChange={e => setUsername(e.target.value)} />
           </Form.Group>
 
           <Form.Group controlID="formEmail">
-            <Form.Control type="email" placeholder="Email"
+            <Form.Control
+              type="email"
+              value={email}
+              placeholder="Email"
               onChange={e => setEmail(e.target.value)} />
             <Form.Text className="text-muted">
               We'll never share your email with anyone else.
@@ -42,13 +49,28 @@ export function RegistrationView(props) {
           </Form.Group>
 
           <Form.Group controlId="formBirthday">
-            <Form.Control type="text" placeholder="Date of Brith"
+            <Form.Control
+              type="text"
+              value={birthday}
+              placeholder="Date of Brith"
               onChange={e => setBirthday(e.target.value)} />
           </Form.Group>
 
           <Form.Group controlId="formPassword">
-            <Form.Control type="password" placeholder="Password"
+            <Form.Control
+              type="password"
+              value={password}
+              placeholder="Password"
               onChange={e => setPassword(e.target.value)} />
+          </Form.Group>
+
+          <Form.Group controlId='formConfirmPassword'>
+            <Form.Control
+              type='password'
+              value={confirmPassword}
+              placeholder='Confirm Password'
+              onChange={(e) => setConfirmPassword(e.target.value)}
+            />
           </Form.Group>
 
           <Button variant="info" type="submit" onClick={handleSubmit}>
@@ -63,8 +85,9 @@ export function RegistrationView(props) {
 }
 
 RegistrationView.propTypes = {
-  Username: PropTypes.string,
-  Email: PropTypes.string,
-  Password: PropTypes.string,
-  Birthday: PropTypes.date
+  username: PropTypes.string,
+  email: PropTypes.string,
+  birthday: PropTypes.string,
+  password: PropTypes.string,
+  confirmPassword: PropTypes.string
 };

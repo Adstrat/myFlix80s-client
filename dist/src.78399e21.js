@@ -47870,6 +47870,11 @@ function RegistrationView(props) {
       birthday = _useState8[0],
       setBirthday = _useState8[1];
 
+  var _useState9 = (0, _react.useState)(''),
+      _useState10 = _slicedToArray(_useState9, 2),
+      confirmPassword = _useState10[0],
+      setConfirmPassword = _useState10[1];
+
   var handleSubmit = function handleSubmit(e) {
     e.preventDefault();
     console.log(username, email, password, birthday);
@@ -47887,6 +47892,7 @@ function RegistrationView(props) {
     controlId: "formUsername"
   }, _react.default.createElement(_reactBootstrap.Form.Label, null, "Registration"), _react.default.createElement(_reactBootstrap.Form.Control, {
     type: "text",
+    value: username,
     placeholder: "Username",
     onChange: function onChange(e) {
       return setUsername(e.target.value);
@@ -47895,6 +47901,7 @@ function RegistrationView(props) {
     controlID: "formEmail"
   }, _react.default.createElement(_reactBootstrap.Form.Control, {
     type: "email",
+    value: email,
     placeholder: "Email",
     onChange: function onChange(e) {
       return setEmail(e.target.value);
@@ -47905,6 +47912,7 @@ function RegistrationView(props) {
     controlId: "formBirthday"
   }, _react.default.createElement(_reactBootstrap.Form.Control, {
     type: "text",
+    value: birthday,
     placeholder: "Date of Brith",
     onChange: function onChange(e) {
       return setBirthday(e.target.value);
@@ -47913,9 +47921,19 @@ function RegistrationView(props) {
     controlId: "formPassword"
   }, _react.default.createElement(_reactBootstrap.Form.Control, {
     type: "password",
+    value: password,
     placeholder: "Password",
     onChange: function onChange(e) {
       return setPassword(e.target.value);
+    }
+  })), _react.default.createElement(_reactBootstrap.Form.Group, {
+    controlId: "formConfirmPassword"
+  }, _react.default.createElement(_reactBootstrap.Form.Control, {
+    type: "password",
+    value: confirmPassword,
+    placeholder: "Confirm Password",
+    onChange: function onChange(e) {
+      return setConfirmPassword(e.target.value);
     }
   })), _react.default.createElement(_reactBootstrap.Button, {
     variant: "info",
@@ -47925,10 +47943,11 @@ function RegistrationView(props) {
 }
 
 RegistrationView.propTypes = {
-  Username: _propTypes.default.string,
-  Email: _propTypes.default.string,
-  Password: _propTypes.default.string,
-  Birthday: _propTypes.default.date
+  username: _propTypes.default.string,
+  email: _propTypes.default.string,
+  birthday: _propTypes.default.string,
+  password: _propTypes.default.string,
+  confirmPassword: _propTypes.default.string
 };
 },{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js","./registration-view.scss":"components/registration-view/registration-view.scss"}],"components/login-view/login-view.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
@@ -48516,7 +48535,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49766" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53854" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
