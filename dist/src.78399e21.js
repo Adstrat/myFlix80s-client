@@ -47968,6 +47968,8 @@ var _propTypes = _interopRequireDefault(require("prop-types"));
 
 var _reactBootstrap = require("react-bootstrap");
 
+var _axios = _interopRequireDefault(require("axios"));
+
 require("./login-view.scss");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -47999,12 +48001,20 @@ function LoginView(props) {
       password = _useState4[0],
       setPassword = _useState4[1];
 
-  var onRegister = props.onRegister;
+  var onRegister = props.onRegister; // Request sent to server for authentication
 
   var handleSubmit = function handleSubmit(e) {
     e.preventDefault();
-    console.log(username, password);
-    props.handleLoggedIn(username);
+
+    _axios.default.post('https://my-flix80s.herokuapp.com/login', {
+      Username: username,
+      Password: password
+    }).then(function (response) {
+      var data = response.data;
+      props.onLoggedIn(data);
+    }).catch(function (e) {
+      console.log('no such user');
+    });
   };
 
   return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(_reactBootstrap.Navbar, {
@@ -48046,7 +48056,7 @@ LoginView.propTypes = {
   Username: _propTypes.default.string,
   Password: _propTypes.default.string
 };
-},{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js","./login-view.scss":"components/login-view/login-view.scss"}],"components/movie-card/movie-card.jsx":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js","axios":"../node_modules/axios/index.js","./login-view.scss":"components/login-view/login-view.scss"}],"components/movie-card/movie-card.jsx":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -48321,12 +48331,6 @@ var MainView = /*#__PURE__*/function (_React$Component) {
       });
     };
 
-    _this.handleLoggedIn = function (user) {
-      _this.setState({
-        user: user
-      });
-    };
-
     _this.state = {
       movies: null,
       selectedMovie: null,
@@ -48334,27 +48338,56 @@ var MainView = /*#__PURE__*/function (_React$Component) {
       hasAccount: true
     };
     return _this;
-  }
+  } // Gets movies from API
+
 
   _createClass(MainView, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
+    key: "getMovies",
+    value: function getMovies(token) {
       var _this2 = this;
 
-      _axios.default.get("https://my-flix80s.herokuapp.com/movies").then(function (responce) {
+      _axios.default.get('https://my-flix80s.herokuapp.com/movies', {
+        headers: {
+          Authorization: "Bearer ".concat(token)
+        }
+      }).then(function (response) {
         _this2.setState({
-          movies: responce.data
+          movies: response.data
         });
       }).catch(function (error) {
         console.log(error);
       });
+    } // Persisted authentication 
+
+  }, {
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var accessToken = localStorage.getItem('token');
+
+      if (accessToken !== null) {
+        this.setState({
+          user: localStorage.getItem('user')
+        });
+        this.getMovies(accessToken);
+      }
     } // Handler to navigate to RegistrationView from LoginView 
-    //Handler to return to LoginView from RegistrationView
+    // Handler to return to LoginView from RegistrationView
+
+  }, {
+    key: "onLoggedIn",
     // Updates user in state on successful login 
+    value: function onLoggedIn(authData) {
+      console.log(authData);
+      this.setState({
+        user: authData.user.Username
+      });
+      localStorage.setItem('token', authData.token);
+      localStorage.setItem('user', authData.user.Username);
+      this.getMovies(authData.token);
+    } // Handler to navigate from MainView to MovieView
 
   }, {
     key: "onMovieClick",
-    //Handler to navigate from MainView to MovieView
     value: function onMovieClick(movie) {
       this.setState({
         selectedMovie: movie
@@ -48384,8 +48417,8 @@ var MainView = /*#__PURE__*/function (_React$Component) {
       }); // Renders LoginView if no user
 
       if (!user) return _react.default.createElement(_loginView.LoginView, {
-        handleLoggedIn: function handleLoggedIn(user) {
-          return _this3.handleLoggedIn(user);
+        onLoggedIn: function onLoggedIn(user) {
+          return _this3.onLoggedIn(user);
         },
         onRegister: this.handleRegister
       });
@@ -48535,7 +48568,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53854" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49606" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -20,16 +20,29 @@ export class MainView extends React.Component {
       hasAccount: true
     };
   }
-  componentDidMount() {
-    axios.get("https://my-flix80s.herokuapp.com/movies")
-      .then(responce => {
+  // Gets movies from API
+  getMovies(token) {
+    axios.get('https://my-flix80s.herokuapp.com/movies', {
+      headers: { Authorization: `Bearer ${token}` }
+    })
+      .then(response => {
         this.setState({
-          movies: responce.data
+          movies: response.data
         });
       })
       .catch(function (error) {
         console.log(error);
       });
+  }
+  // Persisted authentication 
+  componentDidMount() {
+    let accessToken = localStorage.getItem('token');
+    if (accessToken !== null) {
+      this.setState({
+        user: localStorage.getItem('user')
+      });
+      this.getMovies(accessToken);
+    }
   }
   // Handler to navigate to RegistrationView from LoginView 
   handleRegister = () => {
@@ -37,20 +50,23 @@ export class MainView extends React.Component {
       hasAccount: false
     });
   }
-  //Handler to return to LoginView from RegistrationView
+  // Handler to return to LoginView from RegistrationView
   handleReturnLogin = () => {
     this.setState({
       hasAccount: true
     });
   }
-
   // Updates user in state on successful login 
-  handleLoggedIn = (user) => {
+  onLoggedIn(authData) {
+    console.log(authData);
     this.setState({
-      user
+      user: authData.user.Username
     });
+    localStorage.setItem('token', authData.token);
+    localStorage.setItem('user', authData.user.Username);
+    this.getMovies(authData.token);
   }
-  //Handler to navigate from MainView to MovieView
+  // Handler to navigate from MainView to MovieView
   onMovieClick(movie) {
     this.setState({
       selectedMovie: movie
@@ -71,7 +87,7 @@ export class MainView extends React.Component {
 
 
     // Renders LoginView if no user
-    if (!user) return < LoginView handleLoggedIn={user => this.handleLoggedIn(user)}
+    if (!user) return < LoginView onLoggedIn={user => this.onLoggedIn(user)}
       onRegister={this.handleRegister}
     />;
 
