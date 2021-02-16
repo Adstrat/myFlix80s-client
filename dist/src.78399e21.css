@@ -8,6 +8,9 @@
   color: #fff;
   padding: 3px 0;
 }
+.movie-card {
+  margin: 10px 0;
+}
 .navbar {
   background-color: #d9534f;
 }
