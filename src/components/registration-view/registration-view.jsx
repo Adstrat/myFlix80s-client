@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Container, Navbar, Form, Button } from 'react-bootstrap';
+import { Container, Form, Button } from 'react-bootstrap';
+import axios from 'axios';
+import { Link } from "react-router-dom";
 
 import './registration-view.scss'
 
@@ -13,19 +15,25 @@ export function RegistrationView(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(username, email, password, birthday);
-    props.onLoggedIn(username);
+    axios.post('https://my-flix80s.herokuapp.com/users', {
+      Username: username,
+      Password: password,
+      Email: email,
+      Birthday: birthday
+    })
+      .then(response => {
+        const data = response.data;
+        console.log(data);
+        window.open('/', '_self');
+      })
+      .catch(e => {
+        console.log('error registering the user')
+      })
   };
 
   return (
     <React.Fragment>
-      <Navbar className="navbar" variant="dark">
-        <Navbar.Brand>myFlix80s</Navbar.Brand>
-      </Navbar>
-      <Container className='my-5'>
-        <h1 className='text-center h3 mb-4 background-blue'>
-          The Ultimate 1980s Movie App
-        </h1>
+      <Container className='my-3'>
 
         <Form>
           <Form.Group controlId="formUsername">
@@ -77,8 +85,17 @@ export function RegistrationView(props) {
             Sign Up
           </Button>
         </Form>
-      </Container>
 
+        <small className='text-muted text-center d-block'>
+          Already have an an account?
+          <Link to={`/`} >
+            <span className='register text-danger ml-2'>
+              Return to Log In
+            </span>
+          </Link>
+        </small>
+
+      </Container>
 
     </React.Fragment>
   );

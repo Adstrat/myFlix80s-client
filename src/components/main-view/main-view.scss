@@ -2,6 +2,10 @@ $blue: #5bc0de;
 $white: #fff;
 $red: #d9534f;
 
+body {
+  background-color: $blue;
+}
+
 .navbar {
   background-color: $red;
 }

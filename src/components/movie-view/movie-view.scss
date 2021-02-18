@@ -1,0 +1,23 @@
+$blue: #5bc0de;
+$white: #fff;
+$red: #d9534f;
+$black: #000;
+
+.movie-view {
+  width: 50rem;
+  border-radius: 10px;
+}
+
+.movie-poster {
+  width: 15rem;
+  margin: 2rem auto;
+  padding: 2px;
+  border: thick double $black;
+  border-radius: 5%;
+}
+
+
+.center-btn {
+  text-align: center;
+  margin: 10px;
+  }

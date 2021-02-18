@@ -3,14 +3,39 @@
   color: #fff;
   padding: 3px 0;
 }
-.background-blue {
-  background-color: #5bc0de;
-  color: #fff;
-  padding: 3px 0;
-}
 .movie-card {
-  margin: 10px 0;
+  width: 210px;
+  margin: 10px;
+  border-radius: 7px;
 }
+
+.movie-image {
+  width: 150px;
+  margin: 30px;
+  border: thick double #000;
+  border-radius: 5%;
+}
+.movie-view {
+  width: 50rem;
+  border-radius: 10px;
+}
+
+.movie-poster {
+  width: 15rem;
+  margin: 2rem auto;
+  padding: 2px;
+  border: thick double #000;
+  border-radius: 5%;
+}
+
+.center-btn {
+  text-align: center;
+  margin: 10px;
+}
+body {
+  background-color: #5bc0de;
+}
+
 .navbar {
   background-color: #d9534f;
 }

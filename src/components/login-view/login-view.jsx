@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Container, Navbar, Form, Button } from 'react-bootstrap';
+import { Container, Form, Button } from 'react-bootstrap';
+import { Link } from "react-router-dom";
 import axios from 'axios';
 import './login-view.scss'
 
@@ -28,14 +29,7 @@ export function LoginView(props) {
 
   return (
     <React.Fragment>
-
-      <Navbar className="navbar" variant="dark">
-        <Navbar.Brand>myFlix80s</Navbar.Brand>
-      </Navbar>
-      <Container className='my-5'>
-        <h1 className='text-center h3 mb-4 background-blue'>
-          The Ultimate 1980s Movie App
-        </h1>
+      <Container className='my-3'>
         <Form>
           <Form.Group controlId="formUsername">
             <Form.Label>Login</Form.Label>
@@ -53,19 +47,22 @@ export function LoginView(props) {
         </Button>{' '}
 
         </Form>
-        <small className='text-muted text-center d-block'>
+
+        <small className='text-center d-block'>
           Not a member yet?
-      <span onClick={onRegister} className='register text-danger ml-2'>
-            Sign up for free
-      </span>
+          <Link to={`/register`} >
+            <span className='register text-danger ml-2'>
+              Sign up for free
+            </span>
+          </Link>
         </small>
+
       </Container>
 
     </React.Fragment >
 
   );
 }
-
 
 LoginView.propTypes = {
   Username: PropTypes.string,
