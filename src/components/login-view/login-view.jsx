@@ -44,7 +44,7 @@ export function LoginView(props) {
 
           <Button variant="info" type="submit" onClick={handleSubmit}>
             Login
-        </Button>{' '}
+        </Button>
 
         </Form>
 

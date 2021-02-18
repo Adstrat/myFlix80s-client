@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 
 import { RegistrationView } from "../registration-view/registration-view";
 import { LoginView } from "../login-view/login-view";
+import { Navigation } from "../navigation/navigation";
 import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
 import { DirectorView } from "../director-view/director-view";
@@ -73,7 +74,6 @@ export class MainView extends React.Component {
     if (!movies) return <div className="main-view" />;
 
     return (
-      // Navbar -- 
       <Router>
         <React.Fragment>
           <Navbar className="navbar" variant="dark" expand="md">
@@ -87,7 +87,6 @@ export class MainView extends React.Component {
               </Nav>
             </Navbar.Collapse>
           </Navbar>
-
           <Container className='my-3'>
             <Row className="main-view justify-content-md-center">
 
@@ -97,6 +96,7 @@ export class MainView extends React.Component {
                 return movies.map(m => <MovieCard key={m._id} movie={m} />)
               }
               } />
+
               <Route path='/register'
                 render={() => <RegistrationView />} />
 
