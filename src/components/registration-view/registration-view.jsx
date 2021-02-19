@@ -86,13 +86,13 @@ export function RegistrationView(props) {
           </Button>
         </Form>
 
-        <small className='text-muted text-center d-block'>
+        <small className='text-center d-block'>
           Already have an an account?
-          <Link to={`/`} >
+          
             <span className='register text-danger ml-2'>
               Return to Log In
             </span>
-          </Link>
+         
         </small>
 
       </Container>

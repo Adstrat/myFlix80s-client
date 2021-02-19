@@ -1,7 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Card, Button, Navbar, Nav, Container } from 'react-bootstrap';
 import { Link } from "react-router-dom";
+import { Card, Button } from 'react-bootstrap';
+
 import './movie-view.scss'
 
 export class MovieView extends React.Component {
@@ -11,7 +12,7 @@ export class MovieView extends React.Component {
   }
 
   render() {
-    const { movie } = this.props;
+    const { movie, onClick } = this.props;
     if (!movie) return null;
     return (
       <React.Fragment>
@@ -33,11 +34,8 @@ export class MovieView extends React.Component {
                 <Button variant="link">{movie.Director.Name}</Button></Link>}</Card.Text>
             <Card.Text className="movie-actors">
               Actors: {movie.Actors}</Card.Text>
-            <Link to={`/`}>
-              <div className='center-btn'>
-                <Button className='return-button' variant='info'>Return to Movie List</Button>
-              </div>
-            </Link>
+            <Button className='return-button' variant='info' onClick={() =>
+              onClick(movie)}>Return to Movie List</Button>
           </Card.Body>
         </Card>
       </React.Fragment>
@@ -64,4 +62,5 @@ MovieView.propTypes = {
     Released: PropTypes.string.isRequired,
     Featured: PropTypes.bool
   }).isRequired,
+  onClick: PropTypes.func.isRequired
 };

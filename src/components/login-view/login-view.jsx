@@ -1,19 +1,19 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Container, Form, Button } from 'react-bootstrap';
-import { Link } from "react-router-dom";
+
+import { Container, Navbar, Form, Button } from 'react-bootstrap';
 import axios from 'axios';
-import './login-view.scss'
+import './login-view.scss';
 
 export function LoginView(props) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  const { onRegister } = props;
+  const { handleRegister } = props;
 
-  // Request sent to server for authentication
   const handleSubmit = (e) => {
     e.preventDefault();
+    /* Send a request to the server for authentication */
     axios.post('https://my-flix80s.herokuapp.com/login', {
       Username: username,
       Password: password
@@ -29,7 +29,14 @@ export function LoginView(props) {
 
   return (
     <React.Fragment>
-      <Container className='my-3'>
+
+      <Navbar className="navbar" variant="dark">
+        <Navbar.Brand>myFlix80s</Navbar.Brand>
+      </Navbar>
+      <Container className='my-5'>
+        <h1 className='text-center h3 mb-4 background-blue'>
+          The Ultimate 1980s Movie App
+        </h1>
         <Form>
           <Form.Group controlId="formUsername">
             <Form.Label>Login</Form.Label>
@@ -44,27 +51,24 @@ export function LoginView(props) {
 
           <Button variant="info" type="submit" onClick={handleSubmit}>
             Login
-        </Button>
+        </Button>{' '}
 
         </Form>
-
         <small className='text-center d-block'>
           Not a member yet?
-          <Link to={`/register`} >
-            <span className='register text-danger ml-2'>
-              Sign up for free
-            </span>
-          </Link>
+      <span onClick={handleRegister} className='register text-danger ml-2'>
+            Sign up for free
+      </span>
         </small>
-
       </Container>
 
     </React.Fragment >
 
   );
-}
 
-LoginView.propTypes = {
-  Username: PropTypes.string,
-  Password: PropTypes.string
-};
+
+  LoginView.propTypes = {
+    Username: PropTypes.string,
+    Password: PropTypes.string
+  };
+}

@@ -13,6 +13,7 @@ export class Navigation extends React.Component {
   }
 
   render() {
+    const { user } = this.props;
     return (
       <Navbar className="navbar" variant="dark" expand="md">
         <Navbar.Brand href="#home">myFlix80s</Navbar.Brand>
@@ -20,7 +21,7 @@ export class Navigation extends React.Component {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
             <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#link">Profile</Nav.Link>
+            <Nav.Link to={`/users/${user}`}>Profile</Nav.Link>
             <Nav.Link onClick={() => this.onLogOut()}>LogOut</Nav.Link>
           </Nav>
         </Navbar.Collapse>
