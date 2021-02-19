@@ -11,7 +11,9 @@ export class MovieCard extends React.Component {
     const { movie, onClick } = this.props;
     return (
       <Card className="movie-card">
-        <Card.Img variant="top" className="movie-image" src={movie.ImagePath} />
+        <Link to={`/movies/${movie._id}`}>
+          <Card.Img variant="top" className="movie-image" src={movie.ImagePath} />
+        </Link>
         <Card.Body>
           <Card.Title>{movie.Title}</Card.Title>
           <Card.Text>Released: {movie.Released}</Card.Text>
@@ -31,5 +33,4 @@ MovieCard.propTypes = {
     Released: PropTypes.string.isRequired,
     ImagePath: PropTypes.string.isRequired
   }).isRequired,
-  onClick: PropTypes.func.isRequired
 }

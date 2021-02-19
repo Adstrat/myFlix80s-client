@@ -8,6 +8,7 @@ import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
 import { GenreView } from "../genre-view/genre-view";
 import { DirectorView } from "../director-view/director-view";
+import { ProfileView } from "../profile-view/profile-view";
 
 import { Container, Row, Navbar, Nav } from 'react-bootstrap';
 
@@ -108,7 +109,7 @@ export class MainView extends React.Component {
   }
 
   render() {
-    const { movies, selectedMovie, user, hasAccount } = this.state;
+    const { movies, user, hasAccount } = this.state;
 
     // on LoginView, when 'New User Sign Up' is clicked, goes to ReistrationView
     if (!hasAccount) return < RegistrationView onReturnLogin={this.handleReturnLogin} />;
@@ -130,8 +131,10 @@ export class MainView extends React.Component {
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="mr-auto">
-                <Nav.Link href="#home">Home</Nav.Link>
-                <Nav.Link href="#profile">Profile</Nav.Link>
+                <Nav.Link href="/">Home</Nav.Link>
+
+                <Nav.Link href='/profile'>Profile</Nav.Link>
+
                 <Nav.Link onClick={() => this.onLogOut()}>LogOut</Nav.Link>
               </Nav>
             </Navbar.Collapse>
@@ -158,6 +161,11 @@ export class MainView extends React.Component {
                   if (!movies) return <div className='main-view' />;
                   return <DirectorView director={movies.find(m => m.Director.Name === match.params.name).Director} />
                 }} />
+
+              <Route path='/profile'
+                render={() => <ProfileView />
+                } />
+
 
             </Row>
           </Container>
