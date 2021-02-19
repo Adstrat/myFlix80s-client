@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Container, Form, Button } from 'react-bootstrap';
+import { Container, Form, Button, Navbar } from 'react-bootstrap';
 import axios from 'axios';
 import { Link } from "react-router-dom";
 
@@ -12,6 +12,8 @@ export function RegistrationView(props) {
   const [password, setPassword] = useState('');
   const [birthday, setBirthday] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+
+  const { handleReturnLogin } = props;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -33,11 +35,21 @@ export function RegistrationView(props) {
 
   return (
     <React.Fragment>
-      <Container className='my-3'>
-
+      <Navbar className="navbar" variant="dark">
+        <Navbar.Brand>myFlix80s</Navbar.Brand>
+      </Navbar>
+      <Container className='my-4  w-50 p-3'>
+        <h2 className='text-center mb-4 white-words'>
+          Welcome to myFlix80s! 
+        </h2>
+        <p className='text-center white-words'>
+      Create an account and start exploring..
+        </p>
+          
+       
         <Form>
           <Form.Group controlId="formUsername">
-            <Form.Label>Registration</Form.Label>
+            <Form.Label >Registration</Form.Label>
             <Form.Control
               type="text"
               value={username}
@@ -52,7 +64,7 @@ export function RegistrationView(props) {
               placeholder="Email"
               onChange={e => setEmail(e.target.value)} />
             <Form.Text className="text-muted">
-              We'll never share your email with anyone else.
+          We'll never share your email with anyone else.
           </Form.Text>
           </Form.Group>
 
@@ -63,7 +75,7 @@ export function RegistrationView(props) {
               placeholder="Date of Brith"
               onChange={e => setBirthday(e.target.value)} />
           </Form.Group>
-
+          
           <Form.Group controlId="formPassword">
             <Form.Control
               type="password"
@@ -82,22 +94,22 @@ export function RegistrationView(props) {
           </Form.Group>
 
           <Button variant="info" type="submit" onClick={handleSubmit}>
-            Sign Up
+        Sign Up
           </Button>
         </Form>
 
         <small className='text-center d-block'>
-          Already have an an account?
-          
-            <span className='register text-danger ml-2'>
-              Return to Log In
+      Already have an an account?
+       
+            <span onClick={handleReturnLogin} className='register text-danger ml-2'>
+        Return to Log In
             </span>
          
         </small>
 
-      </Container>
+      </Container >
 
-    </React.Fragment>
+    </React.Fragment >
   );
 }
 

@@ -50929,6 +50929,8 @@ function RegistrationView(props) {
       confirmPassword = _useState10[0],
       setConfirmPassword = _useState10[1];
 
+  var handleReturnLogin = props.handleReturnLogin;
+
   var handleSubmit = function handleSubmit(e) {
     e.preventDefault();
 
@@ -50946,9 +50948,16 @@ function RegistrationView(props) {
     });
   };
 
-  return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(_reactBootstrap.Container, {
-    className: "my-3"
-  }, _react.default.createElement(_reactBootstrap.Form, null, _react.default.createElement(_reactBootstrap.Form.Group, {
+  return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(_reactBootstrap.Navbar, {
+    className: "navbar",
+    variant: "dark"
+  }, _react.default.createElement(_reactBootstrap.Navbar.Brand, null, "myFlix80s")), _react.default.createElement(_reactBootstrap.Container, {
+    className: "my-4  w-50 p-3"
+  }, _react.default.createElement("h2", {
+    className: "text-center mb-4 white-words"
+  }, "Welcome to myFlix80s!"), _react.default.createElement("p", {
+    className: "text-center white-words"
+  }, "Create an account and start exploring.."), _react.default.createElement(_reactBootstrap.Form, null, _react.default.createElement(_reactBootstrap.Form.Group, {
     controlId: "formUsername"
   }, _react.default.createElement(_reactBootstrap.Form.Label, null, "Registration"), _react.default.createElement(_reactBootstrap.Form.Control, {
     type: "text",
@@ -51002,6 +51011,7 @@ function RegistrationView(props) {
   }, "Sign Up")), _react.default.createElement("small", {
     className: "text-center d-block"
   }, "Already have an an account?", _react.default.createElement("span", {
+    onClick: handleReturnLogin,
     className: "register text-danger ml-2"
   }, "Return to Log In"))));
 }
@@ -51086,9 +51096,9 @@ function LoginView(props) {
     className: "navbar",
     variant: "dark"
   }, _react.default.createElement(_reactBootstrap.Navbar.Brand, null, "myFlix80s")), _react.default.createElement(_reactBootstrap.Container, {
-    className: "my-5"
-  }, _react.default.createElement("h1", {
-    className: "text-center h3 mb-4 background-blue"
+    className: "my-4 w-50 p-3"
+  }, _react.default.createElement("h2", {
+    className: "text-center mb-4 white-words"
   }, "The Ultimate 1980s Movie App"), _react.default.createElement(_reactBootstrap.Form, null, _react.default.createElement(_reactBootstrap.Form.Group, {
     controlId: "formUsername"
   }, _react.default.createElement(_reactBootstrap.Form.Label, null, "Login"), _react.default.createElement(_reactBootstrap.Form.Control, {
@@ -51599,7 +51609,7 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
         }
       })), _react.default.createElement(_reactBootstrap.Form.Group, {
         controlId: "formEmail"
-      }, _react.default.createElement(_reactBootstrap.Form.Label, null, "Username:", this.state.email), _react.default.createElement(_reactBootstrap.Form.Control, {
+      }, _react.default.createElement(_reactBootstrap.Form.Label, null, "Email:", this.state.email), _react.default.createElement(_reactBootstrap.Form.Control, {
         type: "text",
         placeholder: "enter new email",
         onChange: function onChange(e) {
@@ -51715,7 +51725,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
     };
 
     _this.state = {
-      movies: null,
+      movies: [],
       selectedMovie: null,
       user: null,
       hasAccount: true
@@ -51774,8 +51784,8 @@ var MainView = /*#__PURE__*/function (_React$Component) {
       localStorage.removeItem('user');
       console.log('logged out successfully');
       window.open('/', '_self');
-    } // Handler to navigate to RegistrationView from LoginView 
-    //Handler to return to LoginView from RegistrationView
+    } // Handler to navigate from LoginView to RegistrationView 
+    //Handler to navigate from RegistrationView to LoginView 
 
   }, {
     key: "onLoggedIn",
@@ -51816,7 +51826,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
           hasAccount = _this$state.hasAccount; // on LoginView, when 'New User Sign Up' is clicked, goes to ReistrationView
 
       if (!hasAccount) return _react.default.createElement(_registrationView.RegistrationView, {
-        onReturnLogin: this.handleReturnLogin
+        handleReturnLogin: this.handleReturnLogin
       }); // Renders LoginView if no user
 
       if (!user) return _react.default.createElement(_loginView.LoginView, {

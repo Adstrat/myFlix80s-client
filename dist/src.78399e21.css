@@ -1,7 +1,16 @@
-.background-blue {
-  background-color: #5bc0de;
+.white-words {
   color: #fff;
-  padding: 3px 0;
+}
+
+.register {
+  cursor: pointer;
+}
+.white-words {
+  color: #fff;
+}
+
+.register {
+  cursor: pointer;
 }
 .movie-card {
   width: 210px;

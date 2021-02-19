@@ -33,10 +33,10 @@ export function LoginView(props) {
       <Navbar className="navbar" variant="dark">
         <Navbar.Brand>myFlix80s</Navbar.Brand>
       </Navbar>
-      <Container className='my-5'>
-        <h1 className='text-center h3 mb-4 background-blue'>
+      <Container className='my-4 w-50 p-3'>
+        <h2 className='text-center mb-4 white-words'>
           The Ultimate 1980s Movie App
-        </h1>
+        </h2>
         <Form>
           <Form.Group controlId="formUsername">
             <Form.Label>Login</Form.Label>

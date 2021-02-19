@@ -18,7 +18,7 @@ export class MainView extends React.Component {
   constructor() {
     super();
     this.state = {
-      movies: null,
+      movies: [],
       selectedMovie: null,
       user: null,
       hasAccount: true
@@ -70,13 +70,13 @@ export class MainView extends React.Component {
     window.open('/', '_self');
   }
 
-  // Handler to navigate to RegistrationView from LoginView 
+  // Handler to navigate from LoginView to RegistrationView 
   handleRegister = () => {
     this.setState({
       hasAccount: false
     });
   }
-  //Handler to return to LoginView from RegistrationView
+  //Handler to navigate from RegistrationView to LoginView 
   handleReturnLogin = () => {
     this.setState({
       hasAccount: true
@@ -112,7 +112,7 @@ export class MainView extends React.Component {
     const { movies, user, hasAccount } = this.state;
 
     // on LoginView, when 'New User Sign Up' is clicked, goes to ReistrationView
-    if (!hasAccount) return < RegistrationView onReturnLogin={this.handleReturnLogin} />;
+    if (!hasAccount) return < RegistrationView handleReturnLogin={this.handleReturnLogin} />;
 
 
     // Renders LoginView if no user

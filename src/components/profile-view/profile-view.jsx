@@ -34,7 +34,7 @@ export class ProfileView extends React.Component {
             </Form.Group>
 
             <Form.Group controlId="formEmail">
-              <Form.Label>Username:{this.state.email}</Form.Label>
+              <Form.Label>Email:{this.state.email}</Form.Label>
               <Form.Control type="text" placeholder="enter new email" onChange={e =>
                 setUsername(e.target.value)} />
             </Form.Group>
