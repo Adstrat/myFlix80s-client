@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import { Container, Form, Button, Navbar } from 'react-bootstrap';
 import axios from 'axios';
-import { Link } from "react-router-dom";
 
 import './registration-view.scss'
 
@@ -11,7 +9,6 @@ export function RegistrationView(props) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [birthday, setBirthday] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
 
   const { handleReturnLogin } = props;
 
@@ -84,15 +81,6 @@ export function RegistrationView(props) {
               onChange={e => setPassword(e.target.value)} />
           </Form.Group>
 
-          <Form.Group controlId='formConfirmPassword'>
-            <Form.Control
-              type='password'
-              value={confirmPassword}
-              placeholder='Confirm Password'
-              onChange={(e) => setConfirmPassword(e.target.value)}
-            />
-          </Form.Group>
-
           <Button variant="info" type="submit" onClick={handleSubmit}>
         Sign Up
           </Button>
@@ -112,11 +100,3 @@ export function RegistrationView(props) {
     </React.Fragment >
   );
 }
-
-RegistrationView.propTypes = {
-  username: PropTypes.string,
-  email: PropTypes.string,
-  birthday: PropTypes.string,
-  password: PropTypes.string,
-  confirmPassword: PropTypes.string
-};

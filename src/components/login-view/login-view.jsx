@@ -65,10 +65,4 @@ export function LoginView(props) {
     </React.Fragment >
 
   );
-
-
-  LoginView.propTypes = {
-    Username: PropTypes.string,
-    Password: PropTypes.string
-  };
 }

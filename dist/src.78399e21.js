@@ -50875,13 +50875,9 @@ exports.RegistrationView = RegistrationView;
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _propTypes = _interopRequireDefault(require("prop-types"));
-
 var _reactBootstrap = require("react-bootstrap");
 
 var _axios = _interopRequireDefault(require("axios"));
-
-var _reactRouterDom = require("react-router-dom");
 
 require("./registration-view.scss");
 
@@ -50923,11 +50919,6 @@ function RegistrationView(props) {
       _useState8 = _slicedToArray(_useState7, 2),
       birthday = _useState8[0],
       setBirthday = _useState8[1];
-
-  var _useState9 = (0, _react.useState)(''),
-      _useState10 = _slicedToArray(_useState9, 2),
-      confirmPassword = _useState10[0],
-      setConfirmPassword = _useState10[1];
 
   var handleReturnLogin = props.handleReturnLogin;
 
@@ -50995,15 +50986,6 @@ function RegistrationView(props) {
     onChange: function onChange(e) {
       return setPassword(e.target.value);
     }
-  })), _react.default.createElement(_reactBootstrap.Form.Group, {
-    controlId: "formConfirmPassword"
-  }, _react.default.createElement(_reactBootstrap.Form.Control, {
-    type: "password",
-    value: confirmPassword,
-    placeholder: "Confirm Password",
-    onChange: function onChange(e) {
-      return setConfirmPassword(e.target.value);
-    }
   })), _react.default.createElement(_reactBootstrap.Button, {
     variant: "info",
     type: "submit",
@@ -51015,15 +50997,7 @@ function RegistrationView(props) {
     className: "register text-danger ml-2"
   }, "Return to Log In"))));
 }
-
-RegistrationView.propTypes = {
-  username: _propTypes.default.string,
-  email: _propTypes.default.string,
-  birthday: _propTypes.default.string,
-  password: _propTypes.default.string,
-  confirmPassword: _propTypes.default.string
-};
-},{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js","axios":"../node_modules/axios/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","./registration-view.scss":"components/registration-view/registration-view.scss"}],"components/login-view/login-view.scss":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js","axios":"../node_modules/axios/index.js","./registration-view.scss":"components/registration-view/registration-view.scss"}],"components/login-view/login-view.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -51125,10 +51099,6 @@ function LoginView(props) {
     onClick: handleRegister,
     className: "register text-danger ml-2"
   }, "Sign up for free"))));
-  LoginView.propTypes = {
-    Username: _propTypes.default.string,
-    Password: _propTypes.default.string
-  };
 }
 },{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js","axios":"../node_modules/axios/index.js","./login-view.scss":"components/login-view/login-view.scss"}],"components/movie-card/movie-card.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
@@ -51288,9 +51258,7 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
   _createClass(MovieView, [{
     key: "render",
     value: function render() {
-      var _this$props = this.props,
-          movie = _this$props.movie,
-          onClick = _this$props.onClick;
+      var movie = this.props.movie;
       if (!movie) return null;
       return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(_reactBootstrap.Card, {
         className: "movie-view"
@@ -51598,8 +51566,10 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
       _objectDestructuringEmpty(this.props);
 
       return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(_reactBootstrap.Container, {
-        className: "my-3"
-      }, _react.default.createElement(_reactBootstrap.Form, null, _react.default.createElement(_reactBootstrap.Form.Group, {
+        className: "my-3 w-50 p-3"
+      }, _react.default.createElement("h2", {
+        className: "text-center mb-4 white-words"
+      }, "Update Your Profile Details"), _react.default.createElement(_reactBootstrap.Form, null, _react.default.createElement(_reactBootstrap.Form.Group, {
         controlId: "formUsername"
       }, _react.default.createElement(_reactBootstrap.Form.Label, null, "Username:", this.state.username), _react.default.createElement(_reactBootstrap.Form.Control, {
         type: "text",
