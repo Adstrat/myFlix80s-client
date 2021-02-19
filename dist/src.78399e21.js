@@ -51137,6 +51137,8 @@ var _react = _interopRequireDefault(require("react"));
 
 var _propTypes = _interopRequireDefault(require("prop-types"));
 
+var _reactRouterDom = require("react-router-dom");
+
 var _Button = _interopRequireDefault(require("react-bootstrap/Button"));
 
 var _Card = _interopRequireDefault(require("react-bootstrap/Card"));
@@ -51183,19 +51185,18 @@ var MovieCard = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this$props = this.props,
           movie = _this$props.movie,
-          _onClick = _this$props.onClick;
+          onClick = _this$props.onClick;
       return _react.default.createElement(_Card.default, {
         className: "movie-card"
       }, _react.default.createElement(_Card.default.Img, {
         variant: "top",
         className: "movie-image",
         src: movie.ImagePath
-      }), _react.default.createElement(_Card.default.Body, null, _react.default.createElement(_Card.default.Title, null, movie.Title), _react.default.createElement(_Card.default.Text, null, "Released: ", movie.Released), _react.default.createElement(_Button.default, {
-        variant: "info",
-        onClick: function onClick() {
-          return _onClick(movie);
-        }
-      }, "Open")));
+      }), _react.default.createElement(_Card.default.Body, null, _react.default.createElement(_Card.default.Title, null, movie.Title), _react.default.createElement(_Card.default.Text, null, "Released: ", movie.Released), _react.default.createElement(_reactRouterDom.Link, {
+        to: "/movies/".concat(movie._id)
+      }, _react.default.createElement(_Button.default, {
+        variant: "info"
+      }, "View"))));
     }
   }]);
 
@@ -51211,7 +51212,7 @@ MovieCard.propTypes = {
   }).isRequired,
   onClick: _propTypes.default.func.isRequired
 };
-},{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js","react-bootstrap/Card":"../node_modules/react-bootstrap/esm/Card.js","./movie-card.scss":"components/movie-card/movie-card.scss"}],"components/movie-view/movie-view.scss":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js","react-bootstrap/Card":"../node_modules/react-bootstrap/esm/Card.js","./movie-card.scss":"components/movie-card/movie-card.scss"}],"components/movie-view/movie-view.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -51278,7 +51279,7 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this$props = this.props,
           movie = _this$props.movie,
-          _onClick = _this$props.onClick;
+          onClick = _this$props.onClick;
       if (!movie) return null;
       return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(_reactBootstrap.Card, {
         className: "movie-view"
@@ -51306,13 +51307,14 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
         variant: "link"
       }, movie.Director.Name))), _react.default.createElement(_reactBootstrap.Card.Text, {
         className: "movie-actors"
-      }, "Actors: ", movie.Actors), _react.default.createElement(_reactBootstrap.Button, {
+      }, "Actors: ", movie.Actors), _react.default.createElement(_reactRouterDom.Link, {
+        to: "/"
+      }, _react.default.createElement("div", {
+        className: "center-btn"
+      }, _react.default.createElement(_reactBootstrap.Button, {
         className: "return-button",
-        variant: "info",
-        onClick: function onClick() {
-          return _onClick(movie);
-        }
-      }, "Return to Movie List"))));
+        variant: "info"
+      }, "Return to Movie List"))))));
     }
   }]);
 
@@ -51720,7 +51722,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
       }, _react.default.createElement(_reactBootstrap.Nav.Link, {
         href: "#home"
       }, "Home"), _react.default.createElement(_reactBootstrap.Nav.Link, {
-        href: "#link"
+        href: "#profile"
       }, "Profile"), _react.default.createElement(_reactBootstrap.Nav.Link, {
         onClick: function onClick() {
           return _this3.onLogOut();
@@ -51729,23 +51731,31 @@ var MainView = /*#__PURE__*/function (_React$Component) {
         className: "my-3"
       }, _react.default.createElement(_reactBootstrap.Row, {
         className: "main-view justify-content-md-center"
-      }, selectedMovie ? _react.default.createElement(_movieView.MovieView, {
-        movie: selectedMovie,
-        onClick: function onClick() {
-          return _this3.onReturnClick();
+      }, _react.default.createElement(_reactRouterDom.Route, {
+        exact: true,
+        path: "/",
+        render: function render() {
+          return movies.map(function (m) {
+            return _react.default.createElement(_movieCard.MovieCard, {
+              key: m._id,
+              movie: m
+            });
+          });
         }
-      }) : movies.map(function (movie) {
-        return _react.default.createElement(_movieCard.MovieCard, {
-          key: movie._id,
-          movie: movie,
-          onClick: function onClick(movie) {
-            return _this3.onMovieClick(movie);
-          }
-        });
       }), _react.default.createElement(_reactRouterDom.Route, {
-        path: "/genres/:name",
+        path: "/movies/:movieId",
         render: function render(_ref) {
           var match = _ref.match;
+          return _react.default.createElement(_movieView.MovieView, {
+            movie: movies.find(function (m) {
+              return m._id === match.params.movieId;
+            })
+          });
+        }
+      }), _react.default.createElement(_reactRouterDom.Route, {
+        path: "/genres/:name",
+        render: function render(_ref2) {
+          var match = _ref2.match;
           if (!movies) return _react.default.createElement("div", {
             className: "main-view"
           });
@@ -51757,8 +51767,8 @@ var MainView = /*#__PURE__*/function (_React$Component) {
         }
       }), _react.default.createElement(_reactRouterDom.Route, {
         path: "/directors/:name",
-        render: function render(_ref2) {
-          var match = _ref2.match;
+        render: function render(_ref3) {
+          var match = _ref3.match;
           if (!movies) return _react.default.createElement("div", {
             className: "main-view"
           });

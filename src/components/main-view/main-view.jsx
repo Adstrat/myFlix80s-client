@@ -131,27 +131,22 @@ export class MainView extends React.Component {
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="mr-auto">
                 <Nav.Link href="#home">Home</Nav.Link>
-                <Nav.Link href="#link">Profile</Nav.Link>
+                <Nav.Link href="#profile">Profile</Nav.Link>
                 <Nav.Link onClick={() => this.onLogOut()}>LogOut</Nav.Link>
               </Nav>
             </Navbar.Collapse>
           </Navbar>
           <Container className='my-3'>
             <Row className="main-view justify-content-md-center">
-              {selectedMovie ? (
 
-                <MovieView movie={selectedMovie}
-                  onClick={() => this.onReturnClick()}
-                />
-
-              )
-                : movies.map(movie => (
-
-                  <MovieCard key={movie._id} movie={movie} onClick={movie =>
-                    this.onMovieClick(movie)} />
-
-                ))
+              <Route exact path="/" render={() => {
+                return movies.map(m => <MovieCard key={m._id} movie={m} />)
               }
+              } />
+
+              <Route path='/movies/:movieId'
+                render={({ match }) => <MovieView movie={movies.find(m => m._id === match.params.movieId)} />} />
+
               <Route path='/genres/:name'
                 render={({ match }) => {
                   if (!movies) return <div className='main-view' />;

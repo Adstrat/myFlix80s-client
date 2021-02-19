@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 
@@ -14,7 +15,10 @@ export class MovieCard extends React.Component {
         <Card.Body>
           <Card.Title>{movie.Title}</Card.Title>
           <Card.Text>Released: {movie.Released}</Card.Text>
-          <Button variant="info" onClick={() => onClick(movie)}>Open</Button>
+          <Link to={`/movies/${movie._id}`}>
+            <Button variant="info">View</Button>
+          </Link>
+
         </Card.Body>
       </Card>
     );

@@ -34,8 +34,13 @@ export class MovieView extends React.Component {
                 <Button variant="link">{movie.Director.Name}</Button></Link>}</Card.Text>
             <Card.Text className="movie-actors">
               Actors: {movie.Actors}</Card.Text>
-            <Button className='return-button' variant='info' onClick={() =>
-              onClick(movie)}>Return to Movie List</Button>
+
+            <Link to={`/`}>
+              <div className='center-btn'>
+                <Button className='return-button' variant='info'>Return to Movie List</Button>
+              </div>
+            </Link>
+
           </Card.Body>
         </Card>
       </React.Fragment>
