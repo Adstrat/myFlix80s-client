@@ -24,6 +24,7 @@ export function RegistrationView(props) {
         const data = response.data;
         console.log(data);
         window.open('/', '_self');
+        alert('New Account created - now log in')
       })
       .catch(e => {
         console.log('error registering the user')
@@ -69,7 +70,7 @@ export function RegistrationView(props) {
             <Form.Control
               type="text"
               value={birthday}
-              placeholder="Date of Brith"
+              placeholder="Date of Brith (YYYY-MM-DD)"
               onChange={e => setBirthday(e.target.value)} />
           </Form.Group>
           

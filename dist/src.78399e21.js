@@ -50934,6 +50934,7 @@ function RegistrationView(props) {
       var data = response.data;
       console.log(data);
       window.open('/', '_self');
+      alert('New Account created - now log in');
     }).catch(function (e) {
       console.log('error registering the user');
     });
@@ -50973,7 +50974,7 @@ function RegistrationView(props) {
   }, _react.default.createElement(_reactBootstrap.Form.Control, {
     type: "text",
     value: birthday,
-    placeholder: "Date of Brith",
+    placeholder: "Date of Brith (YYYY-MM-DD)",
     onChange: function onChange(e) {
       return setBirthday(e.target.value);
     }
@@ -51163,9 +51164,7 @@ var MovieCard = /*#__PURE__*/function (_React$Component) {
   _createClass(MovieCard, [{
     key: "render",
     value: function render() {
-      var _this$props = this.props,
-          movie = _this$props.movie,
-          onClick = _this$props.onClick;
+      var movie = this.props.movie;
       return _react.default.createElement(_Card.default, {
         className: "movie-card"
       }, _react.default.createElement(_reactRouterDom.Link, {
@@ -51332,7 +51331,7 @@ module.hot.accept(reloadCSS);
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.GenreView = void 0;
+exports.GenreView = GenreView;
 
 var _react = _interopRequireDefault(require("react"));
 
@@ -51344,65 +51343,30 @@ require("./genre-view.scss");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-var GenreView = /*#__PURE__*/function (_React$Component) {
-  _inherits(GenreView, _React$Component);
-
-  var _super = _createSuper(GenreView);
-
-  function GenreView() {
-    var _this;
-
-    _classCallCheck(this, GenreView);
-
-    _this = _super.call(this);
-    _this.state = {};
-    return _this;
-  }
-
-  _createClass(GenreView, [{
-    key: "render",
-    value: function render() {
-      var genre = this.props.genre;
-      if (!genre) return null;
-      return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(_reactBootstrap.Card, {
-        className: "genre-view"
-      }, _react.default.createElement(_reactBootstrap.Card.Body, null, _react.default.createElement(_reactBootstrap.Card.Title, null, genre.Name), _react.default.createElement(_reactBootstrap.Card.Text, null, genre.Description)), _react.default.createElement(_reactRouterDom.Link, {
-        to: "/"
-      }, _react.default.createElement("div", {
-        className: "center-btn"
-      }, _react.default.createElement(_reactBootstrap.Button, {
-        className: "return-button",
-        variant: "info"
-      }, "Return to Movie List")))));
+//import PropTypes from "prop-types";
+function GenreView(props) {
+  var genre = props.genre;
+  if (!genre) return null;
+  var history = (0, _reactRouterDom.useHistory)();
+  return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(_reactBootstrap.Card, {
+    className: "genre-view"
+  }, _react.default.createElement(_reactBootstrap.Card.Body, null, _react.default.createElement(_reactBootstrap.Card.Title, null, genre.Name), _react.default.createElement(_reactBootstrap.Card.Text, null, genre.Description)), _react.default.createElement("div", {
+    className: "center-btn"
+  }, _react.default.createElement(_reactBootstrap.Button, {
+    className: "return-button",
+    variant: "info",
+    onClick: function onClick(e) {
+      return history.goBack();
     }
-  }]);
-
-  return GenreView;
-}(_react.default.Component);
-
-exports.GenreView = GenreView;
+  }, "Back to Movie")), _react.default.createElement(_reactRouterDom.Link, {
+    to: "/"
+  }, _react.default.createElement("div", {
+    className: "center-btn"
+  }, _react.default.createElement(_reactBootstrap.Button, {
+    className: "return-button",
+    variant: "info"
+  }, "Return to Main Page")))));
+}
 },{"react":"../node_modules/react/index.js","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","./genre-view.scss":"components/genre-view/genre-view.scss"}],"components/director-view/director-view.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
@@ -51414,7 +51378,7 @@ module.hot.accept(reloadCSS);
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.DirectorView = void 0;
+exports.DirectorView = DirectorView;
 
 var _react = _interopRequireDefault(require("react"));
 
@@ -51426,67 +51390,32 @@ require("./director-view.scss");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-var DirectorView = /*#__PURE__*/function (_React$Component) {
-  _inherits(DirectorView, _React$Component);
-
-  var _super = _createSuper(DirectorView);
-
-  function DirectorView() {
-    var _this;
-
-    _classCallCheck(this, DirectorView);
-
-    _this = _super.call(this);
-    _this.state = {};
-    return _this;
-  }
-
-  _createClass(DirectorView, [{
-    key: "render",
-    value: function render() {
-      var director = this.props.director;
-      if (!director) return null;
-      return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(_reactBootstrap.Card, {
-        className: "director-view"
-      }, _react.default.createElement(_reactBootstrap.Card.Body, null, _react.default.createElement(_reactBootstrap.Card.Title, null, director.Name), _react.default.createElement(_reactBootstrap.Card.Subtitle, {
-        className: "mb-2 text-muted"
-      }, director.Birth, "-", director.Death), _react.default.createElement(_reactBootstrap.Card.Text, null, director.Bio)), _react.default.createElement(_reactRouterDom.Link, {
-        to: "/"
-      }, _react.default.createElement("div", {
-        className: "center-btn"
-      }, _react.default.createElement(_reactBootstrap.Button, {
-        className: "return-button",
-        variant: "info"
-      }, "Return to Movie List")))));
+//import PropTypes from "prop-types";
+function DirectorView(props) {
+  var director = props.director;
+  if (!director) return null;
+  var history = (0, _reactRouterDom.useHistory)();
+  return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(_reactBootstrap.Card, {
+    className: "director-view"
+  }, _react.default.createElement(_reactBootstrap.Card.Body, null, _react.default.createElement(_reactBootstrap.Card.Title, null, director.Name), _react.default.createElement(_reactBootstrap.Card.Subtitle, {
+    className: "mb-2 text-muted"
+  }, director.Birth, "-", director.Death), _react.default.createElement(_reactBootstrap.Card.Text, null, director.Bio)), _react.default.createElement("div", {
+    className: "center-btn"
+  }, _react.default.createElement(_reactBootstrap.Button, {
+    className: "return-button",
+    variant: "info",
+    onClick: function onClick(e) {
+      return history.goBack();
     }
-  }]);
-
-  return DirectorView;
-}(_react.default.Component);
-
-exports.DirectorView = DirectorView;
+  }, "Back to Movie")), _react.default.createElement(_reactRouterDom.Link, {
+    to: "/"
+  }, _react.default.createElement("div", {
+    className: "center-btn"
+  }, _react.default.createElement(_reactBootstrap.Button, {
+    className: "return-button",
+    variant: "info"
+  }, "Return to Main List")))));
+}
 },{"react":"../node_modules/react/index.js","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","./director-view.scss":"components/director-view/director-view.scss"}],"components/profile-view/profile-view.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
@@ -51986,7 +51915,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49345" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49587" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
