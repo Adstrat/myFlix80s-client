@@ -54,6 +54,10 @@
 .white-words {
   color: #fff;
 }
+
+.profile-view {
+  margin-bottom: 40px;
+}
 body {
   background-color: #5bc0de;
 }

@@ -9,6 +9,7 @@ import { MovieView } from "../movie-view/movie-view";
 import { GenreView } from "../genre-view/genre-view";
 import { DirectorView } from "../director-view/director-view";
 import { ProfileView } from "../profile-view/profile-view";
+import { UpdateView } from "../update-view/update-view";
 
 import { Container, Row, Navbar, Nav } from 'react-bootstrap';
 
@@ -19,7 +20,6 @@ export class MainView extends React.Component {
     super();
     this.state = {
       movies: [],
-      selectedMovie: null,
       user: null,
       hasAccount: true
     };
@@ -95,19 +95,6 @@ export class MainView extends React.Component {
     this.getMovies(authData.token);
   }
 
-  //Handler to navigate from MainView to MovieView
-  onMovieClick(movie) {
-    this.setState({
-      selectedMovie: movie
-    });
-  }
-  // Handler to return from MovieView back to MainView 
-  onReturnClick() {
-    this.setState({
-      selectedMovie: null
-    });
-  }
-
   render() {
     const { movies, user, hasAccount } = this.state;
 
@@ -163,9 +150,12 @@ export class MainView extends React.Component {
                 }} />
 
               <Route path='/profile'
-                render={() => <ProfileView />
+                render={() => <ProfileView user={this.state.user} />
                 } />
 
+              <Route path='/update'
+                render={() => <UpdateView />
+                } />
 
             </Row>
           </Container>

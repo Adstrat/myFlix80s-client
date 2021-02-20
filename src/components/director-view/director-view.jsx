@@ -32,7 +32,7 @@ export function DirectorView(props) {
 
         <Link to={`/`}>
           <div className='center-btn'>
-            <Button className='return-button' variant='info'>Return to Main List</Button>
+            <Button className='return-button' variant='info'>Return to Main Page</Button>
           </div>
         </Link>
 

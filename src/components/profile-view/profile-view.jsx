@@ -11,54 +11,73 @@ export class ProfileView extends React.Component {
     super(props);
     this.state = {
       username: '',
-      password: '',
       email: '',
       birthday: '',
-      favoriteMovies: [],
-      movies: ''
+      password: ''
     };
   }
 
+  // Gets user from API
+  getUser = (token, user) => {
+    axios.get(`https://my-flix80s.herokuapp.com/users/${user}`, {
+      headers: { Authorization: `Bearer ${token}` }
+    })
+      .then(response => {
+        this.setState({
+          username: response.data.Username,
+          email: response.data.Email,
+          birthday: response.data.Birthday,
+          password: response.data.password
+        });
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
+  // Persisted authentication - keeps user details
+  componentDidMount() {
+    let accessToken = localStorage.getItem('token');
+    if (accessToken !== null) {
+      this.setState({
+        user: localStorage.getItem('user')
+      });
+      this.getUser(accessToken, localStorage.getItem('user'));
+    }
+  }
+
   render() {
-    const { } = this.props;
 
     return (
-      <React.Fragment>
+      <React.Fragment >
         <Container className='my-3 w-50 p-3'>
-          <h2 className='text-center mb-4 white-words'>
-            Update Your Profile Details
+
+          <h2 className=' text-center mb-4 white-words'>
+            Profile Details
           </h2>
-          <Form>
 
-            <Form.Group controlId="formUsername">
-              <Form.Label>Username:{this.state.username}</Form.Label>
-              <Form.Control type="text" placeholder="enter new user name" onChange={e =>
-                setUsername(e.target.value)} />
-            </Form.Group>
+          <Card className="profile-view">
+            <Card.Body>
+              <Card.Text>Username: {this.state.username}</Card.Text>
+              <Card.Text>Email: {this.state.email}</Card.Text>
+              <Card.Text>Birthday: {this.state.birthday}</Card.Text>
+            </Card.Body>
+          </Card>
 
-            <Form.Group controlId="formEmail">
-              <Form.Label>Email:{this.state.email}</Form.Label>
-              <Form.Control type="text" placeholder="enter new email" onChange={e =>
-                setUsername(e.target.value)} />
-            </Form.Group>
+          <Link to={`/update`}>
+            <div className='center-btn'>
+              <Button className='update-button' variant='info'>Edit Profile</Button>
+            </div>
+          </Link>
 
-            <Form.Group controlId="formPassword">
-              <Form.Label>Password</Form.Label>
-              <Form.Control type="password" placeholder="update password" onChange={e =>
-                setPassword(e.target.value)} />
-            </Form.Group>
-
-            <Form.Group controlId="formBirthday">
-              <Form.Label>Birthday:{this.state.birthday}</Form.Label>
-              <Form.Control type="password" placeholder="update birthday" onChange={e =>
-                setBirthday(e.target.value)} />
-            </Form.Group>
-
-          </Form>
+          <Link to={`/`}>
+            <div className='center-btn'>
+              <Button className='return-button' variant='info'>Return to Movie List</Button>
+            </div>
+          </Link>
 
         </Container>
-
-      </React.Fragment >
+      </React.Fragment>
     );
   }
 }

@@ -38,15 +38,20 @@ export function LoginView(props) {
           The Ultimate 1980s Movie App
         </h2>
         <Form>
+
           <Form.Group controlId="formUsername">
             <Form.Label>Login</Form.Label>
-            <Form.Control type="text" placeholder="Username" onChange={e =>
-              setUsername(e.target.value)} />
+            <Form.Control
+              type="text"
+              placeholder="Username"
+              onChange={e => setUsername(e.target.value)} />
           </Form.Group>
 
           <Form.Group controlId="formPassword">
-            <Form.Control type="password" placeholder="Password" onChange={e =>
-              setPassword(e.target.value)} />
+            <Form.Control
+              type="password"
+              placeholder="Password"
+              onChange={e => setPassword(e.target.value)} />
           </Form.Group>
 
           <Button variant="info" type="submit" onClick={handleSubmit}>

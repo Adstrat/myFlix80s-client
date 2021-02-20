@@ -44,7 +44,6 @@ export function RegistrationView(props) {
       Create an account and start exploring..
         </p>
           
-       
         <Form>
           <Form.Group controlId="formUsername">
             <Form.Label >Registration</Form.Label>

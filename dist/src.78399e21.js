@@ -51414,7 +51414,7 @@ function DirectorView(props) {
   }, _react.default.createElement(_reactBootstrap.Button, {
     className: "return-button",
     variant: "info"
-  }, "Return to Main List")))));
+  }, "Return to Main Page")))));
 }
 },{"react":"../node_modules/react/index.js","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","./director-view.scss":"components/director-view/director-view.scss"}],"components/profile-view/profile-view.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
@@ -51444,8 +51444,6 @@ require("./profile-view.scss");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _objectDestructuringEmpty(obj) { if (obj == null) throw new TypeError("Cannot destructure undefined"); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -51478,59 +51476,71 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, ProfileView);
 
     _this = _super.call(this, props);
+
+    _this.getUser = function (token, user) {
+      _axios.default.get("https://my-flix80s.herokuapp.com/users/".concat(user), {
+        headers: {
+          Authorization: "Bearer ".concat(token)
+        }
+      }).then(function (response) {
+        _this.setState({
+          username: response.data.Username,
+          email: response.data.Email,
+          birthday: response.data.Birthday,
+          password: response.data.password
+        });
+      }).catch(function (error) {
+        console.log(error);
+      });
+    };
+
     _this.state = {
       username: '',
-      password: '',
       email: '',
       birthday: '',
-      favoriteMovies: [],
-      movies: ''
+      password: ''
     };
     return _this;
-  }
+  } // Gets user from API
+
 
   _createClass(ProfileView, [{
+    key: "componentDidMount",
+    // Persisted authentication - keeps user details
+    value: function componentDidMount() {
+      var accessToken = localStorage.getItem('token');
+
+      if (accessToken !== null) {
+        this.setState({
+          user: localStorage.getItem('user')
+        });
+        this.getUser(accessToken, localStorage.getItem('user'));
+      }
+    }
+  }, {
     key: "render",
     value: function render() {
-      _objectDestructuringEmpty(this.props);
-
       return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(_reactBootstrap.Container, {
         className: "my-3 w-50 p-3"
       }, _react.default.createElement("h2", {
-        className: "text-center mb-4 white-words"
-      }, "Update Your Profile Details"), _react.default.createElement(_reactBootstrap.Form, null, _react.default.createElement(_reactBootstrap.Form.Group, {
-        controlId: "formUsername"
-      }, _react.default.createElement(_reactBootstrap.Form.Label, null, "Username:", this.state.username), _react.default.createElement(_reactBootstrap.Form.Control, {
-        type: "text",
-        placeholder: "enter new user name",
-        onChange: function onChange(e) {
-          return setUsername(e.target.value);
-        }
-      })), _react.default.createElement(_reactBootstrap.Form.Group, {
-        controlId: "formEmail"
-      }, _react.default.createElement(_reactBootstrap.Form.Label, null, "Email:", this.state.email), _react.default.createElement(_reactBootstrap.Form.Control, {
-        type: "text",
-        placeholder: "enter new email",
-        onChange: function onChange(e) {
-          return setUsername(e.target.value);
-        }
-      })), _react.default.createElement(_reactBootstrap.Form.Group, {
-        controlId: "formPassword"
-      }, _react.default.createElement(_reactBootstrap.Form.Label, null, "Password"), _react.default.createElement(_reactBootstrap.Form.Control, {
-        type: "password",
-        placeholder: "update password",
-        onChange: function onChange(e) {
-          return setPassword(e.target.value);
-        }
-      })), _react.default.createElement(_reactBootstrap.Form.Group, {
-        controlId: "formBirthday"
-      }, _react.default.createElement(_reactBootstrap.Form.Label, null, "Birthday:", this.state.birthday), _react.default.createElement(_reactBootstrap.Form.Control, {
-        type: "password",
-        placeholder: "update birthday",
-        onChange: function onChange(e) {
-          return setBirthday(e.target.value);
-        }
-      })))));
+        className: " text-center mb-4 white-words"
+      }, "Profile Details"), _react.default.createElement(_reactBootstrap.Card, {
+        className: "profile-view"
+      }, _react.default.createElement(_reactBootstrap.Card.Body, null, _react.default.createElement(_reactBootstrap.Card.Text, null, "Username: ", this.state.username), _react.default.createElement(_reactBootstrap.Card.Text, null, "Email: ", this.state.email), _react.default.createElement(_reactBootstrap.Card.Text, null, "Birthday: ", this.state.birthday))), _react.default.createElement(_reactRouterDom.Link, {
+        to: "/update"
+      }, _react.default.createElement("div", {
+        className: "center-btn"
+      }, _react.default.createElement(_reactBootstrap.Button, {
+        className: "update-button",
+        variant: "info"
+      }, "Edit Profile"))), _react.default.createElement(_reactRouterDom.Link, {
+        to: "/"
+      }, _react.default.createElement("div", {
+        className: "center-btn"
+      }, _react.default.createElement(_reactBootstrap.Button, {
+        className: "return-button",
+        variant: "info"
+      }, "Return to Movie List")))));
     }
   }]);
 
@@ -51538,7 +51548,147 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
 }(_react.default.Component);
 
 exports.ProfileView = ProfileView;
-},{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","axios":"../node_modules/axios/index.js","./profile-view.scss":"components/profile-view/profile-view.scss"}],"components/main-view/main-view.scss":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","axios":"../node_modules/axios/index.js","./profile-view.scss":"components/profile-view/profile-view.scss"}],"components/update-view/update-view.scss":[function(require,module,exports) {
+var reloadCSS = require('_css_loader');
+
+module.hot.dispose(reloadCSS);
+module.hot.accept(reloadCSS);
+},{"_css_loader":"../../../.nvm/versions/node/v14.15.1/lib/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"components/update-view/update-view.jsx":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.UpdateView = UpdateView;
+
+var _react = _interopRequireWildcard(require("react"));
+
+var _propTypes = _interopRequireDefault(require("prop-types"));
+
+var _reactBootstrap = require("react-bootstrap");
+
+var _reactRouterDom = require("react-router-dom");
+
+var _axios = _interopRequireDefault(require("axios"));
+
+require("./update-view.scss");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+function UpdateView(props) {
+  var _useState = (0, _react.useState)(''),
+      _useState2 = _slicedToArray(_useState, 2),
+      username = _useState2[0],
+      setUsername = _useState2[1];
+
+  var _useState3 = (0, _react.useState)(''),
+      _useState4 = _slicedToArray(_useState3, 2),
+      email = _useState4[0],
+      setEmail = _useState4[1];
+
+  var _useState5 = (0, _react.useState)(''),
+      _useState6 = _slicedToArray(_useState5, 2),
+      password = _useState6[0],
+      setPassword = _useState6[1];
+
+  var _useState7 = (0, _react.useState)(''),
+      _useState8 = _slicedToArray(_useState7, 2),
+      birthday = _useState8[0],
+      setBirthday = _useState8[1]; // Updates details of user
+
+
+  var updateDetails = function updateDetails(e, user) {
+    e.preventDefault();
+
+    _axios.default.put("https://my-flix80s.herokuapp.com/users/".concat(user), {
+      Username: username,
+      Email: email,
+      Birthday: birthday,
+      Password: password
+    }).then(function (response) {
+      var data = response.data;
+      console.log(data);
+      window.open('/', '_self');
+      alert('Account details Updated');
+    }).catch(function (e) {
+      console.log("Account details didn't update");
+    });
+  };
+
+  return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(_reactBootstrap.Container, {
+    className: "my-3 w-50 p-3"
+  }, _react.default.createElement("h2", {
+    className: "text-center mb-4 white-words"
+  }, "Edit Details"), _react.default.createElement("br", null), _react.default.createElement(_reactBootstrap.Form, null, _react.default.createElement(_reactBootstrap.Form.Group, {
+    controlId: "formUsername"
+  }, _react.default.createElement(_reactBootstrap.Form.Label, null, "Change Username"), _react.default.createElement(_reactBootstrap.Form.Control, {
+    type: "text",
+    value: username,
+    onChange: function onChange(e) {
+      return setUsername(e.target.value);
+    }
+  })), _react.default.createElement(_reactBootstrap.Form.Group, {
+    controlId: "formEmail"
+  }, _react.default.createElement(_reactBootstrap.Form.Label, null, "Change Email"), _react.default.createElement(_reactBootstrap.Form.Control, {
+    type: "email",
+    value: email,
+    onChange: function onChange(e) {
+      return setEmail(e.target.value);
+    }
+  })), _react.default.createElement(_reactBootstrap.Form.Group, {
+    controlId: "formBirthday"
+  }, _react.default.createElement(_reactBootstrap.Form.Label, null, "Change Birthday"), _react.default.createElement(_reactBootstrap.Form.Control, {
+    type: "text",
+    value: birthday,
+    placeholder: "YYYY-MM-DD",
+    onChange: function onChange(e) {
+      return setBirthday(e.target.value);
+    }
+  })), _react.default.createElement(_reactBootstrap.Form.Group, {
+    controlId: "formPassword"
+  }, _react.default.createElement(_reactBootstrap.Form.Label, null, "New Password"), _react.default.createElement(_reactBootstrap.Form.Control, {
+    type: "password",
+    value: password,
+    onChange: function onChange(e) {
+      return setPassword(e.target.value);
+    }
+  })), _react.default.createElement("div", {
+    className: "center-btn"
+  }, _react.default.createElement(_reactBootstrap.Button, {
+    className: "update-button",
+    variant: "info",
+    onClick: updateDetails
+  }, "Update")), _react.default.createElement(_reactRouterDom.Link, {
+    to: "/"
+  }, _react.default.createElement("div", {
+    className: "center-btn"
+  }, _react.default.createElement(_reactBootstrap.Button, {
+    className: "return-button",
+    variant: "info"
+  }, "Return to Movie List"))), _react.default.createElement("div", {
+    className: "center-btn"
+  }, _react.default.createElement(_reactBootstrap.Button, {
+    className: "update-button",
+    variant: "info"
+  }, "Delete Account")))));
+}
+},{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","axios":"../node_modules/axios/index.js","./update-view.scss":"components/update-view/update-view.scss"}],"components/main-view/main-view.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -51570,6 +51720,8 @@ var _genreView = require("../genre-view/genre-view");
 var _directorView = require("../director-view/director-view");
 
 var _profileView = require("../profile-view/profile-view");
+
+var _updateView = require("../update-view/update-view");
 
 var _reactBootstrap = require("react-bootstrap");
 
@@ -51625,7 +51777,6 @@ var MainView = /*#__PURE__*/function (_React$Component) {
 
     _this.state = {
       movies: [],
-      selectedMovie: null,
       user: null,
       hasAccount: true
     };
@@ -51697,22 +51848,6 @@ var MainView = /*#__PURE__*/function (_React$Component) {
       localStorage.setItem('token', authData.token);
       localStorage.setItem('user', authData.user.Username);
       this.getMovies(authData.token);
-    } //Handler to navigate from MainView to MovieView
-
-  }, {
-    key: "onMovieClick",
-    value: function onMovieClick(movie) {
-      this.setState({
-        selectedMovie: movie
-      });
-    } // Handler to return from MovieView back to MainView 
-
-  }, {
-    key: "onReturnClick",
-    value: function onReturnClick() {
-      this.setState({
-        selectedMovie: null
-      });
     }
   }, {
     key: "render",
@@ -51811,7 +51946,14 @@ var MainView = /*#__PURE__*/function (_React$Component) {
       }), _react.default.createElement(_reactRouterDom.Route, {
         path: "/profile",
         render: function render() {
-          return _react.default.createElement(_profileView.ProfileView, null);
+          return _react.default.createElement(_profileView.ProfileView, {
+            user: _this3.state.user
+          });
+        }
+      }), _react.default.createElement(_reactRouterDom.Route, {
+        path: "/update",
+        render: function render() {
+          return _react.default.createElement(_updateView.UpdateView, null);
         }
       })))));
     }
@@ -51821,7 +51963,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
 }(_react.default.Component);
 
 exports.MainView = MainView;
-},{"react":"../node_modules/react/index.js","axios":"../node_modules/axios/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","../registration-view/registration-view":"components/registration-view/registration-view.jsx","../login-view/login-view":"components/login-view/login-view.jsx","../movie-card/movie-card":"components/movie-card/movie-card.jsx","../movie-view/movie-view":"components/movie-view/movie-view.jsx","../genre-view/genre-view":"components/genre-view/genre-view.jsx","../director-view/director-view":"components/director-view/director-view.jsx","../profile-view/profile-view":"components/profile-view/profile-view.jsx","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js","./main-view.scss":"components/main-view/main-view.scss"}],"index.scss":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","axios":"../node_modules/axios/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","../registration-view/registration-view":"components/registration-view/registration-view.jsx","../login-view/login-view":"components/login-view/login-view.jsx","../movie-card/movie-card":"components/movie-card/movie-card.jsx","../movie-view/movie-view":"components/movie-view/movie-view.jsx","../genre-view/genre-view":"components/genre-view/genre-view.jsx","../director-view/director-view":"components/director-view/director-view.jsx","../profile-view/profile-view":"components/profile-view/profile-view.jsx","../update-view/update-view":"components/update-view/update-view.jsx","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js","./main-view.scss":"components/main-view/main-view.scss"}],"index.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
