@@ -51339,16 +51339,21 @@ var _reactBootstrap = require("react-bootstrap");
 
 var _reactRouterDom = require("react-router-dom");
 
+var _movieCard = require("../movie-card/movie-card");
+
 require("./genre-view.scss");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 //import PropTypes from "prop-types";
 function GenreView(props) {
-  var genre = props.genre;
+  var genre = props.genre,
+      movies = props.movies;
   if (!genre) return null;
   var history = (0, _reactRouterDom.useHistory)();
-  return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(_reactBootstrap.Card, {
+  return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(_reactBootstrap.Container, {
+    className: "my-3 w-50 p-3"
+  }, _react.default.createElement(_reactBootstrap.Card, {
     className: "genre-view"
   }, _react.default.createElement(_reactBootstrap.Card.Body, null, _react.default.createElement(_reactBootstrap.Card.Title, null, genre.Name), _react.default.createElement(_reactBootstrap.Card.Text, null, genre.Description), _react.default.createElement("div", {
     className: "center-btn"
@@ -51358,9 +51363,18 @@ function GenreView(props) {
     onClick: function onClick(e) {
       return history.goBack();
     }
-  }, "Back to Movie")))));
+  }, "Back to Movie")))), _react.default.createElement("h2", {
+    className: " text-center mb-4 white-words"
+  }, "More ", genre.Name, " Movies:"), movies.map(function (m) {
+    if (m.Genre.Name === genre.Name) {
+      return _react.default.createElement(_movieCard.MovieCard, {
+        key: m._id,
+        movie: m
+      });
+    }
+  })));
 }
-},{"react":"../node_modules/react/index.js","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","./genre-view.scss":"components/genre-view/genre-view.scss"}],"components/director-view/director-view.scss":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","../movie-card/movie-card":"components/movie-card/movie-card.jsx","./genre-view.scss":"components/genre-view/genre-view.scss"}],"components/director-view/director-view.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
