@@ -1,6 +1,6 @@
 import React from "react";
 //import PropTypes from "prop-types";
-import { Card, Button, Container } from 'react-bootstrap';
+import { Card, Button, Container, Row } from 'react-bootstrap';
 import { useHistory } from "react-router-dom";
 import { MovieCard } from "../movie-card/movie-card";
 import './genre-view.scss';
@@ -19,7 +19,7 @@ export function GenreView(props) {
         <Card className="genre-view">
           <Card.Body>
 
-            <Card.Title>{genre.Name}</Card.Title>
+            <Card.Title className='scifi-title'>{genre.Name}</Card.Title>
 
             <Card.Text>
               {genre.Description}
@@ -29,21 +29,26 @@ export function GenreView(props) {
               <Button className='return-button' variant='info' onClick={(e) => history.goBack()} >Back to Movie</Button>
             </div>
           </Card.Body>
-
         </Card>
+      </Container>
 
-        <h2 className=' text-center mb-4 white-words'>
-          More {genre.Name} Movies:
-        </h2>
+      <Container className='my-3'>
 
-        {movies.map(m => {
-          if (m.Genre.Name === genre.Name) {
-            return (
-              <MovieCard key={m._id} movie={m} />
-            );
-          }
-        })}
+        <h5 className=' text-center mb-4 white-words'>
+          {genre.Name} Movies:
+        </h5>
 
+        <Row className="main-view justify-content-md-center">
+
+          {movies.map(m => {
+            if (m.Genre.Name === genre.Name) {
+              return (
+                <MovieCard key={m._id} movie={m} />
+              );
+            }
+          })}
+
+        </Row>
       </Container>
     </React.Fragment >
   );

@@ -51355,7 +51355,9 @@ function GenreView(props) {
     className: "my-3 w-50 p-3"
   }, _react.default.createElement(_reactBootstrap.Card, {
     className: "genre-view"
-  }, _react.default.createElement(_reactBootstrap.Card.Body, null, _react.default.createElement(_reactBootstrap.Card.Title, null, genre.Name), _react.default.createElement(_reactBootstrap.Card.Text, null, genre.Description), _react.default.createElement("div", {
+  }, _react.default.createElement(_reactBootstrap.Card.Body, null, _react.default.createElement(_reactBootstrap.Card.Title, {
+    className: "scifi-title"
+  }, genre.Name), _react.default.createElement(_reactBootstrap.Card.Text, null, genre.Description), _react.default.createElement("div", {
     className: "center-btn"
   }, _react.default.createElement(_reactBootstrap.Button, {
     className: "return-button",
@@ -51363,16 +51365,20 @@ function GenreView(props) {
     onClick: function onClick(e) {
       return history.goBack();
     }
-  }, "Back to Movie")))), _react.default.createElement("h2", {
+  }, "Back to Movie"))))), _react.default.createElement(_reactBootstrap.Container, {
+    className: "my-3"
+  }, _react.default.createElement("h5", {
     className: " text-center mb-4 white-words"
-  }, "More ", genre.Name, " Movies:"), movies.map(function (m) {
+  }, genre.Name, " Movies:"), _react.default.createElement(_reactBootstrap.Row, {
+    className: "main-view justify-content-md-center"
+  }, movies.map(function (m) {
     if (m.Genre.Name === genre.Name) {
       return _react.default.createElement(_movieCard.MovieCard, {
         key: m._id,
         movie: m
       });
     }
-  })));
+  }))));
 }
 },{"react":"../node_modules/react/index.js","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","../movie-card/movie-card":"components/movie-card/movie-card.jsx","./genre-view.scss":"components/genre-view/genre-view.scss"}],"components/director-view/director-view.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
@@ -51393,18 +51399,25 @@ var _reactBootstrap = require("react-bootstrap");
 
 var _reactRouterDom = require("react-router-dom");
 
+var _movieCard = require("../movie-card/movie-card");
+
 require("./director-view.scss");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 //import PropTypes from "prop-types";
 function DirectorView(props) {
-  var director = props.director;
+  var director = props.director,
+      movies = props.movies;
   if (!director) return null;
   var history = (0, _reactRouterDom.useHistory)();
-  return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(_reactBootstrap.Card, {
+  return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(_reactBootstrap.Container, {
+    className: "my-3 w-50 p-3"
+  }, _react.default.createElement(_reactBootstrap.Card, {
     className: "director-view"
-  }, _react.default.createElement(_reactBootstrap.Card.Body, null, _react.default.createElement(_reactBootstrap.Card.Title, null, director.Name), _react.default.createElement(_reactBootstrap.Card.Subtitle, {
+  }, _react.default.createElement(_reactBootstrap.Card.Body, null, _react.default.createElement(_reactBootstrap.Card.Title, {
+    className: "director-title"
+  }, director.Name), _react.default.createElement(_reactBootstrap.Card.Subtitle, {
     className: "mb-2 text-muted"
   }, director.Birth, "-", director.Death), _react.default.createElement(_reactBootstrap.Card.Text, null, director.Bio), _react.default.createElement("div", {
     className: "center-btn"
@@ -51414,9 +51427,22 @@ function DirectorView(props) {
     onClick: function onClick(e) {
       return history.goBack();
     }
-  }, "Back to Movie")))));
+  }, "Back to Movie"))))), _react.default.createElement(_reactBootstrap.Container, {
+    className: "my-3"
+  }, _react.default.createElement("h5", {
+    className: " text-center mb-4 white-words"
+  }, "Movies by ", director.Name, ":"), _react.default.createElement(_reactBootstrap.Row, {
+    className: "main-view justify-content-md-center"
+  }, movies.map(function (m) {
+    if (m.Director.Name === director.Name) {
+      return _react.default.createElement(_movieCard.MovieCard, {
+        key: m._id,
+        movie: m
+      });
+    }
+  }))));
 }
-},{"react":"../node_modules/react/index.js","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","./director-view.scss":"components/director-view/director-view.scss"}],"components/profile-view/profile-view.scss":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","../movie-card/movie-card":"components/movie-card/movie-card.jsx","./director-view.scss":"components/director-view/director-view.scss"}],"components/profile-view/profile-view.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -51914,6 +51940,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
             className: "main-view"
           });
           return _react.default.createElement(_genreView.GenreView, {
+            movies: _this3.state.movies,
             genre: movies.find(function (m) {
               return m.Genre.Name === match.params.name;
             }).Genre
@@ -51927,6 +51954,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
             className: "main-view"
           });
           return _react.default.createElement(_directorView.DirectorView, {
+            movies: _this3.state.movies,
             director: movies.find(function (m) {
               return m.Director.Name === match.params.name;
             }).Director
