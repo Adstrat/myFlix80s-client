@@ -12,26 +12,71 @@ export function UpdateView(props) {
   const [password, setPassword] = useState('');
   const [birthday, setBirthday] = useState('');
 
+  const [usernameErr, setUsernameErr] = useState({});
+  const [passwordErr, setPasswordErr] = useState({});
+  const [emailErr, setEmailErr] = useState({});
+
+  // validates inputed data
+  const formValidation = () => {
+    const usernameErr = {};
+    const passwordErr = {};
+    const emailErr = {};
+    let isValid = true;
+
+    if (username.trim().length < 6) {
+      usernameErr.usernameShort = "Username must be at least 6 characters";
+      isValid = false;
+    }
+
+    if (password.trim().length < 5) {
+      passwordErr.passwordMissing = "Password must be at least 5 characters";
+      isValid = false;
+    }
+
+    if (!email.includes(".") && !email.includes("@")) {
+      emailErr.emailNotEmail = "A valid email address is required";
+      isValid = false;
+    }
+
+    setUsernameErr(usernameErr);
+    setPasswordErr(passwordErr);
+    setEmailErr(emailErr);
+    return isValid;
+  }
+
+
 
   // Updates details of user
-  const updateDetails = (e, user) => {
+  const updateDetails = (e) => {
     e.preventDefault();
-    axios.put(`https://my-flix80s.herokuapp.com/users/${user}`, {
-      Username: username,
-      Email: email,
-      Birthday: birthday,
-      Password: password
-    })
-      .then(response => {
-        const data = response.data;
-        console.log(data);
-        window.open('/', '_self');
-        alert('Account details Updated')
-      })
-      .catch(e => {
-        console.log("Account details didn't update")
-      })
+    let token = localStorage.getItem('token');
+    let user = localStorage.getItem('user');
+    const isValid = formValidation();
+    if (isValid) {
+      axios.put(`https://my-flix80s.herokuapp.com/users/${user}`, {
+        Username: username,
+        Email: email,
+        Birthday: birthday,
+        Password: password
+      },
+        {
+          headers: { Authorization: `Bearer ${token}` }
+        })
+        .then(response => {
+          const data = response.data;
+          console.log(data);
+          window.open('/', '_self');
+          alert('Account details Updated')
+        })
+        .catch(e => {
+          console.log("Account details didn't update")
+        })
+    }
   };
+
+
+
+
 
 
   return (
@@ -44,25 +89,39 @@ export function UpdateView(props) {
 
         <Form>
           <Form.Group controlId="formUsername">
-            <Form.Label>Change Username</Form.Label>
+            <Form.Label>Username</Form.Label>
             <Form.Control
               type="text"
               value={username}
               onChange={e =>
                 setUsername(e.target.value)} />
+            {Object.keys(usernameErr).map((key) => {
+              return (
+                <div key={key} style={{ color: "red" }}>
+                  {usernameErr[key]}
+                </div>
+              );
+            })}
           </Form.Group>
 
           <Form.Group controlId="formEmail">
-            <Form.Label>Change Email</Form.Label>
+            <Form.Label>Email</Form.Label>
             <Form.Control
               type="email"
               value={email}
               onChange={e =>
                 setEmail(e.target.value)} />
+            {Object.keys(emailErr).map((key) => {
+              return (
+                <div key={key} style={{ color: "red" }}>
+                  {emailErr[key]}
+                </div>
+              );
+            })}
           </Form.Group>
 
           <Form.Group controlId="formBirthday">
-            <Form.Label>Change Birthday</Form.Label>
+            <Form.Label>Birthday</Form.Label>
             <Form.Control
               type="text"
               value={birthday}
@@ -72,12 +131,19 @@ export function UpdateView(props) {
           </Form.Group>
 
           <Form.Group controlId="formPassword">
-            <Form.Label>New Password</Form.Label>
+            <Form.Label>Password</Form.Label>
             <Form.Control
               type="password"
               value={password}
               onChange={e =>
                 setPassword(e.target.value)} />
+            {Object.keys(passwordErr).map((key) => {
+              return (
+                <div key={key} style={{ color: "red" }}>
+                  {passwordErr[key]}
+                </div>
+              );
+            })}
           </Form.Group>
 
 

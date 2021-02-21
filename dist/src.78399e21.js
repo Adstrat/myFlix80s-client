@@ -51663,25 +51663,77 @@ function UpdateView(props) {
   var _useState7 = (0, _react.useState)(''),
       _useState8 = _slicedToArray(_useState7, 2),
       birthday = _useState8[0],
-      setBirthday = _useState8[1]; // Updates details of user
+      setBirthday = _useState8[1];
+
+  var _useState9 = (0, _react.useState)({}),
+      _useState10 = _slicedToArray(_useState9, 2),
+      usernameErr = _useState10[0],
+      setUsernameErr = _useState10[1];
+
+  var _useState11 = (0, _react.useState)({}),
+      _useState12 = _slicedToArray(_useState11, 2),
+      passwordErr = _useState12[0],
+      setPasswordErr = _useState12[1];
+
+  var _useState13 = (0, _react.useState)({}),
+      _useState14 = _slicedToArray(_useState13, 2),
+      emailErr = _useState14[0],
+      setEmailErr = _useState14[1]; // validates inputed data
 
 
-  var updateDetails = function updateDetails(e, user) {
+  var formValidation = function formValidation() {
+    var usernameErr = {};
+    var passwordErr = {};
+    var emailErr = {};
+    var isValid = true;
+
+    if (username.trim().length < 6) {
+      usernameErr.usernameShort = "Username must be at least 6 characters";
+      isValid = false;
+    }
+
+    if (password.trim().length < 5) {
+      passwordErr.passwordMissing = "Password must be at least 5 characters";
+      isValid = false;
+    }
+
+    if (!email.includes(".") && !email.includes("@")) {
+      emailErr.emailNotEmail = "A valid email address is required";
+      isValid = false;
+    }
+
+    setUsernameErr(usernameErr);
+    setPasswordErr(passwordErr);
+    setEmailErr(emailErr);
+    return isValid;
+  }; // Updates details of user
+
+
+  var updateDetails = function updateDetails(e) {
     e.preventDefault();
+    var token = localStorage.getItem('token');
+    var user = localStorage.getItem('user');
+    var isValid = formValidation();
 
-    _axios.default.put("https://my-flix80s.herokuapp.com/users/".concat(user), {
-      Username: username,
-      Email: email,
-      Birthday: birthday,
-      Password: password
-    }).then(function (response) {
-      var data = response.data;
-      console.log(data);
-      window.open('/', '_self');
-      alert('Account details Updated');
-    }).catch(function (e) {
-      console.log("Account details didn't update");
-    });
+    if (isValid) {
+      _axios.default.put("https://my-flix80s.herokuapp.com/users/".concat(user), {
+        Username: username,
+        Email: email,
+        Birthday: birthday,
+        Password: password
+      }, {
+        headers: {
+          Authorization: "Bearer ".concat(token)
+        }
+      }).then(function (response) {
+        var data = response.data;
+        console.log(data);
+        window.open('/', '_self');
+        alert('Account details Updated');
+      }).catch(function (e) {
+        console.log("Account details didn't update");
+      });
+    }
   };
 
   return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(_reactBootstrap.Container, {
@@ -51690,23 +51742,37 @@ function UpdateView(props) {
     className: "text-center mb-4 white-words"
   }, "Edit Details"), _react.default.createElement("br", null), _react.default.createElement(_reactBootstrap.Form, null, _react.default.createElement(_reactBootstrap.Form.Group, {
     controlId: "formUsername"
-  }, _react.default.createElement(_reactBootstrap.Form.Label, null, "Change Username"), _react.default.createElement(_reactBootstrap.Form.Control, {
+  }, _react.default.createElement(_reactBootstrap.Form.Label, null, "Username"), _react.default.createElement(_reactBootstrap.Form.Control, {
     type: "text",
     value: username,
     onChange: function onChange(e) {
       return setUsername(e.target.value);
     }
+  }), Object.keys(usernameErr).map(function (key) {
+    return _react.default.createElement("div", {
+      key: key,
+      style: {
+        color: "red"
+      }
+    }, usernameErr[key]);
   })), _react.default.createElement(_reactBootstrap.Form.Group, {
     controlId: "formEmail"
-  }, _react.default.createElement(_reactBootstrap.Form.Label, null, "Change Email"), _react.default.createElement(_reactBootstrap.Form.Control, {
+  }, _react.default.createElement(_reactBootstrap.Form.Label, null, "Email"), _react.default.createElement(_reactBootstrap.Form.Control, {
     type: "email",
     value: email,
     onChange: function onChange(e) {
       return setEmail(e.target.value);
     }
+  }), Object.keys(emailErr).map(function (key) {
+    return _react.default.createElement("div", {
+      key: key,
+      style: {
+        color: "red"
+      }
+    }, emailErr[key]);
   })), _react.default.createElement(_reactBootstrap.Form.Group, {
     controlId: "formBirthday"
-  }, _react.default.createElement(_reactBootstrap.Form.Label, null, "Change Birthday"), _react.default.createElement(_reactBootstrap.Form.Control, {
+  }, _react.default.createElement(_reactBootstrap.Form.Label, null, "Birthday"), _react.default.createElement(_reactBootstrap.Form.Control, {
     type: "text",
     value: birthday,
     placeholder: "YYYY-MM-DD",
@@ -51715,12 +51781,19 @@ function UpdateView(props) {
     }
   })), _react.default.createElement(_reactBootstrap.Form.Group, {
     controlId: "formPassword"
-  }, _react.default.createElement(_reactBootstrap.Form.Label, null, "New Password"), _react.default.createElement(_reactBootstrap.Form.Control, {
+  }, _react.default.createElement(_reactBootstrap.Form.Label, null, "Password"), _react.default.createElement(_reactBootstrap.Form.Control, {
     type: "password",
     value: password,
     onChange: function onChange(e) {
       return setPassword(e.target.value);
     }
+  }), Object.keys(passwordErr).map(function (key) {
+    return _react.default.createElement("div", {
+      key: key,
+      style: {
+        color: "red"
+      }
+    }, passwordErr[key]);
   })), _react.default.createElement(_reactBootstrap.Button, {
     className: "update-button",
     variant: "info",
@@ -52102,7 +52175,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49647" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51803" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
