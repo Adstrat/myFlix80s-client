@@ -26,7 +26,7 @@ export class ProfileView extends React.Component {
         this.setState({
           username: response.data.Username,
           email: response.data.Email,
-          birthday: response.data.Birthday,
+          birthday: this.formatDate(response.data.Birthday),
           password: response.data.password
         });
       })
@@ -44,6 +44,11 @@ export class ProfileView extends React.Component {
       });
       this.getUser(accessToken, localStorage.getItem('user'));
     }
+  }
+
+  formatDate(date) {
+    if (date) date = date.substring(0, 10);
+    return date;
   }
 
   render() {

@@ -51512,7 +51512,7 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
         _this.setState({
           username: response.data.Username,
           email: response.data.Email,
-          birthday: response.data.Birthday,
+          birthday: _this.formatDate(response.data.Birthday),
           password: response.data.password
         });
       }).catch(function (error) {
@@ -51542,6 +51542,12 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
         });
         this.getUser(accessToken, localStorage.getItem('user'));
       }
+    }
+  }, {
+    key: "formatDate",
+    value: function formatDate(date) {
+      if (date) date = date.substring(0, 10);
+      return date;
     }
   }, {
     key: "render",
