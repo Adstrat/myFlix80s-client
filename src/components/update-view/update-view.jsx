@@ -44,8 +44,6 @@ export function UpdateView(props) {
     return isValid;
   }
 
-
-
   // Updates details of user
   const updateDetails = (e) => {
     e.preventDefault();
@@ -74,9 +72,26 @@ export function UpdateView(props) {
     }
   };
 
-
-
-
+  // Deletes users account
+  const handleDelete = (e) => {
+    if (!confirm("Are you sure you want to delete your account?")) return;
+    let token = localStorage.getItem("token");
+    let user = localStorage.getItem('user');
+    if (isValid) {
+      axios.delete(`https://my-flix80s.herokuapp.com/users/${user}`, {
+        headers: { Authorization: `Bearer ${token}` }
+      })
+        .then(response => {
+          localStorage.removeItem("token");
+          localStorage.removeItem("user");
+          window.open("/", "_self");
+          alert('Your account has been deleted.');
+        })
+        .catch(e => {
+          console.log(response)
+        })
+    }
+  };
 
 
   return (
@@ -146,17 +161,15 @@ export function UpdateView(props) {
             })}
           </Form.Group>
 
-
           <Button className='update-button' variant='info' onClick={updateDetails}>Update</Button>
 
-
           <div className='center-btn'>
-            <small className='register text-danger ml-2'>
+            <small
+              className='register text-danger ml-2'
+              onClick={handleDelete}>
               Delete Account
-                  </small>
+            </small>
           </div>
-
-
 
         </Form>
       </Container>

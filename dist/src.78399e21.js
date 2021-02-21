@@ -51801,6 +51801,28 @@ function UpdateView(props) {
         console.log("Account details didn't update");
       });
     }
+  }; // Deletes users account
+
+
+  var handleDelete = function handleDelete(e) {
+    if (!confirm("Are you sure you want to delete your account?")) return;
+    var token = localStorage.getItem("token");
+    var user = localStorage.getItem('user');
+
+    if (isValid) {
+      _axios.default.delete("https://my-flix80s.herokuapp.com/users/".concat(user), {
+        headers: {
+          Authorization: "Bearer ".concat(token)
+        }
+      }).then(function (response) {
+        localStorage.removeItem("token");
+        localStorage.removeItem("user");
+        window.open("/", "_self");
+        alert('Your account has been deleted.');
+      }).catch(function (e) {
+        console.log(response);
+      });
+    }
   };
 
   return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(_reactBootstrap.Container, {
@@ -51868,7 +51890,8 @@ function UpdateView(props) {
   }, "Update"), _react.default.createElement("div", {
     className: "center-btn"
   }, _react.default.createElement("small", {
-    className: "register text-danger ml-2"
+    className: "register text-danger ml-2",
+    onClick: handleDelete
   }, "Delete Account")))));
 }
 },{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","axios":"../node_modules/axios/index.js","./update-view.scss":"components/update-view/update-view.scss"}],"components/main-view/main-view.scss":[function(require,module,exports) {
