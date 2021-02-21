@@ -51350,7 +51350,7 @@ function GenreView(props) {
   var history = (0, _reactRouterDom.useHistory)();
   return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(_reactBootstrap.Card, {
     className: "genre-view"
-  }, _react.default.createElement(_reactBootstrap.Card.Body, null, _react.default.createElement(_reactBootstrap.Card.Title, null, genre.Name), _react.default.createElement(_reactBootstrap.Card.Text, null, genre.Description)), _react.default.createElement("div", {
+  }, _react.default.createElement(_reactBootstrap.Card.Body, null, _react.default.createElement(_reactBootstrap.Card.Title, null, genre.Name), _react.default.createElement(_reactBootstrap.Card.Text, null, genre.Description), _react.default.createElement("div", {
     className: "center-btn"
   }, _react.default.createElement(_reactBootstrap.Button, {
     className: "return-button",
@@ -51358,14 +51358,7 @@ function GenreView(props) {
     onClick: function onClick(e) {
       return history.goBack();
     }
-  }, "Back to Movie")), _react.default.createElement(_reactRouterDom.Link, {
-    to: "/"
-  }, _react.default.createElement("div", {
-    className: "center-btn"
-  }, _react.default.createElement(_reactBootstrap.Button, {
-    className: "return-button",
-    variant: "info"
-  }, "Return to Main Page")))));
+  }, "Back to Movie")))));
 }
 },{"react":"../node_modules/react/index.js","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","./genre-view.scss":"components/genre-view/genre-view.scss"}],"components/director-view/director-view.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
@@ -51399,7 +51392,7 @@ function DirectorView(props) {
     className: "director-view"
   }, _react.default.createElement(_reactBootstrap.Card.Body, null, _react.default.createElement(_reactBootstrap.Card.Title, null, director.Name), _react.default.createElement(_reactBootstrap.Card.Subtitle, {
     className: "mb-2 text-muted"
-  }, director.Birth, "-", director.Death), _react.default.createElement(_reactBootstrap.Card.Text, null, director.Bio)), _react.default.createElement("div", {
+  }, director.Birth, "-", director.Death), _react.default.createElement(_reactBootstrap.Card.Text, null, director.Bio), _react.default.createElement("div", {
     className: "center-btn"
   }, _react.default.createElement(_reactBootstrap.Button, {
     className: "return-button",
@@ -51407,14 +51400,7 @@ function DirectorView(props) {
     onClick: function onClick(e) {
       return history.goBack();
     }
-  }, "Back to Movie")), _react.default.createElement(_reactRouterDom.Link, {
-    to: "/"
-  }, _react.default.createElement("div", {
-    className: "center-btn"
-  }, _react.default.createElement(_reactBootstrap.Button, {
-    className: "return-button",
-    variant: "info"
-  }, "Return to Main Page")))));
+  }, "Back to Movie")))));
 }
 },{"react":"../node_modules/react/index.js","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","./director-view.scss":"components/director-view/director-view.scss"}],"components/profile-view/profile-view.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
@@ -51526,14 +51512,13 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
         className: " text-center mb-4 white-words"
       }, "Profile Details"), _react.default.createElement(_reactBootstrap.Card, {
         className: "profile-view"
-      }, _react.default.createElement(_reactBootstrap.Card.Body, null, _react.default.createElement(_reactBootstrap.Card.Text, null, "Username: ", this.state.username), _react.default.createElement(_reactBootstrap.Card.Text, null, "Email: ", this.state.email), _react.default.createElement(_reactBootstrap.Card.Text, null, "Birthday: ", this.state.birthday))), _react.default.createElement(_reactRouterDom.Link, {
+      }, _react.default.createElement(_reactBootstrap.Card.Body, null, _react.default.createElement(_reactBootstrap.Card.Text, null, "Username: ", this.state.username), _react.default.createElement(_reactBootstrap.Card.Text, null, "Email: ", this.state.email), _react.default.createElement(_reactBootstrap.Card.Text, null, "Birthday: ", this.state.birthday), _react.default.createElement(_reactRouterDom.Link, {
         to: "/update"
       }, _react.default.createElement("div", {
         className: "center-btn"
-      }, _react.default.createElement(_reactBootstrap.Button, {
-        className: "update-button",
-        variant: "info"
-      }, "Edit Profile"))), _react.default.createElement(_reactRouterDom.Link, {
+      }, _react.default.createElement("small", {
+        className: "register text-danger ml-2"
+      }, "Update details"))))), _react.default.createElement(_reactRouterDom.Link, {
         to: "/"
       }, _react.default.createElement("div", {
         className: "center-btn"
@@ -51668,24 +51653,14 @@ function UpdateView(props) {
     onChange: function onChange(e) {
       return setPassword(e.target.value);
     }
-  })), _react.default.createElement("div", {
-    className: "center-btn"
-  }, _react.default.createElement(_reactBootstrap.Button, {
+  })), _react.default.createElement(_reactBootstrap.Button, {
     className: "update-button",
     variant: "info",
     onClick: updateDetails
-  }, "Update")), _react.default.createElement(_reactRouterDom.Link, {
-    to: "/"
-  }, _react.default.createElement("div", {
+  }, "Update"), _react.default.createElement("div", {
     className: "center-btn"
-  }, _react.default.createElement(_reactBootstrap.Button, {
-    className: "return-button",
-    variant: "info"
-  }, "Return to Movie List"))), _react.default.createElement("div", {
-    className: "center-btn"
-  }, _react.default.createElement(_reactBootstrap.Button, {
-    className: "update-button",
-    variant: "info"
+  }, _react.default.createElement("small", {
+    className: "register text-danger ml-2"
   }, "Delete Account")))));
 }
 },{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","axios":"../node_modules/axios/index.js","./update-view.scss":"components/update-view/update-view.scss"}],"components/main-view/main-view.scss":[function(require,module,exports) {
@@ -52057,7 +52032,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49587" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49647" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

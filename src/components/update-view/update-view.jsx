@@ -80,19 +80,17 @@ export function UpdateView(props) {
                 setPassword(e.target.value)} />
           </Form.Group>
 
-          <div className='center-btn'>
-            <Button className='update-button' variant='info' onClick={updateDetails}>Update</Button>
-          </div>
 
-          <Link to={`/`}>
-            <div className='center-btn'>
-              <Button className='return-button' variant='info'>Return to Movie List</Button>
-            </div>
-          </Link>
+          <Button className='update-button' variant='info' onClick={updateDetails}>Update</Button>
+
 
           <div className='center-btn'>
-            <Button className='update-button' variant='info' >Delete Account</Button>
+            <small className='register text-danger ml-2'>
+              Delete Account
+                  </small>
           </div>
+
+
 
         </Form>
       </Container>

@@ -51,12 +51,16 @@
   margin: 10px;
   border-radius: 7px;
 }
-.white-words {
-  color: #fff;
-}
-
 .profile-view {
   margin-bottom: 40px;
+}
+
+.center-btn {
+  margin-bottom: 0px;
+}
+
+.register {
+  text-decoration: none;
 }
 body {
   background-color: #5bc0de;

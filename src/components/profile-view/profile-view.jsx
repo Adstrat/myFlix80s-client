@@ -58,17 +58,21 @@ export class ProfileView extends React.Component {
 
           <Card className="profile-view">
             <Card.Body>
+
               <Card.Text>Username: {this.state.username}</Card.Text>
               <Card.Text>Email: {this.state.email}</Card.Text>
               <Card.Text>Birthday: {this.state.birthday}</Card.Text>
+
+              <Link to={`/update`}>
+                <div className='center-btn'>
+                  <small className='register text-danger ml-2'>
+                    Update details
+                  </small>
+                </div>
+              </Link>
+
             </Card.Body>
           </Card>
-
-          <Link to={`/update`}>
-            <div className='center-btn'>
-              <Button className='update-button' variant='info'>Edit Profile</Button>
-            </div>
-          </Link>
 
           <Link to={`/`}>
             <div className='center-btn'>
