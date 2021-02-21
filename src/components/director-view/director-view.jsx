@@ -1,5 +1,5 @@
 import React from "react";
-//import PropTypes from "prop-types";
+import PropTypes from "prop-types";
 import { Card, Button, Container, Row } from 'react-bootstrap';
 import { useHistory } from "react-router-dom";
 import { MovieCard } from "../movie-card/movie-card";
@@ -56,5 +56,17 @@ export function DirectorView(props) {
     </React.Fragment >
   );
 }
+
+
+DirectorView.propTypes = {
+  Movie: PropTypes.shape({
+    Director: {
+      Name: PropTypes.string.isRequired,
+      Bio: PropTypes.string.isRequired,
+      Birth: PropTypes.string.isRequired,
+      Death: PropTypes.string
+    }
+  })
+};
 
 

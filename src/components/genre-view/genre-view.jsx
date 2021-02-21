@@ -1,5 +1,5 @@
 import React from "react";
-//import PropTypes from "prop-types";
+import PropTypes from "prop-types";
 import { Card, Button, Container, Row } from 'react-bootstrap';
 import { useHistory } from "react-router-dom";
 import { MovieCard } from "../movie-card/movie-card";
@@ -54,3 +54,12 @@ export function GenreView(props) {
   );
 }
 
+
+GenreView.propTypes = {
+  Movie: PropTypes.shape({
+    Genre: {
+      Name: PropTypes.string.isRequired,
+      Description: PropTypes.string.isRequired
+    }
+  })
+};
