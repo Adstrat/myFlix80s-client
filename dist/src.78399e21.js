@@ -50920,24 +50920,70 @@ function RegistrationView(props) {
       birthday = _useState8[0],
       setBirthday = _useState8[1];
 
+  var _useState9 = (0, _react.useState)({}),
+      _useState10 = _slicedToArray(_useState9, 2),
+      usernameErr = _useState10[0],
+      setUsernameErr = _useState10[1];
+
+  var _useState11 = (0, _react.useState)({}),
+      _useState12 = _slicedToArray(_useState11, 2),
+      emailErr = _useState12[0],
+      setEmailErr = _useState12[1];
+
+  var _useState13 = (0, _react.useState)({}),
+      _useState14 = _slicedToArray(_useState13, 2),
+      passwordErr = _useState14[0],
+      setPasswordErr = _useState14[1]; // validates inputed data
+
+
+  var formValidation = function formValidation() {
+    var usernameErr = {};
+    var passwordErr = {};
+    var emailErr = {};
+    var isValid = true;
+
+    if (username.trim().length < 6) {
+      usernameErr.usernameShort = "Username must be at least 6 characters";
+      isValid = false;
+    }
+
+    if (password.trim().length < 5) {
+      passwordErr.passwordMissing = "Password must be at least 5 characters";
+      isValid = false;
+    }
+
+    if (!email.includes(".") && !email.includes("@")) {
+      emailErr.emailNotEmail = "A valid email address is required";
+      isValid = false;
+    }
+
+    setUsernameErr(usernameErr);
+    setPasswordErr(passwordErr);
+    setEmailErr(emailErr);
+    return isValid;
+  };
+
   var handleReturnLogin = props.handleReturnLogin;
 
   var handleSubmit = function handleSubmit(e) {
     e.preventDefault();
+    var isValid = formValidation();
 
-    _axios.default.post('https://my-flix80s.herokuapp.com/users', {
-      Username: username,
-      Password: password,
-      Email: email,
-      Birthday: birthday
-    }).then(function (response) {
-      var data = response.data;
-      console.log(data);
-      window.open('/', '_self');
-      alert('New Account created - now log in');
-    }).catch(function (e) {
-      console.log('error registering the user');
-    });
+    if (isValid) {
+      _axios.default.post('https://my-flix80s.herokuapp.com/users', {
+        Username: username,
+        Password: password,
+        Email: email,
+        Birthday: birthday
+      }).then(function (response) {
+        var data = response.data;
+        console.log(data);
+        window.open('/', '_self');
+        alert('New Account created - now log in');
+      }).catch(function (e) {
+        console.log('error registering the user');
+      });
+    }
   };
 
   return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(_reactBootstrap.Navbar, {
@@ -50958,6 +51004,13 @@ function RegistrationView(props) {
     onChange: function onChange(e) {
       return setUsername(e.target.value);
     }
+  }), Object.keys(usernameErr).map(function (key) {
+    return _react.default.createElement("div", {
+      key: key,
+      style: {
+        color: "red"
+      }
+    }, usernameErr[key]);
   })), _react.default.createElement(_reactBootstrap.Form.Group, {
     controlID: "formEmail"
   }, _react.default.createElement(_reactBootstrap.Form.Control, {
@@ -50967,6 +51020,13 @@ function RegistrationView(props) {
     onChange: function onChange(e) {
       return setEmail(e.target.value);
     }
+  }), Object.keys(emailErr).map(function (key) {
+    return _react.default.createElement("div", {
+      key: key,
+      style: {
+        color: "red"
+      }
+    }, emailErr[key]);
   }), _react.default.createElement(_reactBootstrap.Form.Text, {
     className: "text-muted"
   }, "We'll never share your email with anyone else.")), _react.default.createElement(_reactBootstrap.Form.Group, {
@@ -50987,6 +51047,13 @@ function RegistrationView(props) {
     onChange: function onChange(e) {
       return setPassword(e.target.value);
     }
+  }), Object.keys(passwordErr).map(function (key) {
+    return _react.default.createElement("div", {
+      key: key,
+      style: {
+        color: "red"
+      }
+    }, passwordErr[key]);
   })), _react.default.createElement(_reactBootstrap.Button, {
     variant: "info",
     type: "submit",
@@ -52175,7 +52242,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51803" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49387" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

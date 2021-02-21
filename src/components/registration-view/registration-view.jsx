@@ -10,10 +10,44 @@ export function RegistrationView(props) {
   const [password, setPassword] = useState('');
   const [birthday, setBirthday] = useState('');
 
+  const [usernameErr, setUsernameErr] = useState({});
+  const [emailErr, setEmailErr] = useState({});
+  const [passwordErr, setPasswordErr] = useState({});
+
+  // validates inputed data
+  const formValidation = () => {
+    const usernameErr = {};
+    const passwordErr = {};
+    const emailErr = {};
+    let isValid = true;
+
+    if (username.trim().length < 6) {
+      usernameErr.usernameShort = "Username must be at least 6 characters";
+      isValid = false;
+    }
+
+    if (password.trim().length < 5) {
+      passwordErr.passwordMissing = "Password must be at least 5 characters";
+      isValid = false;
+    }
+
+    if (!email.includes(".") && !email.includes("@")) {
+      emailErr.emailNotEmail = "A valid email address is required";
+      isValid = false;
+    }
+
+    setUsernameErr(usernameErr);
+    setPasswordErr(passwordErr);
+    setEmailErr(emailErr);
+    return isValid;
+  }
+
   const { handleReturnLogin } = props;
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const isValid = formValidation();
+    if (isValid) {
     axios.post('https://my-flix80s.herokuapp.com/users', {
       Username: username,
       Password: password,
@@ -29,6 +63,7 @@ export function RegistrationView(props) {
       .catch(e => {
         console.log('error registering the user')
       })
+    }
   };
 
   return (
@@ -52,6 +87,13 @@ export function RegistrationView(props) {
               value={username}
               placeholder="Username"
               onChange={e => setUsername(e.target.value)} />
+              {Object.keys(usernameErr).map((key) => {
+              return (
+                <div key={key} style={{ color: "red" }}>
+                  {usernameErr[key]}
+                </div>
+              );
+            })}
           </Form.Group>
 
           <Form.Group controlID="formEmail">
@@ -60,6 +102,13 @@ export function RegistrationView(props) {
               value={email}
               placeholder="Email"
               onChange={e => setEmail(e.target.value)} />
+              {Object.keys(emailErr).map((key) => {
+              return (
+                <div key={key} style={{ color: "red" }}>
+                  {emailErr[key]}
+                </div>
+              );
+            })}
             <Form.Text className="text-muted">
           We'll never share your email with anyone else.
           </Form.Text>
@@ -79,6 +128,13 @@ export function RegistrationView(props) {
               value={password}
               placeholder="Password"
               onChange={e => setPassword(e.target.value)} />
+                          {Object.keys(passwordErr).map((key) => {
+              return (
+                <div key={key} style={{ color: "red" }}>
+                  {passwordErr[key]}
+                </div>
+              );
+            })}
           </Form.Group>
 
           <Button variant="info" type="submit" onClick={handleSubmit}>
