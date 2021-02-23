@@ -68,6 +68,16 @@
 .register {
   text-decoration: none;
 }
+
+.favourite-card {
+  margin: 5px;
+  border: thick double #000;
+  border-radius: 4%;
+}
+
+.favourites {
+  justify-content: center;
+}
 body {
   background-color: #5bc0de;
 }

@@ -12,7 +12,7 @@ export class MovieView extends React.Component {
     this.state = {};
   }
 
-  addFavorite(movie) {
+  addFavourite(movie) {
     let token = localStorage.getItem("token");
     let user = localStorage.getItem('user');
     axios
@@ -22,10 +22,10 @@ export class MovieView extends React.Component {
           headers: { Authorization: `Bearer ${token}` },
         })
       .then((response) => {
-        console.log(`Movie added to favorites`);
+        console.log(`Movie added to favourites`);
         alert('Movie added to favourites!')
       })
-      .catch(e => console.log(`Error adding movie to Favorites`));
+      .catch(e => console.log(`Error adding movie to Favourites`));
   };
 
   render() {
@@ -56,7 +56,7 @@ export class MovieView extends React.Component {
               <Button
                 className='return-button'
                 variant='warning'
-                onClick={() => this.addFavorite(movie)}>
+                onClick={() => this.addFavourite(movie)}>
                 Add to Favourites
               </Button>
             </div>

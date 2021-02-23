@@ -150,7 +150,7 @@ export class MainView extends React.Component {
                 }} />
 
               <Route path='/profile'
-                render={() => <ProfileView user={this.state.user} />
+                render={() => <ProfileView user={this.state.user} movies={movies} />
                 } />
 
               <Route path='/update'

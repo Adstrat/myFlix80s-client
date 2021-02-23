@@ -13,7 +13,9 @@ export class ProfileView extends React.Component {
       username: '',
       email: '',
       birthday: '',
-      password: ''
+      password: '',
+      movies: '',
+      favouriteMovies: []
     };
   }
 
@@ -27,7 +29,8 @@ export class ProfileView extends React.Component {
           username: response.data.Username,
           email: response.data.Email,
           birthday: this.formatDate(response.data.Birthday),
-          password: response.data.password
+          password: response.data.password,
+          favouriteMovies: response.data.FavouriteMovies
         });
       })
       .catch(function (error) {
@@ -51,7 +54,25 @@ export class ProfileView extends React.Component {
     return date;
   }
 
+  removeFavourite(movie) {
+    let token = localStorage.getItem("token");
+    let user = localStorage.getItem("user");
+    axios.delete(`https://my-flix80s.herokuapp.com/users/${user}/${movie._id}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+      .then((response) => {
+        console.log(response);
+        this.componentDidMount();
+      });
+  }
+
   render() {
+
+    const { movies } = this.props;
+
+    const favouriteMovieList = movies.filter(movie => {
+      return this.state.favouriteMovies.includes(movie._id);
+    });
 
     return (
       <React.Fragment >
@@ -76,14 +97,47 @@ export class ProfileView extends React.Component {
                 </div>
               </Link>
 
+              <Link to={`/`}>
+                <div className='center-btn'>
+                  <Button className='return-button' variant='info'>Return to Movie List</Button>
+                </div>
+              </Link>
+
             </Card.Body>
           </Card>
+        </Container>
 
-          <Link to={`/`}>
-            <div className='center-btn'>
-              <Button className='return-button' variant='info'>Return to Movie List</Button>
-            </div>
-          </Link>
+        <Container className='my-3'>
+          <h2 className=' text-center mb-4 white-words'>
+            Favourite Movies
+          </h2>
+        </Container>
+
+
+        <Container className='d-flex row my-3 favourites'>
+
+          {favouriteMovieList.map((movie) => {
+            return (
+              <div key={movie._id}>
+                <Card style={{ width: '10rem' }}
+                  className="favourite-card">
+                  <Link to={`/movies/${movie._id}`}>
+                    <Card.Img
+                      className="movie-card-link"
+                      variant="top"
+                      src={movie.ImagePath} />
+                  </Link>
+                  <Button
+                    className="remove-favourite"
+                    variant="danger"
+                    size="sm"
+                    onClick={() => this.removeFavourite(movie)}>
+                    Remove
+                  </Button>
+                </Card>
+              </div>
+            );
+          })}
 
         </Container>
       </React.Fragment>

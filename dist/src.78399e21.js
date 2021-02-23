@@ -51324,8 +51324,8 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
   }
 
   _createClass(MovieView, [{
-    key: "addFavorite",
-    value: function addFavorite(movie) {
+    key: "addFavourite",
+    value: function addFavourite(movie) {
       var token = localStorage.getItem("token");
       var user = localStorage.getItem('user');
 
@@ -51334,10 +51334,10 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
           Authorization: "Bearer ".concat(token)
         }
       }).then(function (response) {
-        console.log("Movie added to favorites");
+        console.log("Movie added to favourites");
         alert('Movie added to favourites!');
       }).catch(function (e) {
-        return console.log("Error adding movie to Favorites");
+        return console.log("Error adding movie to Favourites");
       });
     }
   }, {
@@ -51379,7 +51379,7 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
         className: "return-button",
         variant: "warning",
         onClick: function onClick() {
-          return _this2.addFavorite(movie);
+          return _this2.addFavourite(movie);
         }
       }, "Add to Favourites")), _react.default.createElement(_reactRouterDom.Link, {
         to: "/"
@@ -51631,7 +51631,8 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
           username: response.data.Username,
           email: response.data.Email,
           birthday: _this.formatDate(response.data.Birthday),
-          password: response.data.password
+          password: response.data.password,
+          favouriteMovies: response.data.FavouriteMovies
         });
       }).catch(function (error) {
         console.log(error);
@@ -51642,7 +51643,9 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
       username: '',
       email: '',
       birthday: '',
-      password: ''
+      password: '',
+      movies: '',
+      favouriteMovies: []
     };
     return _this;
   } // Gets user from API
@@ -51668,8 +51671,32 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
       return date;
     }
   }, {
+    key: "removeFavourite",
+    value: function removeFavourite(movie) {
+      var _this2 = this;
+
+      var token = localStorage.getItem("token");
+      var user = localStorage.getItem("user");
+
+      _axios.default.delete("https://my-flix80s.herokuapp.com/users/".concat(user, "/").concat(movie._id), {
+        headers: {
+          Authorization: "Bearer ".concat(token)
+        }
+      }).then(function (response) {
+        console.log(response);
+
+        _this2.componentDidMount();
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
+      var _this3 = this;
+
+      var movies = this.props.movies;
+      var favouriteMovieList = movies.filter(function (movie) {
+        return _this3.state.favouriteMovies.includes(movie._id);
+      });
       return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(_reactBootstrap.Container, {
         className: "my-3 w-50 p-3"
       }, _react.default.createElement("h2", {
@@ -51682,14 +51709,42 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
         className: "center-btn"
       }, _react.default.createElement("small", {
         className: "register text-danger ml-2"
-      }, "Update details"))))), _react.default.createElement(_reactRouterDom.Link, {
+      }, "Update details"))), _react.default.createElement(_reactRouterDom.Link, {
         to: "/"
       }, _react.default.createElement("div", {
         className: "center-btn"
       }, _react.default.createElement(_reactBootstrap.Button, {
         className: "return-button",
         variant: "info"
-      }, "Return to Movie List")))));
+      }, "Return to Movie List")))))), _react.default.createElement(_reactBootstrap.Container, {
+        className: "my-3"
+      }, _react.default.createElement("h2", {
+        className: " text-center mb-4 white-words"
+      }, "Favourite Movies")), _react.default.createElement(_reactBootstrap.Container, {
+        className: "d-flex row my-3 favourites"
+      }, favouriteMovieList.map(function (movie) {
+        return _react.default.createElement("div", {
+          key: movie._id
+        }, _react.default.createElement(_reactBootstrap.Card, {
+          style: {
+            width: '10rem'
+          },
+          className: "favourite-card"
+        }, _react.default.createElement(_reactRouterDom.Link, {
+          to: "/movies/".concat(movie._id)
+        }, _react.default.createElement(_reactBootstrap.Card.Img, {
+          className: "movie-card-link",
+          variant: "top",
+          src: movie.ImagePath
+        })), _react.default.createElement(_reactBootstrap.Button, {
+          className: "remove-favourite",
+          variant: "danger",
+          size: "sm",
+          onClick: function onClick() {
+            return _this3.removeFavourite(movie);
+          }
+        }, "Remove")));
+      })));
     }
   }]);
 
@@ -52184,7 +52239,8 @@ var MainView = /*#__PURE__*/function (_React$Component) {
         path: "/profile",
         render: function render() {
           return _react.default.createElement(_profileView.ProfileView, {
-            user: _this3.state.user
+            user: _this3.state.user,
+            movies: movies
           });
         }
       }), _react.default.createElement(_reactRouterDom.Route, {

@@ -15,3 +15,13 @@ $black: #000;
 .register {
   text-decoration: none;
 }
+
+.favourite-card {
+  margin: 5px;
+  border: thick double $black;
+  border-radius: 4%;
+}
+
+.favourites {
+  justify-content: center;
+}
