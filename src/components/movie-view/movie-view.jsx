@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { Card, Button } from 'react-bootstrap';
+import axios from "axios";
 
 import './movie-view.scss'
 
@@ -10,6 +11,22 @@ export class MovieView extends React.Component {
     super();
     this.state = {};
   }
+
+  addFavorite(movie) {
+    let token = localStorage.getItem("token");
+    let user = localStorage.getItem('user');
+    axios
+      .post(`https://my-flix80s.herokuapp.com/users/${user}/${movie._id}`,
+        {},
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        })
+      .then((response) => {
+        console.log(`Movie added to favorites`);
+        alert('Movie added to favourites!')
+      })
+      .catch(e => console.log(`Error adding movie to Favorites`));
+  };
 
   render() {
     const { movie } = this.props;
@@ -35,6 +52,15 @@ export class MovieView extends React.Component {
             <Card.Text className="movie-actors">
               Actors: {movie.Actors}</Card.Text>
 
+            <div className='center-btn'>
+              <Button
+                className='return-button'
+                variant='warning'
+                onClick={() => this.addFavorite(movie)}>
+                Add to Favourites
+              </Button>
+            </div>
+
             <Link to={`/`}>
               <div className='center-btn'>
                 <Button className='return-button' variant='info'>Return to Movie List</Button>
@@ -43,7 +69,7 @@ export class MovieView extends React.Component {
 
           </Card.Body>
         </Card>
-      </React.Fragment>
+      </React.Fragment >
     );
   }
 }

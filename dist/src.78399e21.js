@@ -51280,6 +51280,8 @@ var _reactRouterDom = require("react-router-dom");
 
 var _reactBootstrap = require("react-bootstrap");
 
+var _axios = _interopRequireDefault(require("axios"));
+
 require("./movie-view.scss");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -51322,8 +51324,27 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
   }
 
   _createClass(MovieView, [{
+    key: "addFavorite",
+    value: function addFavorite(movie) {
+      var token = localStorage.getItem("token");
+      var user = localStorage.getItem('user');
+
+      _axios.default.post("https://my-flix80s.herokuapp.com/users/".concat(user, "/").concat(movie._id), {}, {
+        headers: {
+          Authorization: "Bearer ".concat(token)
+        }
+      }).then(function (response) {
+        console.log("Movie added to favorites");
+        alert('Movie added to favourites!');
+      }).catch(function (e) {
+        return console.log("Error adding movie to Favorites");
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
+      var _this2 = this;
+
       var movie = this.props.movie;
       if (!movie) return null;
       return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(_reactBootstrap.Card, {
@@ -51352,7 +51373,15 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
         variant: "link"
       }, movie.Director.Name))), _react.default.createElement(_reactBootstrap.Card.Text, {
         className: "movie-actors"
-      }, "Actors: ", movie.Actors), _react.default.createElement(_reactRouterDom.Link, {
+      }, "Actors: ", movie.Actors), _react.default.createElement("div", {
+        className: "center-btn"
+      }, _react.default.createElement(_reactBootstrap.Button, {
+        className: "return-button",
+        variant: "warning",
+        onClick: function onClick() {
+          return _this2.addFavorite(movie);
+        }
+      }, "Add to Favourites")), _react.default.createElement(_reactRouterDom.Link, {
         to: "/"
       }, _react.default.createElement("div", {
         className: "center-btn"
@@ -51387,7 +51416,7 @@ MovieView.propTypes = {
     Featured: _propTypes.default.bool
   }).isRequired
 };
-},{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js","./movie-view.scss":"components/movie-view/movie-view.scss"}],"components/genre-view/genre-view.scss":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js","axios":"../node_modules/axios/index.js","./movie-view.scss":"components/movie-view/movie-view.scss"}],"components/genre-view/genre-view.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -52265,7 +52294,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49387" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58080" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
