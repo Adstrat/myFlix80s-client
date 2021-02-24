@@ -50933,7 +50933,12 @@ function RegistrationView(props) {
   var _useState13 = (0, _react.useState)({}),
       _useState14 = _slicedToArray(_useState13, 2),
       passwordErr = _useState14[0],
-      setPasswordErr = _useState14[1]; // validates inputed data
+      setPasswordErr = _useState14[1];
+
+  var _useState15 = (0, _react.useState)(false),
+      _useState16 = _slicedToArray(_useState15, 2),
+      loading = _useState16[0],
+      setLoading = _useState16[1]; // validates inputed data
 
 
   var formValidation = function formValidation() {
@@ -50967,6 +50972,7 @@ function RegistrationView(props) {
 
   var handleSubmit = function handleSubmit(e) {
     e.preventDefault();
+    setLoading(true);
     var isValid = formValidation();
 
     if (isValid) {
@@ -51054,11 +51060,18 @@ function RegistrationView(props) {
         color: "red"
       }
     }, passwordErr[key]);
-  })), _react.default.createElement(_reactBootstrap.Button, {
+  })), !loading && _react.default.createElement(_reactBootstrap.Button, {
     variant: "info",
     type: "submit",
     onClick: handleSubmit
-  }, "Sign Up")), _react.default.createElement("small", {
+  }, "Sign Up"), loading && _react.default.createElement(_reactBootstrap.Button, {
+    variant: "info",
+    type: "submit",
+    disabled: true
+  }, _react.default.createElement(_reactBootstrap.Spinner, {
+    animation: "border",
+    variant: "danger"
+  }))), _react.default.createElement("small", {
     className: "text-center d-block"
   }, "Already have an an account?", _react.default.createElement("span", {
     onClick: handleReturnLogin,
@@ -51117,10 +51130,16 @@ function LoginView(props) {
       password = _useState4[0],
       setPassword = _useState4[1];
 
+  var _useState5 = (0, _react.useState)(false),
+      _useState6 = _slicedToArray(_useState5, 2),
+      loading = _useState6[0],
+      setLoading = _useState6[1];
+
   var handleRegister = props.handleRegister;
 
   var handleSubmit = function handleSubmit(e) {
     e.preventDefault();
+    setLoading(true);
     /* Send a request to the server for authentication */
 
     _axios.default.post('https://my-flix80s.herokuapp.com/login', {
@@ -51157,11 +51176,18 @@ function LoginView(props) {
     onChange: function onChange(e) {
       return setPassword(e.target.value);
     }
-  })), _react.default.createElement(_reactBootstrap.Button, {
+  })), !loading && _react.default.createElement(_reactBootstrap.Button, {
     variant: "info",
     type: "submit",
     onClick: handleSubmit
-  }, "Login"), ' '), _react.default.createElement("small", {
+  }, "Login"), loading && _react.default.createElement(_reactBootstrap.Button, {
+    variant: "info",
+    type: "submit",
+    disabled: true
+  }, _react.default.createElement(_reactBootstrap.Spinner, {
+    animation: "border",
+    variant: "danger"
+  }))), _react.default.createElement("small", {
     className: "text-center d-block"
   }, "Not a member yet?", _react.default.createElement("span", {
     onClick: handleRegister,
@@ -52350,7 +52376,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58080" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49804" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -1,18 +1,21 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-import { Container, Navbar, Form, Button } from 'react-bootstrap';
+import { Container, Navbar, Form, Button, Spinner } from 'react-bootstrap';
 import axios from 'axios';
 import './login-view.scss';
 
 export function LoginView(props) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const { handleRegister } = props;
 
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    setLoading(true);
     /* Send a request to the server for authentication */
     axios.post('https://my-flix80s.herokuapp.com/login', {
       Username: username,
@@ -54,9 +57,13 @@ export function LoginView(props) {
               onChange={e => setPassword(e.target.value)} />
           </Form.Group>
 
-          <Button variant="info" type="submit" onClick={handleSubmit}>
+          {!loading && <Button variant="info" type="submit" onClick={handleSubmit}>
             Login
-        </Button>{' '}
+          </Button>}
+          {loading && <Button variant="info" type="submit" disabled>
+            <Spinner animation="border" variant="danger" /></Button>}
+
+
 
         </Form>
         <small className='text-center d-block'>

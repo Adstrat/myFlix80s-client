@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Container, Form, Button, Navbar } from 'react-bootstrap';
+import { Container, Form, Button, Navbar, Spinner } from 'react-bootstrap';
 import axios from 'axios';
 
 import './registration-view.scss'
@@ -13,6 +13,8 @@ export function RegistrationView(props) {
   const [usernameErr, setUsernameErr] = useState({});
   const [emailErr, setEmailErr] = useState({});
   const [passwordErr, setPasswordErr] = useState({});
+
+  const [loading, setLoading] = useState(false);
 
   // validates inputed data
   const formValidation = () => {
@@ -46,6 +48,7 @@ export function RegistrationView(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setLoading(true);
     const isValid = formValidation();
     if (isValid) {
     axios.post('https://my-flix80s.herokuapp.com/users', {
@@ -137,9 +140,12 @@ export function RegistrationView(props) {
             })}
           </Form.Group>
 
-          <Button variant="info" type="submit" onClick={handleSubmit}>
-        Sign Up
-          </Button>
+          {!loading && <Button variant="info" type="submit" onClick={handleSubmit}>
+            Sign Up
+          </Button>}
+          {loading && <Button variant="info" type="submit" disabled>
+            <Spinner animation="border" variant="danger" /></Button>}
+
         </Form>
 
         <small className='text-center d-block'>
