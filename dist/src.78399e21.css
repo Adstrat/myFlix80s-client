@@ -1,13 +1,87 @@
-.background-blue {
-  background-color: #5bc0de;
+.white-words {
   color: #fff;
-  padding: 3px 0;
 }
-.background-blue {
-  background-color: #5bc0de;
+
+.register {
+  cursor: pointer;
+}
+.white-words {
   color: #fff;
-  padding: 3px 0;
 }
+
+.register {
+  cursor: pointer;
+}
+.movie-card {
+  width: 210px;
+  margin: 10px;
+  border-radius: 7px;
+}
+
+.movie-image {
+  width: 150px;
+  margin: 30px;
+  border: thick double #000;
+  border-radius: 5%;
+}
+.movie-view {
+  width: 30rem;
+  border-radius: 10px;
+}
+
+.movie-poster {
+  width: 15rem;
+  margin: 2rem auto;
+  padding: 2px;
+  border: thick double #000;
+  border-radius: 5%;
+}
+
+.center-btn {
+  text-align: center;
+  margin: 10px;
+}
+.genre-view {
+  margin: 10px;
+  border-radius: 7px;
+}
+
+.scifi-title {
+  font-size: 24px;
+}
+.director-view {
+  margin: 10px;
+  border-radius: 7px;
+}
+
+.director-title {
+  font-size: 24px;
+}
+.profile-view {
+  margin-bottom: 40px;
+}
+
+.center-btn {
+  margin-bottom: 0px;
+}
+
+.register {
+  text-decoration: none;
+}
+
+.favourite-card {
+  margin: 5px;
+  border: thick double #000;
+  border-radius: 4%;
+}
+
+.favourites {
+  justify-content: center;
+}
+body {
+  background-color: #5bc0de;
+}
+
 .navbar {
   background-color: #d9534f;
 }
