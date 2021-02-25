@@ -1,12 +1,10 @@
 import React, { useState } from "react";
-import PropTypes from "prop-types";
 import { Form, Container, Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
 import axios from "axios";
 
 import "./update-view.scss";
 
-export function UpdateView(props) {
+export function UpdateView() {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -66,14 +64,14 @@ export function UpdateView(props) {
           window.open('/', '_self');
           alert('Account details Updated')
         })
-        .catch(e => {
+        .catch(() => {
           console.log("Account details didn't update")
         })
     }
   };
 
   // Deletes users account
-  const handleDelete = (e) => {
+  const handleDelete = () => {
     if (!confirm("Are you sure you want to delete your account?")) return;
     let token = localStorage.getItem("token");
     let user = localStorage.getItem('user');
@@ -81,13 +79,13 @@ export function UpdateView(props) {
       axios.delete(`https://my-flix80s.herokuapp.com/users/${user}`, {
         headers: { Authorization: `Bearer ${token}` }
       })
-        .then(response => {
+        .then(() => {
           localStorage.removeItem("token");
           localStorage.removeItem("user");
           window.open("/", "_self");
           alert('Your account has been deleted.');
         })
-        .catch(e => {
+        .catch(() => {
           console.log(response)
         })
     }
