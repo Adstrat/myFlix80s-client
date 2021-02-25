@@ -26,7 +26,7 @@ export function GenreView(props) {
             </Card.Text>
 
             <div className='center-btn'>
-              <Button className='return-button' variant='info' onClick={(e) => history.goBack()} >Back to Movie</Button>
+              <Button className='return-button' variant='info' onClick={() => history.goBack()} >Back to Movie</Button>
             </div>
           </Card.Body>
         </Card>

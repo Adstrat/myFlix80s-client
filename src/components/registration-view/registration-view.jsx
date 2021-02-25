@@ -63,7 +63,7 @@ export function RegistrationView(props) {
         window.open('/', '_self');
         alert('New Account created - now log in')
       })
-      .catch(e => {
+      .catch(() => {
         console.log('error registering the user')
       })
     }

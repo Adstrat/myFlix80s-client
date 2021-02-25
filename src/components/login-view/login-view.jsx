@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 
 import { Container, Navbar, Form, Button, Spinner } from 'react-bootstrap';
 import axios from 'axios';
@@ -25,7 +24,7 @@ export function LoginView(props) {
         const data = response.data;
         props.onLoggedIn(data);
       })
-      .catch(e => {
+      .catch(() => {
         console.log('no such user')
       });
   };

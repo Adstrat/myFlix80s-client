@@ -21,11 +21,11 @@ export class MovieView extends React.Component {
         {
           headers: { Authorization: `Bearer ${token}` },
         })
-      .then((response) => {
+      .then(() => {
         console.log(`Movie added to favourites`);
         alert('Movie added to favourites!')
       })
-      .catch(e => console.log(`Error adding movie to Favourites`));
+      .catch(() => console.log(`Error adding movie to Favourites`));
   };
 
   render() {
@@ -50,7 +50,7 @@ export class MovieView extends React.Component {
               Director:  {<Link to={`/directors/${movie.Director.Name}`}>
                 <Button variant="link">{movie.Director.Name}</Button></Link>}</Card.Text>
             <Card.Text className="movie-actors">
-              Actors: {movie.Actors}</Card.Text>
+              Actors: {movie.Actors.join(', ')}</Card.Text>
 
             <div className='center-btn'>
               <Button

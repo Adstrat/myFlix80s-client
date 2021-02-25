@@ -50986,7 +50986,7 @@ function RegistrationView(props) {
         console.log(data);
         window.open('/', '_self');
         alert('New Account created - now log in');
-      }).catch(function (e) {
+      }).catch(function () {
         console.log('error registering the user');
       });
     }
@@ -51093,8 +51093,6 @@ exports.LoginView = LoginView;
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _propTypes = _interopRequireDefault(require("prop-types"));
-
 var _reactBootstrap = require("react-bootstrap");
 
 var _axios = _interopRequireDefault(require("axios"));
@@ -51148,7 +51146,7 @@ function LoginView(props) {
     }).then(function (response) {
       var data = response.data;
       props.onLoggedIn(data);
-    }).catch(function (e) {
+    }).catch(function () {
       console.log('no such user');
     });
   };
@@ -51194,7 +51192,7 @@ function LoginView(props) {
     className: "register text-danger ml-2"
   }, "Sign up for free"))));
 }
-},{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js","axios":"../node_modules/axios/index.js","./login-view.scss":"components/login-view/login-view.scss"}],"components/movie-card/movie-card.scss":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js","axios":"../node_modules/axios/index.js","./login-view.scss":"components/login-view/login-view.scss"}],"components/movie-card/movie-card.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -51359,10 +51357,10 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
         headers: {
           Authorization: "Bearer ".concat(token)
         }
-      }).then(function (response) {
+      }).then(function () {
         console.log("Movie added to favourites");
         alert('Movie added to favourites!');
-      }).catch(function (e) {
+      }).catch(function () {
         return console.log("Error adding movie to Favourites");
       });
     }
@@ -51399,7 +51397,7 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
         variant: "link"
       }, movie.Director.Name))), _react.default.createElement(_reactBootstrap.Card.Text, {
         className: "movie-actors"
-      }, "Actors: ", movie.Actors), _react.default.createElement("div", {
+      }, "Actors: ", movie.Actors.join(', ')), _react.default.createElement("div", {
         className: "center-btn"
       }, _react.default.createElement(_reactBootstrap.Button, {
         className: "return-button",
@@ -51485,7 +51483,7 @@ function GenreView(props) {
   }, _react.default.createElement(_reactBootstrap.Button, {
     className: "return-button",
     variant: "info",
-    onClick: function onClick(e) {
+    onClick: function onClick() {
       return history.goBack();
     }
   }, "Back to Movie"))))), _react.default.createElement(_reactBootstrap.Container, {
@@ -51557,7 +51555,7 @@ function DirectorView(props) {
   }, _react.default.createElement(_reactBootstrap.Button, {
     className: "return-button",
     variant: "info",
-    onClick: function onClick(e) {
+    onClick: function onClick() {
       return history.goBack();
     }
   }, "Back to Movie"))))), _react.default.createElement(_reactBootstrap.Container, {
@@ -51600,8 +51598,6 @@ Object.defineProperty(exports, "__esModule", {
 exports.ProfileView = void 0;
 
 var _react = _interopRequireDefault(require("react"));
-
-var _propTypes = _interopRequireDefault(require("prop-types"));
 
 var _reactBootstrap = require("react-bootstrap");
 
@@ -51778,7 +51774,7 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
 }(_react.default.Component);
 
 exports.ProfileView = ProfileView;
-},{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","axios":"../node_modules/axios/index.js","./profile-view.scss":"components/profile-view/profile-view.scss"}],"components/update-view/update-view.scss":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","axios":"../node_modules/axios/index.js","./profile-view.scss":"components/profile-view/profile-view.scss"}],"components/update-view/update-view.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -51793,11 +51789,7 @@ exports.UpdateView = UpdateView;
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _propTypes = _interopRequireDefault(require("prop-types"));
-
 var _reactBootstrap = require("react-bootstrap");
-
-var _reactRouterDom = require("react-router-dom");
 
 var _axios = _interopRequireDefault(require("axios"));
 
@@ -51821,7 +51813,7 @@ function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
-function UpdateView(props) {
+function UpdateView() {
   var _useState = (0, _react.useState)(''),
       _useState2 = _slicedToArray(_useState, 2),
       username = _useState2[0],
@@ -51907,14 +51899,14 @@ function UpdateView(props) {
         console.log(data);
         window.open('/', '_self');
         alert('Account details Updated');
-      }).catch(function (e) {
+      }).catch(function () {
         console.log("Account details didn't update");
       });
     }
   }; // Deletes users account
 
 
-  var handleDelete = function handleDelete(e) {
+  var handleDelete = function handleDelete() {
     if (!confirm("Are you sure you want to delete your account?")) return;
     var token = localStorage.getItem("token");
     var user = localStorage.getItem('user');
@@ -51924,12 +51916,12 @@ function UpdateView(props) {
         headers: {
           Authorization: "Bearer ".concat(token)
         }
-      }).then(function (response) {
+      }).then(function () {
         localStorage.removeItem("token");
         localStorage.removeItem("user");
         window.open("/", "_self");
         alert('Your account has been deleted.');
-      }).catch(function (e) {
+      }).catch(function () {
         console.log(response);
       });
     }
@@ -52004,7 +51996,7 @@ function UpdateView(props) {
     onClick: handleDelete
   }, "Delete Account")))));
 }
-},{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","axios":"../node_modules/axios/index.js","./update-view.scss":"components/update-view/update-view.scss"}],"components/main-view/main-view.scss":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js","axios":"../node_modules/axios/index.js","./update-view.scss":"components/update-view/update-view.scss"}],"components/main-view/main-view.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -52376,7 +52368,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49804" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50195" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
