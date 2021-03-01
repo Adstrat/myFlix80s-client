@@ -39930,7 +39930,7 @@ function VisibilityFilterInput(props) {
       return props.setFilter(e.target.value);
     },
     value: props.visibilityFilter,
-    placeholder: "filter"
+    placeholder: "Search Movies"
   });
 }
 
@@ -39982,12 +39982,14 @@ function MoviesList(props) {
     className: "movies-list"
   }, _react.default.createElement(_visibilityFilterInput.default, {
     visibilityFilter: visibilityFilter
-  }), filteredMovies.map(function (m) {
+  }), _react.default.createElement("div", {
+    className: "movies-container"
+  }, filteredMovies.map(function (m) {
     return _react.default.createElement(_movieCard.MovieCard, {
       key: m._id,
       movie: m
     });
-  }));
+  })));
 }
 
 var _default = (0, _reactRedux.connect)(mapStateToProps)(MoviesList);
@@ -54527,8 +54529,6 @@ var _registrationView = require("../registration-view/registration-view");
 
 var _loginView = require("../login-view/login-view");
 
-var _movieCard = require("../movie-card/movie-card");
-
 var _movieView = require("../movie-view/movie-view");
 
 var _genreView = require("../genre-view/genre-view");
@@ -54651,18 +54651,6 @@ var MainView = /*#__PURE__*/function (_React$Component) {
     //Handler to navigate from RegistrationView to LoginView 
 
   }, {
-    key: "onLoggedIn",
-    // Updates user in state on successful login 
-    value: function onLoggedIn(authData) {
-      console.log(authData);
-      this.setState({
-        user: authData.user.Username
-      });
-      localStorage.setItem('token', authData.token);
-      localStorage.setItem('user', authData.user.Username);
-      this.getMovies(authData.token);
-    }
-  }, {
     key: "render",
     value: function render() {
       var _this3 = this;
@@ -54713,10 +54701,8 @@ var MainView = /*#__PURE__*/function (_React$Component) {
         exact: true,
         path: "/",
         render: function render() {
-          return movies.map(function (m) {
-            return _react.default.createElement(_moviesList.default, {
-              movies: movies
-            });
+          return _react.default.createElement(_moviesList.default, {
+            movies: movies
           });
         }
       }), _react.default.createElement(_reactRouterDom.Route, {
@@ -54790,7 +54776,7 @@ var _default = (0, _reactRedux.connect)(mapStateToProps, {
 })(MainView);
 
 exports.default = _default;
-},{"react":"../node_modules/react/index.js","axios":"../node_modules/axios/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","react-redux":"../node_modules/react-redux/es/index.js","../../actions/actions":"actions/actions.js","../movies-list/movies-list":"components/movies-list/movies-list.jsx","../registration-view/registration-view":"components/registration-view/registration-view.jsx","../login-view/login-view":"components/login-view/login-view.jsx","../movie-card/movie-card":"components/movie-card/movie-card.jsx","../movie-view/movie-view":"components/movie-view/movie-view.jsx","../genre-view/genre-view":"components/genre-view/genre-view.jsx","../director-view/director-view":"components/director-view/director-view.jsx","../profile-view/profile-view":"components/profile-view/profile-view.jsx","../update-view/update-view":"components/update-view/update-view.jsx","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js","./main-view.scss":"components/main-view/main-view.scss"}],"reducers/reducers.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","axios":"../node_modules/axios/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","react-redux":"../node_modules/react-redux/es/index.js","../../actions/actions":"actions/actions.js","../movies-list/movies-list":"components/movies-list/movies-list.jsx","../registration-view/registration-view":"components/registration-view/registration-view.jsx","../login-view/login-view":"components/login-view/login-view.jsx","../movie-view/movie-view":"components/movie-view/movie-view.jsx","../genre-view/genre-view":"components/genre-view/genre-view.jsx","../director-view/director-view":"components/director-view/director-view.jsx","../profile-view/profile-view":"components/profile-view/profile-view.jsx","../update-view/update-view":"components/update-view/update-view.jsx","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js","./main-view.scss":"components/main-view/main-view.scss"}],"reducers/reducers.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {

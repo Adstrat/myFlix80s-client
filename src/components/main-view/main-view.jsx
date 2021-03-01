@@ -9,7 +9,6 @@ import MoviesList from '../movies-list/movies-list';
 
 import { RegistrationView } from "../registration-view/registration-view";
 import { LoginView } from "../login-view/login-view";
-import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
 import { GenreView } from "../genre-view/genre-view";
 import { DirectorView } from "../director-view/director-view";
@@ -85,18 +84,6 @@ export class MainView extends React.Component {
     });
   }
 
-  // Updates user in state on successful login 
-  onLoggedIn(authData) {
-    console.log(authData);
-    this.setState({
-      user: authData.user.Username
-    });
-
-    localStorage.setItem('token', authData.token);
-    localStorage.setItem('user', authData.user.Username);
-    this.getMovies(authData.token);
-  }
-
   render() {
     const { user, hasAccount } = this.state;
     const { movies } = this.props;
@@ -133,7 +120,7 @@ export class MainView extends React.Component {
             <Row className="main-view justify-content-md-center">
 
               <Route exact path="/" render={() => {
-                return movies.map(m => <MoviesList movies={movies} />)
+                return <MoviesList movies={movies} />
               }
               } />
 
