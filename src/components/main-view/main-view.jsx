@@ -1,6 +1,11 @@
 import React from "react";
 import axios from "axios";
 import { BrowserRouter as Router, Route } from "react-router-dom";
+import { connect } from 'react-redux';
+
+import { setMovies } from '../../actions/actions';
+
+import MoviesList from '../movies-list/movies-list';
 
 import { RegistrationView } from "../registration-view/registration-view";
 import { LoginView } from "../login-view/login-view";
@@ -19,7 +24,6 @@ export class MainView extends React.Component {
   constructor() {
     super();
     this.state = {
-      movies: [],
       user: null,
       hasAccount: true
     };
@@ -32,9 +36,7 @@ export class MainView extends React.Component {
     })
       .then(response => {
         // Assign the result to the state
-        this.setState({
-          movies: response.data
-        });
+        this.props.setMovies(response.data);
       })
       .catch(function (error) {
         console.log(error);
@@ -96,7 +98,8 @@ export class MainView extends React.Component {
   }
 
   render() {
-    const { movies, user, hasAccount } = this.state;
+    const { user, hasAccount } = this.state;
+    const { movies } = this.props;
 
     // on LoginView, when 'New User Sign Up' is clicked, goes to ReistrationView
     if (!hasAccount) return < RegistrationView handleReturnLogin={this.handleReturnLogin} />;
@@ -130,7 +133,7 @@ export class MainView extends React.Component {
             <Row className="main-view justify-content-md-center">
 
               <Route exact path="/" render={() => {
-                return movies.map(m => <MovieCard key={m._id} movie={m} />)
+                return movies.map(m => <MoviesList movies={movies} />)
               }
               } />
 
@@ -164,3 +167,9 @@ export class MainView extends React.Component {
     );
   }
 }
+
+let mapStateToProps = state => {
+  return { movies: state.movies }
+}
+
+export default connect(mapStateToProps, { setMovies })(MainView);

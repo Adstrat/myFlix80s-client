@@ -1,17 +1,3 @@
-.white-words {
-  color: #fff;
-}
-
-.register {
-  cursor: pointer;
-}
-.white-words {
-  color: #fff;
-}
-
-.register {
-  cursor: pointer;
-}
 .movie-card {
   width: 210px;
   margin: 10px;
@@ -23,6 +9,20 @@
   margin: 30px;
   border: thick double #000;
   border-radius: 5%;
+}
+.white-words {
+  color: #fff;
+}
+
+.register {
+  cursor: pointer;
+}
+.white-words {
+  color: #fff;
+}
+
+.register {
+  cursor: pointer;
 }
 .movie-view {
   width: 30rem;
