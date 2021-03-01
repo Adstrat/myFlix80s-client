@@ -54723,7 +54723,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
             className: "main-view"
           });
           return _react.default.createElement(_genreView.GenreView, {
-            movies: _this3.state.movies,
+            movies: movies,
             genre: movies.find(function (m) {
               return m.Genre.Name === match.params.name;
             }).Genre
@@ -54737,7 +54737,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
             className: "main-view"
           });
           return _react.default.createElement(_directorView.DirectorView, {
-            movies: _this3.state.movies,
+            movies: movies,
             director: movies.find(function (m) {
               return m.Director.Name === match.params.name;
             }).Director
