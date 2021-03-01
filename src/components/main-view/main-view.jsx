@@ -3,7 +3,7 @@ import axios from "axios";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { connect } from 'react-redux';
 
-import { setMovies } from '../../actions/actions';
+import { setMovies, setUser } from '../../actions/actions';
 
 import MoviesList from '../movies-list/movies-list';
 
@@ -23,7 +23,6 @@ export class MainView extends React.Component {
   constructor() {
     super();
     this.state = {
-      user: null,
       hasAccount: true
     };
   }
@@ -46,9 +45,7 @@ export class MainView extends React.Component {
   componentDidMount() {
     let accessToken = localStorage.getItem('token');
     if (accessToken !== null) {
-      this.setState({
-        user: localStorage.getItem('user')
-      });
+      this.props.setUser(localStorage.getItem('user'));
       this.getMovies(accessToken);
     }
   }
@@ -56,9 +53,7 @@ export class MainView extends React.Component {
   // Updates user in state on successful login
   onLoggedIn(authData) {
     console.log(authData);
-    this.setState({
-      user: authData.user.Username
-    });
+    this.props.setUser(authData.user.Username);
     localStorage.setItem('token', authData.token);
     localStorage.setItem('user', authData.user.Username);
     this.getMovies(authData.token);
@@ -85,8 +80,8 @@ export class MainView extends React.Component {
   }
 
   render() {
-    const { user, hasAccount } = this.state;
-    const { movies } = this.props;
+    const { hasAccount } = this.state;
+    const { movies, user } = this.props;
 
     // on LoginView, when 'New User Sign Up' is clicked, goes to ReistrationView
     if (!hasAccount) return < RegistrationView handleReturnLogin={this.handleReturnLogin} />;
@@ -140,7 +135,7 @@ export class MainView extends React.Component {
                 }} />
 
               <Route path='/profile'
-                render={() => <ProfileView user={this.state.user} movies={movies} />
+                render={() => <ProfileView user={user} movies={movies} />
                 } />
 
               <Route path='/update'
@@ -156,7 +151,7 @@ export class MainView extends React.Component {
 }
 
 let mapStateToProps = state => {
-  return { movies: state.movies }
+  return { movies: state.movies, user: state.user }
 }
 
-export default connect(mapStateToProps, { setMovies })(MainView);
+export default connect(mapStateToProps, { setMovies, setUser })(MainView);

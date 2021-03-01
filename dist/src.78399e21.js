@@ -53695,10 +53695,15 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.LoginView = LoginView;
+exports.default = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
 var _reactBootstrap = require("react-bootstrap");
+
+var _reactRedux = require("react-redux");
+
+var _actions = require("../../actions/actions");
 
 var _axios = _interopRequireDefault(require("axios"));
 
@@ -53751,6 +53756,7 @@ function LoginView(props) {
     }).then(function (response) {
       var data = response.data;
       props.onLoggedIn(data);
+      props.setUser(username);
     }).catch(function () {
       console.log('no such user');
     });
@@ -53797,7 +53803,13 @@ function LoginView(props) {
     className: "register text-danger ml-2"
   }, "Sign up for free"))));
 }
-},{"react":"../node_modules/react/index.js","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js","axios":"../node_modules/axios/index.js","./login-view.scss":"components/login-view/login-view.scss"}],"components/movie-view/movie-view.scss":[function(require,module,exports) {
+
+var _default = (0, _reactRedux.connect)(null, {
+  setUser: _actions.setUser
+})(LoginView);
+
+exports.default = _default;
+},{"react":"../node_modules/react/index.js","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js","react-redux":"../node_modules/react-redux/es/index.js","../../actions/actions":"actions/actions.js","axios":"../node_modules/axios/index.js","./login-view.scss":"components/login-view/login-view.scss"}],"components/movie-view/movie-view.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -54602,7 +54614,6 @@ var MainView = /*#__PURE__*/function (_React$Component) {
     };
 
     _this.state = {
-      user: null,
       hasAccount: true
     };
     return _this;
@@ -54632,9 +54643,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
       var accessToken = localStorage.getItem('token');
 
       if (accessToken !== null) {
-        this.setState({
-          user: localStorage.getItem('user')
-        });
+        this.props.setUser(localStorage.getItem('user'));
         this.getMovies(accessToken);
       }
     } // Updates user in state on successful login
@@ -54643,9 +54652,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
     key: "onLoggedIn",
     value: function onLoggedIn(authData) {
       console.log(authData);
-      this.setState({
-        user: authData.user.Username
-      });
+      this.props.setUser(authData.user.Username);
       localStorage.setItem('token', authData.token);
       localStorage.setItem('user', authData.user.Username);
       this.getMovies(authData.token);
@@ -54665,10 +54672,10 @@ var MainView = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this3 = this;
 
-      var _this$state = this.state,
-          user = _this$state.user,
-          hasAccount = _this$state.hasAccount;
-      var movies = this.props.movies; // on LoginView, when 'New User Sign Up' is clicked, goes to ReistrationView
+      var hasAccount = this.state.hasAccount;
+      var _this$props = this.props,
+          movies = _this$props.movies,
+          user = _this$props.user; // on LoginView, when 'New User Sign Up' is clicked, goes to ReistrationView
 
       if (!hasAccount) return _react.default.createElement(_registrationView.RegistrationView, {
         handleReturnLogin: this.handleReturnLogin
@@ -54757,7 +54764,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
         path: "/profile",
         render: function render() {
           return _react.default.createElement(_profileView.ProfileView, {
-            user: _this3.state.user,
+            user: user,
             movies: movies
           });
         }
@@ -54777,12 +54784,14 @@ exports.MainView = MainView;
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
-    movies: state.movies
+    movies: state.movies,
+    user: state.user
   };
 };
 
 var _default = (0, _reactRedux.connect)(mapStateToProps, {
-  setMovies: _actions.setMovies
+  setMovies: _actions.setMovies,
+  setUser: _actions.setUser
 })(MainView);
 
 exports.default = _default;
@@ -54949,7 +54958,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50976" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53548" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

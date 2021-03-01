@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 
 import { Container, Navbar, Form, Button, Spinner } from 'react-bootstrap';
+import { connect } from 'react-redux';
+import { setUser } from '../../actions/actions';
 import axios from 'axios';
 import './login-view.scss';
 
@@ -23,6 +25,7 @@ export function LoginView(props) {
       .then(response => {
         const data = response.data;
         props.onLoggedIn(data);
+        props.setUser(username);
       })
       .catch(() => {
         console.log('no such user')
@@ -77,3 +80,5 @@ export function LoginView(props) {
 
   );
 }
+
+export default connect(null, { setUser })(LoginView);
