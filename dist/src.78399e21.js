@@ -54252,7 +54252,7 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
         return _this3.state.favouriteMovies.includes(movie._id);
       });
       return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(_reactBootstrap.Container, {
-        className: "my-3 w-50 p-3"
+        className: "form-container"
       }, _react.default.createElement("h2", {
         className: " text-center mb-4 white-words"
       }, "Profile Details"), _react.default.createElement(_reactBootstrap.Card, {
@@ -54322,6 +54322,8 @@ exports.UpdateView = UpdateView;
 var _react = _interopRequireWildcard(require("react"));
 
 var _reactBootstrap = require("react-bootstrap");
+
+var _reactRouterDom = require("react-router-dom");
 
 var _axios = _interopRequireDefault(require("axios"));
 
@@ -54460,7 +54462,7 @@ function UpdateView() {
   };
 
   return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(_reactBootstrap.Container, {
-    className: "my-3 w-50 p-3"
+    className: "form-container"
   }, _react.default.createElement("h2", {
     className: "text-center mb-4 white-words"
   }, "Edit Details"), _react.default.createElement("br", null), _react.default.createElement(_reactBootstrap.Form, null, _react.default.createElement(_reactBootstrap.Form.Group, {
@@ -54521,14 +54523,21 @@ function UpdateView() {
     className: "update-button",
     variant: "info",
     onClick: updateDetails
-  }, "Update"), _react.default.createElement("div", {
+  }, "Update"), _react.default.createElement(_reactRouterDom.Link, {
+    to: "/"
+  }, _react.default.createElement("div", {
+    className: "center-btn"
+  }, _react.default.createElement(_reactBootstrap.Button, {
+    className: "return-button",
+    variant: "info"
+  }, "Return to Movie List"))), _react.default.createElement("div", {
     className: "center-btn"
   }, _react.default.createElement("small", {
     className: "register text-danger ml-2",
     onClick: handleDelete
   }, "Delete Account")))));
 }
-},{"react":"../node_modules/react/index.js","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js","axios":"../node_modules/axios/index.js","./update-view.scss":"components/update-view/update-view.scss"}],"components/main-view/main-view.scss":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","axios":"../node_modules/axios/index.js","./update-view.scss":"components/update-view/update-view.scss"}],"components/main-view/main-view.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);

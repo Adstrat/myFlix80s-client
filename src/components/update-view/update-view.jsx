@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Form, Container, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
 import "./update-view.scss";
@@ -94,7 +95,7 @@ export function UpdateView() {
 
   return (
     <React.Fragment >
-      <Container className='my-3 w-50 p-3'>
+      <Container className='form-container'>
         <h2 className='text-center mb-4 white-words'>
           Edit Details
         </h2>
@@ -160,6 +161,12 @@ export function UpdateView() {
           </Form.Group>
 
           <Button className='update-button' variant='info' onClick={updateDetails}>Update</Button>
+
+          <Link to={`/`}>
+            <div className='center-btn'>
+              <Button className='return-button' variant='info'>Return to Movie List</Button>
+            </div>
+          </Link>
 
           <div className='center-btn'>
             <small

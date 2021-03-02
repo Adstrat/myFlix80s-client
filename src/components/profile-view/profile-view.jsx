@@ -75,7 +75,7 @@ export class ProfileView extends React.Component {
 
     return (
       <React.Fragment >
-        <Container className='my-3 w-50 p-3'>
+        <Container className='form-container'>
 
           <h2 className=' text-center mb-4 white-words'>
             Profile Details
