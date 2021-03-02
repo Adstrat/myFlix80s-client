@@ -38,7 +38,7 @@ export function LoginView(props) {
       <Navbar className="navbar" variant="dark">
         <Navbar.Brand>myFlix80s</Navbar.Brand>
       </Navbar>
-      <Container className='my-4 w-50 p-3'>
+      <Container className='form-container'>
         <h2 className='text-center mb-4 white-words'>
           The Ultimate 1980s Movie App
         </h2>

@@ -74,7 +74,7 @@ export function RegistrationView(props) {
       <Navbar className="navbar" variant="dark">
         <Navbar.Brand>myFlix80s</Navbar.Brand>
       </Navbar>
-      <Container className='my-4  w-50 p-3'>
+      <Container className='form-container'>
         <h2 className='text-center mb-4 white-words'>
           Welcome to myFlix80s! 
         </h2>
@@ -82,7 +82,7 @@ export function RegistrationView(props) {
       Create an account and start exploring..
         </p>
           
-        <Form>
+        <Form >
           <Form.Group controlId="formUsername">
             <Form.Label >Registration</Form.Label>
             <Form.Control

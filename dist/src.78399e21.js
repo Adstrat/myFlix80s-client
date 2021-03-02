@@ -53607,7 +53607,7 @@ function RegistrationView(props) {
     className: "navbar",
     variant: "dark"
   }, _react.default.createElement(_reactBootstrap.Navbar.Brand, null, "myFlix80s")), _react.default.createElement(_reactBootstrap.Container, {
-    className: "my-4  w-50 p-3"
+    className: "form-container"
   }, _react.default.createElement("h2", {
     className: "text-center mb-4 white-words"
   }, "Welcome to myFlix80s!"), _react.default.createElement("p", {
@@ -53772,7 +53772,7 @@ function LoginView(props) {
     className: "navbar",
     variant: "dark"
   }, _react.default.createElement(_reactBootstrap.Navbar.Brand, null, "myFlix80s")), _react.default.createElement(_reactBootstrap.Container, {
-    className: "my-4 w-50 p-3"
+    className: "form-container"
   }, _react.default.createElement("h2", {
     className: "text-center mb-4 white-words"
   }, "The Ultimate 1980s Movie App"), _react.default.createElement(_reactBootstrap.Form, null, _react.default.createElement(_reactBootstrap.Form.Group, {

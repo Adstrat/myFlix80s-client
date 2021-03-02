@@ -24,6 +24,12 @@
 .register {
   cursor: pointer;
 }
+
+.form-container {
+  max-width: 500px;
+  margin: auto;
+  margin-top: 40px;
+}
 .movie-view {
   width: 30rem;
   border-radius: 10px;
