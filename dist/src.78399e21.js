@@ -53465,7 +53465,7 @@ function MoviesList(props) {
       key: m._id,
       movie: m
     });
-  })), ";");
+  })));
 }
 
 var _default = (0, _reactRedux.connect)(mapStateToProps)(MoviesList);
