@@ -53450,16 +53450,22 @@ function MoviesList(props) {
   if (!movies) return _react.default.createElement("div", {
     className: "main-view"
   });
-  return _react.default.createElement(_reactBootstrap.Row, {
+  return _react.default.createElement("div", {
     className: "movies-list"
-  }, _react.default.createElement(_visibilityFilterInput.default, {
+  }, _react.default.createElement("h1", {
+    className: "text-center mb-4 white-words"
+  }, "Welcome to myFlix80s"), _react.default.createElement("p", {
+    className: "text-center mb-4 white-words"
+  }, " Browse your favourite films from the 1980s. ", _react.default.createElement("br", null), "Discover timeless classics. And create a list of your favourites."), _react.default.createElement(_visibilityFilterInput.default, {
     visibilityFilter: visibilityFilter
-  }), filteredMovies.map(function (m) {
+  }), _react.default.createElement(_reactBootstrap.Row, {
+    className: "justify-content-center"
+  }, filteredMovies.map(function (m) {
     return _react.default.createElement(_movieCard.MovieCard, {
       key: m._id,
       movie: m
     });
-  }));
+  })), ";");
 }
 
 var _default = (0, _reactRedux.connect)(mapStateToProps)(MoviesList);
@@ -54958,7 +54964,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53548" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49552" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

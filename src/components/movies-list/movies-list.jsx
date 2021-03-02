@@ -20,10 +20,16 @@ function MoviesList(props) {
 
   if (!movies) return <div className="main-view" />;
 
-  return <Row className="movies-list">
+  return <div className="movies-list">
+    <h1 className='text-center mb-4 white-words'>Welcome to myFlix80s</h1>
+    <p className='text-center mb-4 white-words'> Browse your favourite films from the 1980s. <br />
+      Discover timeless classics.
+      And create a list of your favourites.</p>
     <VisibilityFilterInput visibilityFilter={visibilityFilter} />
-    {filteredMovies.map(m => <MovieCard key={m._id} movie={m} />)}
-  </Row>;
+    < Row className="justify-content-center">
+      {filteredMovies.map(m => <MovieCard key={m._id} movie={m} />)}
+    </Row>;
+  </div>
 }
 
 export default connect(mapStateToProps)(MoviesList);
