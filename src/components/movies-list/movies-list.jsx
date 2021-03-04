@@ -25,8 +25,15 @@ function MoviesList(props) {
     <p className='text-center mb-4 white-words'> Browse your favourite films from the 1980s. <br />
       Discover timeless classics.
       And create a list of your favourites.</p>
-    <VisibilityFilterInput visibilityFilter={visibilityFilter} />
+
+
+
     < Row className="justify-content-center">
+      <div className="col-2"></div>
+      <div className="col-6">
+        <VisibilityFilterInput visibilityFilter={visibilityFilter} />
+      </div>
+      <div className="col-2"></div>
       {filteredMovies.map(m => <MovieCard key={m._id} movie={m} />)}
     </Row>
   </div>
