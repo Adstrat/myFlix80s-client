@@ -35,13 +35,13 @@ export function LoginView(props) {
   return (
     <React.Fragment>
 
-      <Navbar className="navbar" variant="dark">
-        <Navbar.Brand>myFlix80s</Navbar.Brand>
-      </Navbar>
+
       <Container className='form-container'>
-        <h2 className='text-center mb-4 white-words'>
+
+        <h1 className='text-center heading'>myFlix80s</h1>
+        <h4 className='text-center mb-4 sub-heading'>
           The Ultimate 1980s Movie App
-        </h2>
+        </h4>
         <Form>
 
           <Form.Group controlId="formUsername">

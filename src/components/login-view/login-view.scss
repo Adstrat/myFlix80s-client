@@ -1,9 +1,21 @@
 $blue: #5bc0de;
 $white: #fff;
 $red: #d9534f;
+$black: #000;
+$blue: #0a75ad;
 
-.white-words {
+.heading {
+  background-color: $red;
   color: $white;
+  padding: 5px;
+  border-radius: 8px;
+}
+
+.sub-heading {
+  background-color: $blue;
+  color: $white;
+  padding: 5px;
+  border-radius: 5px;;
 }
 
 .register {
@@ -13,5 +25,8 @@ $red: #d9534f;
 .form-container {
   max-width: 500px;
   margin: auto;
-  margin-top: 40px;
+  margin-top: 100px;
+  border: thick double $blue;
+  border-radius: 5%;
+  padding: 10px;
 }

@@ -106,8 +106,8 @@ export class ProfileView extends React.Component {
           </Card>
         </Container>
 
-        <Container className='my-3'>
-          <h2 className=' text-center mb-4 white-words'>
+        <Container className='favourite-movies'>
+          <h2 className='text-center mb-4 white-words'>
             Favourite Movies
           </h2>
         </Container>

@@ -71,20 +71,17 @@ export function RegistrationView(props) {
 
   return (
     <React.Fragment>
-      <Navbar className="navbar" variant="dark">
-        <Navbar.Brand>myFlix80s</Navbar.Brand>
-      </Navbar>
+      
       <Container className='form-container'>
-        <h2 className='text-center mb-4 white-words'>
-          Welcome to myFlix80s! 
-        </h2>
-        <p className='text-center white-words'>
+      <h1 className='text-center heading'>myFlix80s</h1>
+      <h5 className='text-center mb-4 sub-heading'>
       Create an account and start exploring..
-        </p>
-          
+        </h5>
+      
+    
         <Form >
           <Form.Group controlId="formUsername">
-            <Form.Label >Registration</Form.Label>
+            <Form.Label >Sign up for free</Form.Label>
             <Form.Control
               type="text"
               value={username}

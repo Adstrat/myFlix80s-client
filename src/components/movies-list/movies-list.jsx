@@ -26,8 +26,6 @@ function MoviesList(props) {
       Discover timeless classics.
       And create a list of your favourites.</p>
 
-
-
     < Row className="justify-content-center">
       <div className="col-2"></div>
       <div className="col-6">

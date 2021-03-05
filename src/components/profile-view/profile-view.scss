@@ -5,7 +5,7 @@ $black: #000;
 
 
 .profile-view {
-  margin-bottom: 40px;
+  border-radius: 8px;
 }
 
 .center-btn {
@@ -14,6 +14,10 @@ $black: #000;
 
 .register {
   text-decoration: none;
+}
+
+.favourite-movies {
+  padding: 50px 0 0 0;
 }
 
 .favourite-card {

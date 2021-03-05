@@ -53609,18 +53609,15 @@ function RegistrationView(props) {
     }
   };
 
-  return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(_reactBootstrap.Navbar, {
-    className: "navbar",
-    variant: "dark"
-  }, _react.default.createElement(_reactBootstrap.Navbar.Brand, null, "myFlix80s")), _react.default.createElement(_reactBootstrap.Container, {
+  return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(_reactBootstrap.Container, {
     className: "form-container"
-  }, _react.default.createElement("h2", {
-    className: "text-center mb-4 white-words"
-  }, "Welcome to myFlix80s!"), _react.default.createElement("p", {
-    className: "text-center white-words"
+  }, _react.default.createElement("h1", {
+    className: "text-center heading"
+  }, "myFlix80s"), _react.default.createElement("h5", {
+    className: "text-center mb-4 sub-heading"
   }, "Create an account and start exploring.."), _react.default.createElement(_reactBootstrap.Form, null, _react.default.createElement(_reactBootstrap.Form.Group, {
     controlId: "formUsername"
-  }, _react.default.createElement(_reactBootstrap.Form.Label, null, "Registration"), _react.default.createElement(_reactBootstrap.Form.Control, {
+  }, _react.default.createElement(_reactBootstrap.Form.Label, null, "Sign up for free"), _react.default.createElement(_reactBootstrap.Form.Control, {
     type: "text",
     value: username,
     placeholder: "Username",
@@ -53774,13 +53771,12 @@ function LoginView(props) {
     });
   };
 
-  return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(_reactBootstrap.Navbar, {
-    className: "navbar",
-    variant: "dark"
-  }, _react.default.createElement(_reactBootstrap.Navbar.Brand, null, "myFlix80s")), _react.default.createElement(_reactBootstrap.Container, {
+  return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(_reactBootstrap.Container, {
     className: "form-container"
-  }, _react.default.createElement("h2", {
-    className: "text-center mb-4 white-words"
+  }, _react.default.createElement("h1", {
+    className: "text-center heading"
+  }, "myFlix80s"), _react.default.createElement("h4", {
+    className: "text-center mb-4 sub-heading"
   }, "The Ultimate 1980s Movie App"), _react.default.createElement(_reactBootstrap.Form, null, _react.default.createElement(_reactBootstrap.Form.Group, {
     controlId: "formUsername"
   }, _react.default.createElement(_reactBootstrap.Form.Label, null, "Login"), _react.default.createElement(_reactBootstrap.Form.Control, {
@@ -54277,9 +54273,9 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
         className: "return-button",
         variant: "info"
       }, "Return to Movie List")))))), _react.default.createElement(_reactBootstrap.Container, {
-        className: "my-3"
+        className: "favourite-movies"
       }, _react.default.createElement("h2", {
-        className: " text-center mb-4 white-words"
+        className: "text-center mb-4 white-words"
       }, "Favourite Movies")), _react.default.createElement(_reactBootstrap.Container, {
         className: "d-flex row my-3 favourites"
       }, favouriteMovieList.map(function (movie) {
@@ -54979,7 +54975,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50862" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49850" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

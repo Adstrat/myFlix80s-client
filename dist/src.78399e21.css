@@ -17,8 +17,18 @@
 .register {
   cursor: pointer;
 }
-.white-words {
+.heading {
+  background-color: #d9534f;
   color: #fff;
+  padding: 5px;
+  border-radius: 8px;
+}
+
+.sub-heading {
+  background-color: #0a75ad;
+  color: #fff;
+  padding: 5px;
+  border-radius: 5px;
 }
 
 .register {
@@ -28,7 +38,10 @@
 .form-container {
   max-width: 500px;
   margin: auto;
-  margin-top: 40px;
+  margin-top: 100px;
+  border: thick double #0a75ad;
+  border-radius: 5%;
+  padding: 10px;
 }
 .movie-view {
   width: 30rem;
@@ -64,7 +77,7 @@
   font-size: 24px;
 }
 .profile-view {
-  margin-bottom: 40px;
+  border-radius: 8px;
 }
 
 .center-btn {
@@ -73,6 +86,10 @@
 
 .register {
   text-decoration: none;
+}
+
+.favourite-movies {
+  padding: 50px 0 0 0;
 }
 
 .favourite-card {
