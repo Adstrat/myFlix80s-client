@@ -16,6 +16,7 @@ parcel src/index.html
 ```
 http://localhost:1234/
 ```
+
 ## App Info
 
 ### Author
