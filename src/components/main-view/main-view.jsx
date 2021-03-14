@@ -150,7 +150,7 @@ export class MainView extends React.Component {
   }
 }
 
-let mapStateToProps = state => {
+const mapStateToProps = state => {
   return { movies: state.movies, user: state.user }
 }
 
