@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Container, Form, Button, Navbar, Spinner } from 'react-bootstrap';
+import { Container, Form, Button, Spinner } from 'react-bootstrap';
 import axios from 'axios';
 
 import './registration-view.scss'

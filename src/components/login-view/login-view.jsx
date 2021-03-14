@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { Container, Navbar, Form, Button, Spinner } from 'react-bootstrap';
+import { Container, Form, Button, Spinner } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { setUser } from '../../actions/actions';
 import axios from 'axios';
