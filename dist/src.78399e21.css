@@ -60,6 +60,10 @@
   text-align: center;
   margin: 10px;
 }
+.genre-container {
+  max-width: 600px;
+}
+
 .genre-view {
   margin: 10px;
   border-radius: 7px;
@@ -68,6 +72,10 @@
 .scifi-title {
   font-size: 24px;
 }
+.director-container {
+  max-width: 600px;
+}
+
 .director-view {
   margin: 10px;
   border-radius: 7px;

@@ -3,12 +3,16 @@ $white: #fff;
 $red: #d9534f;
 $black: #000;
 
+.genre-container {
+  max-width: 600px;
+}
+
 .genre-view {
   margin: 10px;
   border-radius: 7px;;
 }
 
 .scifi-title {
-
   font-size: 24px;
 }
+

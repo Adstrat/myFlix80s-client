@@ -14,7 +14,7 @@ export function DirectorView(props) {
 
   return (
     <React.Fragment>
-      <Container className='my-3 w-50 p-3'>
+      <Container className='director-container'>
 
         <Card className="director-view">
           <Card.Body>
@@ -41,7 +41,7 @@ export function DirectorView(props) {
           Movies by {director.Name}:
         </h5>
 
-        <Row className="main-view justify-content-md-center">
+        <Row className="justify-content-center">
 
           {movies.map(m => {
             if (m.Director.Name === director.Name) {

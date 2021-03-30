@@ -14,7 +14,7 @@ export function GenreView(props) {
 
   return (
     <React.Fragment>
-      <Container className='my-3 w-50 p-3'>
+      <Container className='genre-container'>
 
         <Card className="genre-view">
           <Card.Body>
@@ -29,8 +29,8 @@ export function GenreView(props) {
               <Button className='return-button' variant='info' onClick={() => history.goBack()} >Back to Movie</Button>
             </div>
           </Card.Body>
-        </Card>
-      </Container>
+        </Card >
+      </Container >
 
       <Container className='my-3'>
 
@@ -38,7 +38,7 @@ export function GenreView(props) {
           {genre.Name} Movies:
         </h5>
 
-        <Row className="main-view justify-content-md-center">
+        <Row className="justify-content-center">
 
           {movies.map(m => {
             if (m.Genre.Name === genre.Name) {

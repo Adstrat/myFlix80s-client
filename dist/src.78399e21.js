@@ -54027,7 +54027,7 @@ function GenreView(props) {
   if (!genre) return null;
   var history = (0, _reactRouterDom.useHistory)();
   return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(_reactBootstrap.Container, {
-    className: "my-3 w-50 p-3"
+    className: "genre-container"
   }, _react.default.createElement(_reactBootstrap.Card, {
     className: "genre-view"
   }, _react.default.createElement(_reactBootstrap.Card.Body, null, _react.default.createElement(_reactBootstrap.Card.Title, {
@@ -54045,7 +54045,7 @@ function GenreView(props) {
   }, _react.default.createElement("h5", {
     className: " text-center mb-4 white-words"
   }, genre.Name, " Movies:"), _react.default.createElement(_reactBootstrap.Row, {
-    className: "main-view justify-content-md-center"
+    className: "justify-content-center"
   }, movies.map(function (m) {
     if (m.Genre.Name === genre.Name) {
       return _react.default.createElement(_movieCard.MovieCard, {
@@ -54097,7 +54097,7 @@ function DirectorView(props) {
   if (!director) return null;
   var history = (0, _reactRouterDom.useHistory)();
   return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(_reactBootstrap.Container, {
-    className: "my-3 w-50 p-3"
+    className: "director-container"
   }, _react.default.createElement(_reactBootstrap.Card, {
     className: "director-view"
   }, _react.default.createElement(_reactBootstrap.Card.Body, null, _react.default.createElement(_reactBootstrap.Card.Title, {
@@ -54117,7 +54117,7 @@ function DirectorView(props) {
   }, _react.default.createElement("h5", {
     className: " text-center mb-4 white-words"
   }, "Movies by ", director.Name, ":"), _react.default.createElement(_reactBootstrap.Row, {
-    className: "main-view justify-content-md-center"
+    className: "justify-content-center"
   }, movies.map(function (m) {
     if (m.Director.Name === director.Name) {
       return _react.default.createElement(_movieCard.MovieCard, {
@@ -54995,7 +54995,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49642" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56398" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
