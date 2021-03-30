@@ -53601,9 +53601,31 @@ function RegistrationView(props) {
         console.log(data);
         window.open('/', '_self');
         alert('New Account created - now log in');
-      }).catch(function () {
-        console.log('error registering the user');
+      }).catch(function (error) {
+        setLoading(false);
+
+        if (error.response && error.response.data && error.response.data.errors) {
+          error.response.data.errors.forEach(function (err) {
+            console.log(err);
+
+            switch (err.param) {
+              case "Username":
+                setUsernameErr([err.msg]);
+                break;
+
+              case "Email":
+                setEmailErr([err.msg]);
+                break;
+
+              case "Password":
+                setPasswordErr([err.msg]);
+                break;
+            }
+          });
+        }
       });
+    } else {
+      setLoading(false);
     }
   };
 
@@ -54973,7 +54995,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60735" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49642" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

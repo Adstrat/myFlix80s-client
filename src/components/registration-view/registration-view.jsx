@@ -51,21 +51,39 @@ export function RegistrationView(props) {
     setLoading(true);
     const isValid = formValidation();
     if (isValid) {
-    axios.post('https://my-flix80s.herokuapp.com/users', {
-      Username: username,
-      Password: password,
-      Email: email,
-      Birthday: birthday
-    })
+      axios.post('https://my-flix80s.herokuapp.com/users', {
+        Username: username,
+        Password: password,
+        Email: email,
+        Birthday: birthday
+      })
       .then(response => {
         const data = response.data;
         console.log(data);
         window.open('/', '_self');
         alert('New Account created - now log in')
       })
-      .catch(() => {
-        console.log('error registering the user')
+      .catch((error) => {
+        setLoading(false);
+        if (error.response && error.response.data && error.response.data.errors) {
+          error.response.data.errors.forEach((err) => {
+            console.log(err)
+            switch (err.param){
+              case "Username":
+              setUsernameErr([err.msg]);
+              break
+              case "Email":
+              setEmailErr([err.msg]);
+              break
+              case "Password":
+              setPasswordErr([err.msg]);
+              break
+            }
+          })
+        }
       })
+    } else {
+      setLoading(false);
     }
   };
 
