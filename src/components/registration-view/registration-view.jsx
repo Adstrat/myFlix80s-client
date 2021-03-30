@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Container, Form, Button, Navbar, Spinner } from 'react-bootstrap';
+import { Container, Form, Button, Spinner } from 'react-bootstrap';
 import axios from 'axios';
 
 import './registration-view.scss'
@@ -51,40 +51,55 @@ export function RegistrationView(props) {
     setLoading(true);
     const isValid = formValidation();
     if (isValid) {
-    axios.post('https://my-flix80s.herokuapp.com/users', {
-      Username: username,
-      Password: password,
-      Email: email,
-      Birthday: birthday
-    })
+      axios.post('https://my-flix80s.herokuapp.com/users', {
+        Username: username,
+        Password: password,
+        Email: email,
+        Birthday: birthday
+      })
       .then(response => {
         const data = response.data;
         console.log(data);
         window.open('/', '_self');
         alert('New Account created - now log in')
       })
-      .catch(() => {
-        console.log('error registering the user')
+      .catch((error) => {
+        setLoading(false);
+        if (error.response && error.response.data && error.response.data.errors) {
+          error.response.data.errors.forEach((err) => {
+            console.log(err)
+            switch (err.param){
+              case "Username":
+              setUsernameErr([err.msg]);
+              break
+              case "Email":
+              setEmailErr([err.msg]);
+              break
+              case "Password":
+              setPasswordErr([err.msg]);
+              break
+            }
+          })
+        }
       })
+    } else {
+      setLoading(false);
     }
   };
 
   return (
     <React.Fragment>
-      <Navbar className="navbar" variant="dark">
-        <Navbar.Brand>myFlix80s</Navbar.Brand>
-      </Navbar>
-      <Container className='my-4  w-50 p-3'>
-        <h2 className='text-center mb-4 white-words'>
-          Welcome to myFlix80s! 
-        </h2>
-        <p className='text-center white-words'>
+      
+      <Container className='form-container'>
+      <h1 className='text-center heading'>myFlix80s</h1>
+      <h5 className='text-center mb-4 sub-heading'>
       Create an account and start exploring..
-        </p>
-          
-        <Form>
+        </h5>
+      
+    
+        <Form >
           <Form.Group controlId="formUsername">
-            <Form.Label >Registration</Form.Label>
+            <Form.Label >Sign up for free</Form.Label>
             <Form.Control
               type="text"
               value={username}

@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 
-import { Container, Navbar, Form, Button, Spinner } from 'react-bootstrap';
+import { Container, Form, Button, Spinner } from 'react-bootstrap';
+import { connect } from 'react-redux';
+import { setUser } from '../../actions/actions';
 import axios from 'axios';
 import './login-view.scss';
 
@@ -23,6 +25,7 @@ export function LoginView(props) {
       .then(response => {
         const data = response.data;
         props.onLoggedIn(data);
+        props.setUser(username);
       })
       .catch(() => {
         console.log('no such user')
@@ -32,13 +35,13 @@ export function LoginView(props) {
   return (
     <React.Fragment>
 
-      <Navbar className="navbar" variant="dark">
-        <Navbar.Brand>myFlix80s</Navbar.Brand>
-      </Navbar>
-      <Container className='my-4 w-50 p-3'>
-        <h2 className='text-center mb-4 white-words'>
+
+      <Container className='form-container'>
+
+        <h1 className='text-center heading'>myFlix80s</h1>
+        <h4 className='text-center mb-4 sub-heading'>
           The Ultimate 1980s Movie App
-        </h2>
+        </h4>
         <Form>
 
           <Form.Group controlId="formUsername">
@@ -77,3 +80,5 @@ export function LoginView(props) {
 
   );
 }
+
+export default connect(null, { setUser })(LoginView);
