@@ -54732,7 +54732,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
         variant: "dark",
         expand: "md"
       }, _react.default.createElement(_reactBootstrap.Navbar.Brand, {
-        href: "#home"
+        href: "/"
       }, "myFlix80s"), _react.default.createElement(_reactBootstrap.Navbar.Toggle, {
         "aria-controls": "basic-navbar-nav"
       }), _react.default.createElement(_reactBootstrap.Navbar.Collapse, {

@@ -99,7 +99,7 @@ export class MainView extends React.Component {
       <Router>
         <React.Fragment>
           <Navbar className="navbar" variant="dark" expand="md">
-            <Navbar.Brand href="#home">myFlix80s</Navbar.Brand>
+            <Navbar.Brand href="/">myFlix80s</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="mr-auto">
