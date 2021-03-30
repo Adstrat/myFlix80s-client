@@ -5,8 +5,8 @@ myFlix80s is an app which provides users with information about different films,
 
 ### Live App
 
-Feel free to create an account and explore the App
-[myFlix80s App](https://myflix80s.netlify.app/)
+Feel free to create an account and explore.
+[Link to App](https://myflix80s.netlify.app/)
 
 
 ### Install dependencies
