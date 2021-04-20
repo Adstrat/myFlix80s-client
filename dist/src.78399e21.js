@@ -54741,9 +54741,10 @@ var MainView = /*#__PURE__*/function (_React$Component) {
         className: "mr-auto"
       }, _react.default.createElement(_reactBootstrap.Nav.Link, {
         href: "/"
-      }, "Home"), _react.default.createElement(_reactBootstrap.Nav.Link, {
-        href: "/profile"
-      }, "Profile"), _react.default.createElement(_reactBootstrap.Nav.Link, {
+      }, "Home"), _react.default.createElement(_reactBootstrap.Nav.Link, null, _react.default.createElement(_reactRouterDom.Link, {
+        "class": "navbar-link",
+        to: "/profile"
+      }, "Profile")), _react.default.createElement(_reactBootstrap.Nav.Link, {
         onClick: function onClick() {
           return _this3.onLogOut();
         }
@@ -54995,7 +54996,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56398" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61935" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

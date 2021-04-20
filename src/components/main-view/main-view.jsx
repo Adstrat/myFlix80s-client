@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { connect } from 'react-redux';
 
 import { setMovies, setUser } from '../../actions/actions';
@@ -104,9 +104,9 @@ export class MainView extends React.Component {
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="mr-auto">
                 <Nav.Link href="/">Home</Nav.Link>
-
-                <Nav.Link href='/profile'>Profile</Nav.Link>
-
+                <Nav.Link>
+                  <Link class="navbar-link" to='/profile'>Profile</Link>
+                </Nav.Link>
                 <Nav.Link onClick={() => this.onLogOut()}>LogOut</Nav.Link>
               </Nav>
             </Navbar.Collapse>

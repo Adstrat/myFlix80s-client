@@ -9,3 +9,14 @@ body {
 .navbar {
   background-color: $red;
 }
+
+.navbar-link {
+  color: white;
+  opacity: 0.5;
+}
+
+.navbar-link:hover {
+  text-decoration: none;
+  color: white;
+  opacity: 0.7;
+}
