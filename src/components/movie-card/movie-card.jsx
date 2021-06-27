@@ -18,7 +18,7 @@ export class MovieCard extends React.Component {
           <Card.Title>{movie.Title}</Card.Title>
           <Card.Text>Released: {movie.Released}</Card.Text>
           <Link to={`/movies/${movie._id}`}>
-            <Button variant="info">View</Button>
+            <Button variant='info'>View</Button>
           </Link>
 
         </Card.Body>

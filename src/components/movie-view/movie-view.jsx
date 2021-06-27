@@ -54,8 +54,7 @@ export class MovieView extends React.Component {
 
             <div className='center-btn'>
               <Button
-                className='return-button'
-                variant='warning'
+                className='return-button favourites-button'
                 onClick={() => this.addFavourite(movie)}>
                 Add to Favourites
               </Button>

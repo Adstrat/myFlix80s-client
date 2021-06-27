@@ -1,13 +1,15 @@
-$blue: #5bc0de;
+$lightblue: #d3f1fa;
 $white: #fff;
-$red: #d9534f;
+$blue: #5bc0de;
+$pink: #eb1677;
+$yellow: #fbffcb;
 
 body {
-  background-color: $blue;
+  background-color: $lightblue;
 }
 
 .navbar {
-  background-color: $red;
+  background-color: $pink;
 }
 
 .navbar-link {

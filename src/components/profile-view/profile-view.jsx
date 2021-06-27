@@ -77,7 +77,7 @@ export class ProfileView extends React.Component {
       <React.Fragment >
         <Container className='form-container'>
 
-          <h2 className=' text-center mb-4 white-words'>
+          <h2 className=' text-center mb-4'>
             Profile Details
           </h2>
 
@@ -90,7 +90,7 @@ export class ProfileView extends React.Component {
 
               <Link to={`/update`}>
                 <div className='center-btn'>
-                  <small className='register text-danger ml-2'>
+                  <small className='register ml-2'>
                     Update details
                   </small>
                 </div>

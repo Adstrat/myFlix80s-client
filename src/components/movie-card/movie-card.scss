@@ -1,12 +1,24 @@
-$blue: #5bc0de;
+$blue: #14a2c2;
 $white: #fff;
-$red: #d9534f;
+$pink: #eb1677;
 $black: #000;
+$yellow: #fbffcb;
 
 .movie-card {
   width: 210px;
   margin: 10px;
-  border-radius: 7px;;
+  border: 2px solid $pink;
+  border-radius: 7px;
+  background-color: $yellow;
+}
+
+.movie-image:hover {
+ width: 155px;
+ margin: 26px;
+ border: thick double $pink;
+ .movie-card {
+   background-color: $blue;
+ }
 }
 
 .movie-image {

@@ -1,11 +1,15 @@
 $blue: #5bc0de;
 $white: #fff;
-$red: #d9534f;
+$pink: #eb1677;
 $black: #000;
+$yellow: #fbffcb;
+$dark-pink: #ca0b61;
 
 .movie-view {
   width: 30rem;
   border-radius: 10px;
+  background-color: $yellow;
+  border: 2px solid $pink;
 }
 
 .movie-poster {
@@ -20,4 +24,13 @@ $black: #000;
 .center-btn {
   text-align: center;
   margin: 10px;
-  }
+}
+
+.favourites-button {
+  background-color: $pink;
+  border: none;
+}
+
+.favourites-button:hover {
+  background-color: $dark-pink;
+}

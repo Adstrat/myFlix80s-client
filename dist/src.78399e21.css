@@ -1,7 +1,18 @@
 .movie-card {
   width: 210px;
   margin: 10px;
+  border: 2px solid #eb1677;
   border-radius: 7px;
+  background-color: #fbffcb;
+}
+
+.movie-image:hover {
+  width: 155px;
+  margin: 26px;
+  border: thick double #eb1677;
+}
+.movie-image:hover .movie-card {
+  background-color: #14a2c2;
 }
 
 .movie-image {
@@ -10,42 +21,61 @@
   border: thick double #000;
   border-radius: 5%;
 }
-.white-words {
-  color: #fff;
-}
-
 .register {
   cursor: pointer;
+  color: #eb1677;
 }
 .heading {
-  background-color: #d9534f;
+  background-color: #eb1677;
   color: #fff;
   padding: 5px;
-  border-radius: 8px;
+  border-radius: 28px;
 }
 
 .sub-heading {
-  background-color: #0a75ad;
+  background-color: #0793f1;
   color: #fff;
   padding: 5px;
-  border-radius: 5px;
+  border-radius: 18px;
 }
 
 .register {
   cursor: pointer;
+  color: #eb1677;
 }
 
 .form-container {
   max-width: 500px;
   margin: auto;
   margin-top: 100px;
-  border: thick double #0a75ad;
-  border-radius: 5%;
-  padding: 10px;
+  border: 4px solid #eb1677;
+  border-radius: 20%;
+  padding: 40px;
+  background-color: #fbffcb;
+}
+
+.login-btn {
+  background-color: #0793f1;
+  border: none;
+  border-radius: 20px;
+}
+
+.small-text {
+  padding-top: 15px;
+}
+
+@media all and (max-width: 600px) {
+  .form-container {
+    max-width: 300px;
+    border-radius: 40px;
+    padding: 20px;
+  }
 }
 .movie-view {
   width: 30rem;
   border-radius: 10px;
+  background-color: #fbffcb;
+  border: 2px solid #eb1677;
 }
 
 .movie-poster {
@@ -60,6 +90,15 @@
   text-align: center;
   margin: 10px;
 }
+
+.favourites-button {
+  background-color: #eb1677;
+  border: none;
+}
+
+.favourites-button:hover {
+  background-color: #ca0b61;
+}
 .genre-container {
   max-width: 600px;
 }
@@ -67,6 +106,8 @@
 .genre-view {
   margin: 10px;
   border-radius: 7px;
+  background-color: #fbffcb;
+  border: 2px solid #5bc0de;
 }
 
 .scifi-title {
@@ -79,6 +120,8 @@
 .director-view {
   margin: 10px;
   border-radius: 7px;
+  background-color: #fbffcb;
+  border: 2px solid #5bc0de;
 }
 
 .director-title {
@@ -86,6 +129,8 @@
 }
 .profile-view {
   border-radius: 8px;
+  background-color: #fbffcb;
+  border: none;
 }
 
 .center-btn {
@@ -110,11 +155,11 @@
   justify-content: center;
 }
 body {
-  background-color: #5bc0de;
+  background-color: #d3f1fa;
 }
 
 .navbar {
-  background-color: #d9534f;
+  background-color: #eb1677;
 }
 
 .navbar-link {

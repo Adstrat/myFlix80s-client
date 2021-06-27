@@ -1,32 +1,53 @@
-$blue: #5bc0de;
+$blue: #0793f1;
+$pink: #eb1677;
+$yellow: #fbffcb;
 $white: #fff;
-$red: #d9534f;
-$black: #000;
-$blue: #0a75ad;
+
 
 .heading {
-  background-color: $red;
+  background-color: $pink;
   color: $white;
   padding: 5px;
-  border-radius: 8px;
+  border-radius: 28px;
 }
 
 .sub-heading {
   background-color: $blue;
   color: $white;
   padding: 5px;
-  border-radius: 5px;;
+  border-radius: 18px;
 }
 
 .register {
   cursor: pointer;
+  color: $pink;
 }
 
 .form-container {
   max-width: 500px;
   margin: auto;
   margin-top: 100px;
-  border: thick double $blue;
-  border-radius: 5%;
-  padding: 10px;
+  border: 4px solid $pink;
+  border-radius: 20%;
+  padding: 40px;
+  background-color: $yellow;
+}
+
+.login-btn {
+  background-color: $blue;
+  border: none;
+  border-radius: 20px;
+}
+
+.small-text {
+  padding-top: 15px;
+}
+
+@media all and (max-width: 600px) {
+  .form-container {
+    max-width: 300px;
+    border-radius: 40px;
+    padding: 20px;
+  }
+ 
 }

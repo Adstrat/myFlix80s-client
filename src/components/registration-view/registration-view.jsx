@@ -166,7 +166,7 @@ export function RegistrationView(props) {
         <small className='text-center d-block'>
       Already have an an account?
        
-            <span onClick={handleReturnLogin} className='register text-danger ml-2'>
+            <span onClick={handleReturnLogin} className='register ml-2'>
         Return to Log In
             </span>
          

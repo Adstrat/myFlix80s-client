@@ -38,7 +38,7 @@ export function LoginView(props) {
 
       <Container className='form-container'>
 
-        <h1 className='text-center heading'>myFlix80s</h1>
+        <h1 className='text-center heading'>myFlix 80s</h1>
         <h4 className='text-center mb-4 sub-heading'>
           The Ultimate 1980s Movie App
         </h4>
@@ -59,18 +59,15 @@ export function LoginView(props) {
               onChange={e => setPassword(e.target.value)} />
           </Form.Group>
 
-          {!loading && <Button variant="info" type="submit" onClick={handleSubmit}>
+          {!loading && <Button className="login-btn" type="submit" onClick={handleSubmit}>
             Login
           </Button>}
           {loading && <Button variant="info" type="submit" disabled>
             <Spinner animation="border" variant="danger" /></Button>}
-
-
-
         </Form>
-        <small className='text-center d-block'>
+        <small className='text-center small-text d-block'>
           Not a member yet?
-      <span onClick={handleRegister} className='register text-danger ml-2'>
+      <span onClick={handleRegister} className='register ml-2'>
             Sign up for free
       </span>
         </small>

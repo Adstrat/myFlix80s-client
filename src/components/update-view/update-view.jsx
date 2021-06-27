@@ -165,7 +165,7 @@ export function UpdateView() {
 
           <div className='center-btn'>
             <small
-              className='register text-danger ml-2'
+              className='register ml-2'
               onClick={handleDelete}>
               Delete Account
             </small>

@@ -1,7 +1,8 @@
 $blue: #5bc0de;
 $white: #fff;
-$red: #d9534f;
+$pink: #eb1677;
 $black: #000;
+$yellow: #fbffcb;
 
 .director-container {
   max-width: 600px;
@@ -9,7 +10,9 @@ $black: #000;
 
 .director-view {
   margin: 10px;
-  border-radius: 7px;;
+  border-radius: 7px;
+  background-color: $yellow;
+  border: 2px solid $blue;
 }
 
 .director-title {
