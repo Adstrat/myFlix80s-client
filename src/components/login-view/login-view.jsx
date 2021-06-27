@@ -3,6 +3,11 @@ import React, { useState } from 'react';
 import { Container, Form, Button, Spinner } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { setUser } from '../../actions/actions';
+
+import bladerunner from '../../../img/bladerunner.png';
+import labyrinth from '../../../img/labyrinth.png';
+import backtothefuture from '../../../img/backtothefuture.png';
+
 import axios from 'axios';
 import './login-view.scss';
 
@@ -72,6 +77,12 @@ export function LoginView(props) {
       </span>
         </small>
       </Container>
+
+      <div className="movie-images">
+        <img src={bladerunner} width="30%" />
+        <img src={labyrinth} width="30%" />
+        <img src={backtothefuture} width="30%" />
+      </div>
 
     </React.Fragment >
 

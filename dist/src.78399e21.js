@@ -53719,7 +53719,13 @@ function RegistrationView(props) {
     className: "register ml-2"
   }, "Return to Log In"))));
 }
-},{"react":"../node_modules/react/index.js","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js","axios":"../node_modules/axios/index.js","./registration-view.scss":"components/registration-view/registration-view.scss"}],"components/login-view/login-view.scss":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js","axios":"../node_modules/axios/index.js","./registration-view.scss":"components/registration-view/registration-view.scss"}],"../img/bladerunner.png":[function(require,module,exports) {
+module.exports = "/bladerunner.7ab4f07b.png";
+},{}],"../img/labyrinth.png":[function(require,module,exports) {
+module.exports = "/labyrinth.93507f0a.png";
+},{}],"../img/backtothefuture.png":[function(require,module,exports) {
+module.exports = "/backtothefuture.d75078d0.png";
+},{}],"components/login-view/login-view.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -53740,6 +53746,12 @@ var _reactBootstrap = require("react-bootstrap");
 var _reactRedux = require("react-redux");
 
 var _actions = require("../../actions/actions");
+
+var _bladerunner = _interopRequireDefault(require("../../../img/bladerunner.png"));
+
+var _labyrinth = _interopRequireDefault(require("../../../img/labyrinth.png"));
+
+var _backtothefuture = _interopRequireDefault(require("../../../img/backtothefuture.png"));
 
 var _axios = _interopRequireDefault(require("axios"));
 
@@ -53836,7 +53848,18 @@ function LoginView(props) {
   }, "Not a member yet?", /*#__PURE__*/_react.default.createElement("span", {
     onClick: handleRegister,
     className: "register ml-2"
-  }, "Sign up for free"))));
+  }, "Sign up for free"))), /*#__PURE__*/_react.default.createElement("div", {
+    className: "movie-images"
+  }, /*#__PURE__*/_react.default.createElement("img", {
+    src: _bladerunner.default,
+    width: "30%"
+  }), /*#__PURE__*/_react.default.createElement("img", {
+    src: _labyrinth.default,
+    width: "30%"
+  }), /*#__PURE__*/_react.default.createElement("img", {
+    src: _backtothefuture.default,
+    width: "30%"
+  })));
 }
 
 var _default = (0, _reactRedux.connect)(null, {
@@ -53844,7 +53867,7 @@ var _default = (0, _reactRedux.connect)(null, {
 })(LoginView);
 
 exports.default = _default;
-},{"react":"../node_modules/react/index.js","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js","react-redux":"../node_modules/react-redux/es/index.js","../../actions/actions":"actions/actions.js","axios":"../node_modules/axios/index.js","./login-view.scss":"components/login-view/login-view.scss"}],"components/movie-view/movie-view.scss":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js","react-redux":"../node_modules/react-redux/es/index.js","../../actions/actions":"actions/actions.js","../../../img/bladerunner.png":"../img/bladerunner.png","../../../img/labyrinth.png":"../img/labyrinth.png","../../../img/backtothefuture.png":"../img/backtothefuture.png","axios":"../node_modules/axios/index.js","./login-view.scss":"components/login-view/login-view.scss"}],"components/movie-view/movie-view.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
