@@ -11,9 +11,6 @@
   margin: 26px;
   border: thick double #eb1677;
 }
-.movie-image:hover .movie-card {
-  background-color: #14a2c2;
-}
 
 .movie-image {
   width: 150px;
@@ -67,7 +64,6 @@
 .movie-images {
   text-align: center;
   padding-top: 50px;
-  padding: space-between;
 }
 
 @media all and (max-width: 600px) {
