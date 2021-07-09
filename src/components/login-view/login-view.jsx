@@ -72,9 +72,9 @@ export function LoginView(props) {
         </Form>
         <small className='text-center small-text d-block'>
           Not a member yet?
-      <span onClick={handleRegister} className='register ml-2'>
+          <span onClick={handleRegister} className='register ml-2'>
             Sign up for free
-      </span>
+          </span>
         </small>
       </Container>
 

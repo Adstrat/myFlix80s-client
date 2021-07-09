@@ -3,21 +3,6 @@ $pink: #eb1677;
 $yellow: #fbffcb;
 $white: #fff;
 
-
-.heading {
-  background-color: $blue;
-  color: $white;
-  padding: 5px;
-  border-radius: 28px;
-}
-
-.sub-heading {
-  background-color: $blue;
-  color: $white;
-  padding: 5px;
-  border-radius: 18px;
-}
-
 .sub-heading:hover, 
 .heading:hover {
   background-color: $pink;
@@ -33,7 +18,7 @@ $white: #fff;
   margin: auto;
   margin-top: 60px;
   border: 5px solid $pink;
-  border-radius: 20%;
+  border-radius: 5%;
   padding: 40px;
   background-color: $yellow;
 }

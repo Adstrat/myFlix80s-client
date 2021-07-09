@@ -24,23 +24,25 @@ function MoviesList(props) {
 
   return (
 
-    <div className="movies-list">
+    <div>
       <div className="welcome-container">
         <h1 className='text-center mb-4 welcome'>Welcome to myFlix80s</h1>
         <p className='text-center mb-4 welcome'> Browse your favourite films from the 1980s. <br />
         Discover timeless classics.
         And create a list of your favourites.
-      </p>
+        </p>
       </div>
-      < Row className="justify-content-center">
-        <div className="col-2"></div>
-        <div className="col-6">
-          <VisibilityFilterInput visibilityFilter={visibilityFilter} />
-        </div>
-        <div className="col-2"></div>
+      <div className="movies-list">
+        < Row className="justify-content-center">
+          <div className="col-2"></div>
+          <div className="col-6">
+            <VisibilityFilterInput visibilityFilter={visibilityFilter} />
+          </div>
+          <div className="col-2"></div>
 
-        {filteredMovies.map(m => <MovieCard key={m._id} movie={m} />)}
-      </Row>
+          {filteredMovies.map(m => <MovieCard key={m._id} movie={m} />)}
+        </Row>
+      </div>
     </div >
   )
 }

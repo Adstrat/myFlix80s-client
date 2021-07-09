@@ -53455,15 +53455,15 @@ function MoviesList(props) {
   if (!movies) return /*#__PURE__*/_react.default.createElement("div", {
     className: "main-view"
   });
-  return /*#__PURE__*/_react.default.createElement("div", {
-    className: "movies-list"
-  }, /*#__PURE__*/_react.default.createElement("div", {
+  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("div", {
     className: "welcome-container"
   }, /*#__PURE__*/_react.default.createElement("h1", {
     className: "text-center mb-4 welcome"
   }, "Welcome to myFlix80s"), /*#__PURE__*/_react.default.createElement("p", {
     className: "text-center mb-4 welcome"
-  }, " Browse your favourite films from the 1980s. ", /*#__PURE__*/_react.default.createElement("br", null), "Discover timeless classics. And create a list of your favourites.")), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Row, {
+  }, " Browse your favourite films from the 1980s. ", /*#__PURE__*/_react.default.createElement("br", null), "Discover timeless classics. And create a list of your favourites.")), /*#__PURE__*/_react.default.createElement("div", {
+    className: "movies-list"
+  }, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Row, {
     className: "justify-content-center"
   }, /*#__PURE__*/_react.default.createElement("div", {
     className: "col-2"
@@ -53478,7 +53478,7 @@ function MoviesList(props) {
       key: m._id,
       movie: m
     });
-  })));
+  }))));
 }
 
 var _default = (0, _reactRedux.connect)(mapStateToProps)(MoviesList);
@@ -54325,11 +54325,9 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Button, {
         className: "return-button",
         variant: "info"
-      }, "Return to Movie List")))))), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Container, {
-        className: "favourites-container"
-      }, /*#__PURE__*/_react.default.createElement("h2", {
+      }, "Return to Movie List")))))), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Container, null, /*#__PURE__*/_react.default.createElement("h2", {
         className: "text-center mb-4 favourite-movies__title"
-      }, "Favourite Movies"), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Container, {
+      }, "Your Favourite Movies:"), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Container, {
         className: "d-flex row my-3 favourites"
       }, favouriteMovieList.map(function (movie) {
         return /*#__PURE__*/_react.default.createElement("div", {
@@ -54593,7 +54591,7 @@ var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"./../../../img/80swallpaper.jpg":[["80swallpaper.e990414d.jpg","../img/80swallpaper.jpg"],"../img/80swallpaper.jpg"],"_css_loader":"../../../.nvm/versions/node/v14.16.1/lib/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"components/main-view/main-view.jsx":[function(require,module,exports) {
+},{"_css_loader":"../../../.nvm/versions/node/v14.16.1/lib/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"components/main-view/main-view.jsx":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {

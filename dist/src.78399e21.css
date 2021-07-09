@@ -18,15 +18,13 @@
   border: thick double #000;
   border-radius: 5%;
 }
-.welcome {
-  color: #fff;
-}
-
 .welcome-container {
-  background-color: #eb1677;
-  border: 2px solid #02dded;
-  padding: 10px;
-  margin: 20px;
+  background-color: #fbffcb;
+  border: 2px solid #eb1677;
+  padding: 10px 20px 0 20px;
+  max-width: 500px;
+  margin: auto;
+  margin-bottom: 15px;
   border-radius: 8px;
 }
 
@@ -34,24 +32,16 @@
   background-color: #02dded;
   border: 2px solid #eb1677;
 }
+
+@media all and (max-width: 600px) {
+  .welcome-container {
+    max-width: 350px;
+  }
+}
 .register {
   cursor: pointer;
   color: #eb1677;
 }
-.heading {
-  background-color: #0793f1;
-  color: #fff;
-  padding: 5px;
-  border-radius: 28px;
-}
-
-.sub-heading {
-  background-color: #0793f1;
-  color: #fff;
-  padding: 5px;
-  border-radius: 18px;
-}
-
 .sub-heading:hover,
 .heading:hover {
   background-color: #eb1677;
@@ -67,7 +57,7 @@
   margin: auto;
   margin-top: 60px;
   border: 5px solid #eb1677;
-  border-radius: 20%;
+  border-radius: 5%;
   padding: 40px;
   background-color: #fbffcb;
 }
@@ -185,17 +175,11 @@
 }
 
 .favourite-movies__title {
-  color: #fbffcb;
   padding: 10px;
   margin: 20px;
 }
-
-.favourites-container {
-  background-color: #5bc0de;
-  margin: 20px 0;
-}
 body {
-  background-image: url("/80swallpaper.e990414d.jpg");
+  background-color: #d3f1fa;
 }
 
 .navbar {

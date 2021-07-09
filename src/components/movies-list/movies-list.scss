@@ -3,19 +3,25 @@ $pink: #eb1677;
 $yellow: #fbffcb;
 $white: #fff;
 
-.welcome {
-  color: $white;
-}
 
 .welcome-container {
-  background-color: $pink;
-  border: 2px solid $blue;
-  padding: 10px;
-  margin: 20px;
+  background-color: $yellow;
+  border: 2px solid $pink;
+  padding: 10px 20px 0 20px;
+  max-width: 500px;
+  margin: auto;
+  margin-bottom: 15px;;
   border-radius: 8px;
 }
 
 .welcome-container:hover {
   background-color: $blue;
   border: 2px solid $pink;
+}
+
+@media all and (max-width: 600px) {
+  .welcome-container {
+    max-width: 350px;
+   
+  }
 }

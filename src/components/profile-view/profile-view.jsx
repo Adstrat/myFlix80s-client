@@ -106,9 +106,9 @@ export class ProfileView extends React.Component {
           </Card>
         </Container>
 
-        <Container className='favourites-container'>
+        <Container>
           <h2 className='text-center mb-4 favourite-movies__title'>
-            Favourite Movies
+            Your Favourite Movies:
           </h2>
 
           <Container className='d-flex row my-3 favourites'>
