@@ -53457,11 +53457,13 @@ function MoviesList(props) {
   });
   return /*#__PURE__*/_react.default.createElement("div", {
     className: "movies-list"
+  }, /*#__PURE__*/_react.default.createElement("div", {
+    className: "welcome-container"
   }, /*#__PURE__*/_react.default.createElement("h1", {
-    className: "text-center mb-4"
+    className: "text-center mb-4 welcome"
   }, "Welcome to myFlix80s"), /*#__PURE__*/_react.default.createElement("p", {
-    className: "text-center mb-4"
-  }, " Browse your favourite films from the 1980s. ", /*#__PURE__*/_react.default.createElement("br", null), "Discover timeless classics. And create a list of your favourites."), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Row, {
+    className: "text-center mb-4 welcome"
+  }, " Browse your favourite films from the 1980s. ", /*#__PURE__*/_react.default.createElement("br", null), "Discover timeless classics. And create a list of your favourites.")), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Row, {
     className: "justify-content-center"
   }, /*#__PURE__*/_react.default.createElement("div", {
     className: "col-2"
@@ -53814,7 +53816,7 @@ function LoginView(props) {
     className: "form-container"
   }, /*#__PURE__*/_react.default.createElement("h1", {
     className: "text-center heading"
-  }, "myFlix 80s"), /*#__PURE__*/_react.default.createElement("h4", {
+  }, "myFlix80s"), /*#__PURE__*/_react.default.createElement("h4", {
     className: "text-center mb-4 sub-heading"
   }, "The Ultimate 1980s Movie App"), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Form, null, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Form.Group, {
     controlId: "formUsername"
@@ -53852,13 +53854,13 @@ function LoginView(props) {
     className: "movie-images"
   }, /*#__PURE__*/_react.default.createElement("img", {
     src: _bladerunner.default,
-    width: "30%"
+    width: "25%"
   }), /*#__PURE__*/_react.default.createElement("img", {
     src: _labyrinth.default,
-    width: "30%"
+    width: "25%"
   }), /*#__PURE__*/_react.default.createElement("img", {
     src: _backtothefuture.default,
-    width: "30%"
+    width: "25%"
   })));
 }
 
@@ -54324,10 +54326,10 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
         className: "return-button",
         variant: "info"
       }, "Return to Movie List")))))), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Container, {
-        className: "favourite-movies"
+        className: "favourites-container"
       }, /*#__PURE__*/_react.default.createElement("h2", {
-        className: "text-center mb-4 white-words"
-      }, "Favourite Movies")), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Container, {
+        className: "text-center mb-4 favourite-movies__title"
+      }, "Favourite Movies"), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Container, {
         className: "d-flex row my-3 favourites"
       }, favouriteMovieList.map(function (movie) {
         return /*#__PURE__*/_react.default.createElement("div", {
@@ -54351,7 +54353,7 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
             return _this3.removeFavourite(movie);
           }
         }, "Remove")));
-      })));
+      }))));
     }
   }]);
 
@@ -54591,7 +54593,7 @@ var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"_css_loader":"../../../.nvm/versions/node/v14.16.1/lib/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"components/main-view/main-view.jsx":[function(require,module,exports) {
+},{"./../../../img/80swallpaper.jpg":[["80swallpaper.e990414d.jpg","../img/80swallpaper.jpg"],"../img/80swallpaper.jpg"],"_css_loader":"../../../.nvm/versions/node/v14.16.1/lib/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"components/main-view/main-view.jsx":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -54770,7 +54772,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Nav.Link, {
         href: "/"
       }, "Home"), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Nav.Link, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
-        class: "navbar-link",
+        className: "navbar-link",
         to: "/profile"
       }, "Profile")), /*#__PURE__*/_react.default.createElement(_reactBootstrap.Nav.Link, {
         onClick: function onClick() {
@@ -55024,7 +55026,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56662" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59832" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

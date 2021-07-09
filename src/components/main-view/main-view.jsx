@@ -105,7 +105,7 @@ export class MainView extends React.Component {
               <Nav className="mr-auto">
                 <Nav.Link href="/">Home</Nav.Link>
                 <Nav.Link>
-                  <Link class="navbar-link" to='/profile'>Profile</Link>
+                  <Link className="navbar-link" to='/profile'>Profile</Link>
                 </Nav.Link>
                 <Nav.Link onClick={() => this.onLogOut()}>LogOut</Nav.Link>
               </Nav>

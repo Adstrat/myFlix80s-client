@@ -106,38 +106,37 @@ export class ProfileView extends React.Component {
           </Card>
         </Container>
 
-        <Container className='favourite-movies'>
-          <h2 className='text-center mb-4 white-words'>
+        <Container className='favourites-container'>
+          <h2 className='text-center mb-4 favourite-movies__title'>
             Favourite Movies
           </h2>
-        </Container>
 
+          <Container className='d-flex row my-3 favourites'>
 
-        <Container className='d-flex row my-3 favourites'>
+            {favouriteMovieList.map((movie) => {
+              return (
+                <div key={movie._id}>
+                  <Card style={{ width: '10rem' }}
+                    className="favourite-card">
+                    <Link to={`/movies/${movie._id}`}>
+                      <Card.Img
+                        className="movie-card-link"
+                        variant="top"
+                        src={movie.ImagePath} />
+                    </Link>
+                    <Button
+                      className="remove-favourite"
+                      variant="danger"
+                      size="sm"
+                      onClick={() => this.removeFavourite(movie)}>
+                      Remove
+                    </Button>
+                  </Card>
+                </div>
+              );
+            })}
 
-          {favouriteMovieList.map((movie) => {
-            return (
-              <div key={movie._id}>
-                <Card style={{ width: '10rem' }}
-                  className="favourite-card">
-                  <Link to={`/movies/${movie._id}`}>
-                    <Card.Img
-                      className="movie-card-link"
-                      variant="top"
-                      src={movie.ImagePath} />
-                  </Link>
-                  <Button
-                    className="remove-favourite"
-                    variant="danger"
-                    size="sm"
-                    onClick={() => this.removeFavourite(movie)}>
-                    Remove
-                  </Button>
-                </Card>
-              </div>
-            );
-          })}
-
+          </Container>
         </Container>
       </React.Fragment>
     );

@@ -18,12 +18,28 @@
   border: thick double #000;
   border-radius: 5%;
 }
+.welcome {
+  color: #fff;
+}
+
+.welcome-container {
+  background-color: #eb1677;
+  border: 2px solid #02dded;
+  padding: 10px;
+  margin: 20px;
+  border-radius: 8px;
+}
+
+.welcome-container:hover {
+  background-color: #02dded;
+  border: 2px solid #eb1677;
+}
 .register {
   cursor: pointer;
   color: #eb1677;
 }
 .heading {
-  background-color: #eb1677;
+  background-color: #0793f1;
   color: #fff;
   padding: 5px;
   border-radius: 28px;
@@ -36,6 +52,11 @@
   border-radius: 18px;
 }
 
+.sub-heading:hover,
+.heading:hover {
+  background-color: #eb1677;
+}
+
 .register {
   cursor: pointer;
   color: #eb1677;
@@ -45,7 +66,7 @@
   max-width: 500px;
   margin: auto;
   margin-top: 60px;
-  border: 4px solid #eb1677;
+  border: 5px solid #eb1677;
   border-radius: 20%;
   padding: 40px;
   background-color: #fbffcb;
@@ -64,6 +85,16 @@
 .movie-images {
   text-align: center;
   padding-top: 50px;
+}
+
+.movie-images img {
+  margin: 10px;
+  border: 5px solid #eb1677;
+  transition: width 0.5s;
+}
+
+.movie-images img:hover {
+  width: 28%;
 }
 
 @media all and (max-width: 600px) {
@@ -143,10 +174,6 @@
   text-decoration: none;
 }
 
-.favourite-movies {
-  padding: 50px 0 0 0;
-}
-
 .favourite-card {
   margin: 5px;
   border: thick double #000;
@@ -156,8 +183,19 @@
 .favourites {
   justify-content: center;
 }
+
+.favourite-movies__title {
+  color: #fbffcb;
+  padding: 10px;
+  margin: 20px;
+}
+
+.favourites-container {
+  background-color: #5bc0de;
+  margin: 20px 0;
+}
 body {
-  background-color: #d3f1fa;
+  background-image: url("/80swallpaper.e990414d.jpg");
 }
 
 .navbar {

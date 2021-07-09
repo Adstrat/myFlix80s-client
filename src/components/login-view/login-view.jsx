@@ -43,7 +43,7 @@ export function LoginView(props) {
 
       <Container className='form-container'>
 
-        <h1 className='text-center heading'>myFlix 80s</h1>
+        <h1 className='text-center heading'>myFlix80s</h1>
         <h4 className='text-center mb-4 sub-heading'>
           The Ultimate 1980s Movie App
         </h4>
@@ -79,9 +79,9 @@ export function LoginView(props) {
       </Container>
 
       <div className="movie-images">
-        <img src={bladerunner} width="30%" />
-        <img src={labyrinth} width="30%" />
-        <img src={backtothefuture} width="30%" />
+        <img src={bladerunner} width="25%" />
+        <img src={labyrinth} width="25%" />
+        <img src={backtothefuture} width="25%" />
       </div>
 
     </React.Fragment >

@@ -18,10 +18,6 @@ $yellow: #fbffcb;
   text-decoration: none;
 }
 
-.favourite-movies {
-  padding: 50px 0 0 0;
-}
-
 .favourite-card {
   margin: 5px;
   border: thick double $black;
@@ -30,4 +26,15 @@ $yellow: #fbffcb;
 
 .favourites {
   justify-content: center;
+}
+
+.favourite-movies__title {
+  color: $yellow;
+  padding: 10px;
+  margin: 20px;
+}
+
+.favourites-container {
+  background-color: $blue;
+  margin: 20px 0;
 }
