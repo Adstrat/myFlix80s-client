@@ -64,10 +64,10 @@ export function LoginView(props) {
               onChange={e => setPassword(e.target.value)} />
           </Form.Group>
 
-          {!loading && <Button className="login-btn" type="submit" onClick={handleSubmit}>
+          {!loading && <Button className="login-btn btn-lg" type="submit" onClick={handleSubmit}>
             Login
           </Button>}
-          {loading && <Button variant="info" type="submit" disabled>
+          {loading && <Button variant="info login-btn" type="submit" disabled>
             <Spinner animation="border" variant="danger" /></Button>}
         </Form>
         <small className='text-center small-text d-block'>

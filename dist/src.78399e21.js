@@ -53835,11 +53835,11 @@ function LoginView(props) {
       return setPassword(e.target.value);
     }
   })), !loading && /*#__PURE__*/_react.default.createElement(_reactBootstrap.Button, {
-    className: "login-btn",
+    className: "login-btn btn-lg",
     type: "submit",
     onClick: handleSubmit
   }, "Login"), loading && /*#__PURE__*/_react.default.createElement(_reactBootstrap.Button, {
-    variant: "info",
+    variant: "info login-btn",
     type: "submit",
     disabled: true
   }, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Spinner, {
@@ -55024,7 +55024,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53262" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51416" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
