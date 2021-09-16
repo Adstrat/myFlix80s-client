@@ -1,8 +1,15 @@
-$blue: #5bc0de;
+$blue: #0793f1;
 $white: #fff;
 $pink: #eb1677;
 
 .register {
   cursor: pointer;
   color: $pink;
+}
+
+.registration-btn {
+  background-color: $blue;
+  border: none;
+  border-radius: 20px;
+  width: 130px;
 }

@@ -155,10 +155,10 @@ export function RegistrationView(props) {
             })}
           </Form.Group>
 
-          {!loading && <Button variant="info" type="submit" onClick={handleSubmit}>
+          {!loading && <Button className="registration-btn btn-lg" type="submit" onClick={handleSubmit}>
             Sign Up
           </Button>}
-          {loading && <Button variant="info" type="submit" disabled>
+          {loading && <Button variant="info login-btn" type="submit" disabled>
             <Spinner animation="border" variant="danger" /></Button>}
 
         </Form>

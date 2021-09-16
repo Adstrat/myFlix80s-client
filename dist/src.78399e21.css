@@ -42,6 +42,13 @@
   cursor: pointer;
   color: #eb1677;
 }
+
+.registration-btn {
+  background-color: #0793f1;
+  border: none;
+  border-radius: 20px;
+  width: 130px;
+}
 .sub-heading:hover,
 .heading:hover {
   background-color: #eb1677;

@@ -53704,11 +53704,11 @@ function RegistrationView(props) {
       }
     }, passwordErr[key]);
   })), !loading && /*#__PURE__*/_react.default.createElement(_reactBootstrap.Button, {
-    variant: "info",
+    className: "registration-btn btn-lg",
     type: "submit",
     onClick: handleSubmit
   }, "Sign Up"), loading && /*#__PURE__*/_react.default.createElement(_reactBootstrap.Button, {
-    variant: "info",
+    variant: "info login-btn",
     type: "submit",
     disabled: true
   }, /*#__PURE__*/_react.default.createElement(_reactBootstrap.Spinner, {
