@@ -53808,7 +53808,8 @@ function LoginView(props) {
       props.onLoggedIn(data);
       props.setUser(username);
     }).catch(function () {
-      console.log('no such user');
+      setLoading(false);
+      alert("Please enter valid username and password");
     });
   };
 

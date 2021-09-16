@@ -33,7 +33,8 @@ export function LoginView(props) {
         props.setUser(username);
       })
       .catch(() => {
-        console.log('no such user')
+        setLoading(false);
+        alert("Please enter valid username and password");
       });
   };
 
